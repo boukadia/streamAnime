@@ -40,6 +40,10 @@ class AnimeController extends Controller
         
     }
 
+    public function test(){
+
+        return view("user.test");
+    }
     /**
      * Show the form for creating a new resource.
      */
