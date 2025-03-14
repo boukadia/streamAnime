@@ -11,17 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('animes', function (Blueprint $table) {
+        Schema::create('characters', function (Blueprint $table) {
             $table->id();
-            $table->text("PosterLink");
-            $table->string("titre");
-            $table->text("description");
-            $table->date("yearCreation");
-            $table->date("yearFin");
-            $table->text("trailer");
-            $table->string("studio");
+            $table->string('name');
+            $table->foreignId('anime_id')->constrained()->onDelete('cascade');
+            $table->string('glance');
+            $table->string('photoLink');
             $table->timestamps();
-
         });
     }
 
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('animes');
+        Schema::dropIfExists('characters');
     }
 };
