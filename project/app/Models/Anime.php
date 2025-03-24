@@ -9,6 +9,20 @@ class Anime extends Model
 {
     /** @use HasFactory<\Database\Factories\AnimeFactory> */
     use HasFactory;
+    protected $fillable=[ 
+        "posterLink" ,
+            "titre",
+            "description" ,
+            "yearCreation",
+            "yearFin",
+            "trailer",
+            "studio" ,
+            "thumbnail",
+            "status" ,
+            "rating",
+            "rank" ,
+            "score"
+         ];
     
     public function characters(){
         return $this->hasMany(Character::class);

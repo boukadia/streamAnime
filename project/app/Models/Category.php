@@ -9,6 +9,7 @@ class Category extends Model
 {
     /** @use HasFactory<\Database\Factories\CategoryFactory> */
     use HasFactory;
+    protected $fillable=['name'];
     public function animes(){
         return $this->belongsToMany(Anime::class,"anime_category");
     }

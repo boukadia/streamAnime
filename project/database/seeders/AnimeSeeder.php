@@ -13,6 +13,15 @@ class AnimeSeeder extends Seeder
      */
     public function run(): void
     {
-        Anime::factory(5)->create();
+        // Anime::factory(5)->create();
+        Anime::create([
+            'titre' => 'Monkey D. Luffy',
+            'posterLink' => 'Le capitaine...',
+            'description' => 'luffy.jpg',
+            'yearCreation' => 'luffy.jpg',
+            'trailer' => 'luffy.jpg',
+            'yearFin' => 'luffy.jpg',
+            'studio' => 'luffy.jpg',
+        ]);
     }
 }
