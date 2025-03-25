@@ -22,20 +22,26 @@ class AnimeController extends Controller
     public function home(Request $request)
     {
 
-        if ($request) {
-            // $queryString = Input::get('search');
+        // if ($request) {
+        //     // $queryString = Input::get('search');
 
-            $serch = $request->search;
+        //     $serch = $request->search;
 
-            // $animes=anime::search($request->search)->get();
-            $animes = anime::where('titre', 'LIKE', "%" . $serch . "%")->paginate(2);
-            return view("user.index", ["animes" => $animes]);
-        } else {
-            $animes = Anime::all();
-            $categories = Category::all();
+        //     // $animes=anime::search($request->search)->get();
+        //     $animes = anime::where('titre', 'LIKE', "%" . $serch . "%")->paginate(2);
+        //     return view("user.index", ["animes" => $animes]);
+        // } else {
+            // $animes = Anime::all();
+            // $animes = Anime::with('categories')->get();
+            $animes = Anime::with('categories')->get();
+            // "categories" => $categories]
+            // $categories=$animes->categories();
+            // $categories = Category::all();
             // dd($request->search);
-            return view("user.index", ["animes" => $animes, "categories" => $categories]);
-        }
+            // dd($animes);
+           
+            return view("user.index", ["animes" => $animes]);
+        // }
     }
 
     public function index()

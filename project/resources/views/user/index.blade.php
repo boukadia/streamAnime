@@ -27,11 +27,11 @@
 
 <body>
 
-    <form action="{{ route("search") }}" method="post">
+    <!-- <form action="{{ route("search") }}" method="post">
         @csrf
         <input type="text" name="search" id="">
         <input type="submit" name="" id="">
-    </form>
+    </form> -->
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -147,7 +147,28 @@
 
                         
                         <div class="row" id="row">
-                           <!-- affichage a partir d api -->
+                            @foreach ($animes as $anime )
+                            
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class='product__item'>
+                                        <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}'style='background-image: url({{  $anime->PosterLink}});'>
+                                        <div class='ep'></div>
+                                            <div class='comment'><i class='fa fa-comments'></i> 11</div>
+                                            <div class='view'><i class='fa fa-eye'></i> 9141</div>
+                                        </div>
+                                        <div class='product__item__text'>
+                                        <ul>
+                                        @foreach ($anime->categories as $category)
+                                            
+                                            <li>{{$category->name}}</li>
+                                            @endforeach
+                                                </ul>
+                                                <h5><a href='#'>{{ $anime->titre }}</a></h5>
+                                               
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
                             <!-- ============================== -->
                             <!-- ============================== -->
                             <!-- ============================== -->
