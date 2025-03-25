@@ -10,4 +10,4 @@ Route::post('/addAnimes', [AnimeController::class, "create"])->name("addAnime");
 // Route::get('{anime}/edit', [AnimeController::class, "edit"])->name("editAnime");
 Route::post('updateAnime/{anime}', [AnimeController::class, "update"])->name("updateAnime");
 Route::get('{anime}/delete', [AnimeController::class, "destroy"])->name("deleteAnime");
-Route::post('/search', [AnimeController::class, "index"])->name("search");
+Route::post('/search', [AnimeController::class, "home"])->name("search");

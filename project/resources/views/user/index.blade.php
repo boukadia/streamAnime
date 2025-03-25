@@ -26,12 +26,6 @@
 </head>
 
 <body>
-
-    <!-- <form action="{{ route("search") }}" method="post">
-        @csrf
-        <input type="text" name="search" id="">
-        <input type="submit" name="" id="">
-    </form> -->
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -432,8 +426,9 @@
   <div class="search-model">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
+        <form class="search-model-form" action="{{ route("search") }}" method="post">
+        @csrf
+            <input type="text" id="search-input" name="search" placeholder="Search here.....">
         </form>
     </div>
 </div>
