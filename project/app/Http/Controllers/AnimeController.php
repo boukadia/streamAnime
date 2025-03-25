@@ -125,7 +125,9 @@ class AnimeController extends Controller
      */
     public function edit(anime $anime)
     {
-        return view("admin.anime.edit", ["anime" => $anime]);
+        $categories = Category::all();
+        
+        return view("admin.anime.edit", ["anime" => $anime,"categories"=>$categories]);
     }
 
     /**

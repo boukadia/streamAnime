@@ -205,7 +205,7 @@ label {
 
 <body>
 
-    <form action="{{ route("search") }}" method="post">
+    <form action="{{ route('search') }}" method="post">
         @csrf
         <input type="text" name="search" id="">
         <input type="submit" name="" id="">
@@ -237,7 +237,7 @@ label {
                            </div>
                            <div class="col-lg-4 col-md-4 col-sm-4">
                                <div class="btn__all">
-                                   <a href="#" class="primary-btn" data-toggle="modal" data-target="#addAnimeModal">Ajouter un anime</a>
+                                   <a href="#" class="primary-btn" onclick="showModal()">Ajouter un anime</a>
                                </div>
                            </div>
                        </div>
@@ -247,7 +247,7 @@ label {
                             
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class='product__item'>
-                                        <div class='product__item__pic set-bg' data-setbg='{{ $anime->posterLink }}'style='background-image: url(${anime.images.jpg.image_url});'>
+                                        <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}'style='background-image: url({{  $anime->PosterLink}});'>
                                         <div class='ep'></div>
                                             <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                             <div class='view'><i class='fa fa-eye'></i> 9141</div>
@@ -259,8 +259,8 @@ label {
                                                 </ul>
                                                 <h5><a href='#'>{{ $anime->titre }}</a></h5>
                                                  <div class=''style = 'display:flex;justify-content:space-around'>
-                                                 <a href='#'>update</a> 
-                                                 <a href='#'>delete</a> 
+                                                 <a href='' class='edit-anime' data-id='{{ $anime->id }}' data-titre='{{ $anime->titre }}' data-description='{{ $anime->description }}' data-posterLink='{{ $anime->PosterLink }}' data-trailer='{{ $anime->trailer }}' data-studio='{{ $anime->studio }}' data-thumbnail='{{ $anime->thumbnail }}' data-rating='{{ $anime->rating }}' data-score='{{ $anime->score }}' data-rank='{{ $anime->rank }}' data-status='{{ $anime->statut }}' data-yearCreation='{{ $anime->yearCreation }}' data-yearFin='{{ $anime->yearFin }}'>Modifier</a> 
+                                                 <a href='{{ Route('deleteAnime',$anime) }}'>Supprimer</a> 
                                                  </div>
                                                 </div>
                                             </div>
@@ -290,16 +290,13 @@ label {
             <div class="modal-content" style="background-color: #0b0c2a; color: #ffffff;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addAnimeModalLabel">Ajouter un nouvel anime</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" aria-label="Close" onclick="hideModal()">
                         <span aria-hidden="true" style="color: #ffffff;">&times;</span>
                     </button>
                 </div>
-                <button type="button" class="btn btn-primary" onclick="$('#addAnimeModal').modal('show');">
-  Ajouter un Anime
-</button>
                 <div class="modal-body" >
 
-                    <form action="{{ route("addAnimes") }}" method="POST" class="anime-form">
+                    <form action="{{ route('addAnime') }}" method="POST" class="anime-form">
     @csrf
     <div class="card anime-form-card">
         <div class="card-header">
@@ -310,7 +307,7 @@ label {
                 <!-- Left Column -->
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="title">Titre</label>
+                        <label for="titre">Titre</label>
                         <input type="text" class="form-control custom-input" id="titre" name="titre" required>
                     </div>
                     
@@ -324,7 +321,7 @@ label {
                        
                            @foreach ($categories as $categorie )
                            
-                            <input type="checkbox"  id="genre" name="categories[]"  value="{{ $categorie->id }}">{{ $categorie->name }}
+                            <input type="checkbox"  id="categorie" name="categories[]"  value="{{ $categorie->id }}">{{ $categorie->name }}
                             @endforeach
                            
                        
@@ -335,38 +332,30 @@ label {
                 <!-- Right Column -->
                 <div class="col-md-6">
                     <div class="form-group image-upload-container">
-                        <!-- <label for="image">Image de couverture</label>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="posterLink" name="posterLink" accept="image/*">
-                            <label class="custom-file-label" for="image">Choisir un fichier</label>
-                        </div>
-                        <div class="mt-2">
-                            <span class="divider-text">OU</span>
-                        </div> -->
-                        <input type="url" class="form-control custom-input mt-2" id="image_url" name="posterLink" placeholder="URL de l'image...">
+                        <input type="url" class="form-control custom-input mt-2" id="posterLink" name="posterLink" placeholder="URL de l'image...">
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="trailer">trailer</label>
-                            <input type="text" class="form-control custom-input" id="trailer" name="trailer" >
+                            <label for="trailer">Trailer</label>
+                            <input type="text" class="form-control custom-input" id="trailer" name="trailer">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="studio">studio</label>
-                            <input type="text" class="form-control custom-input" id="studio" name="studio" >
+                            <label for="studio">Studio</label>
+                            <input type="text" class="form-control custom-input" id="studio" name="studio">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="thumbnail">thumbnail</label>
-                            <input type="text" class="form-control custom-input" id="thumbnail" name="thumbnail" >
+                            <label for="thumbnail">Thumbnail</label>
+                            <input type="text" class="form-control custom-input" id="thumbnail" name="thumbnail">
                         </div>
                         
                         <div class="form-group col-md-6">
                             <label for="rating">Rating</small></label>
-                            <input type="text" class="form-control custom-input" id="rating" name="rating" >
+                            <input type="text" class="form-control custom-input" id="rating" name="rating">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="score">score</small></label>
-                            <input type="text" class="form-control custom-input" id="score" name="score" >
+                            <label for="score">Score</small></label>
+                            <input type="text" class="form-control custom-input" id="score" name="score">
                         </div>
 
                         <div class="form-group col-md-6">
@@ -385,11 +374,11 @@ label {
                             </select>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="release_date">Date de creation</label>
+                            <label for="yearCreation">Date de création</label>
                             <input type="date" class="form-control custom-input" id="yearCreation" name="yearCreation">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="release_date">Date de sortie</label>
+                            <label for="yearFin">Date de sortie</label>
                             <input type="date" class="form-control custom-input" id="yearFin" name="yearFin">
                         </div>
                     </div>
@@ -398,7 +387,7 @@ label {
         </div>
         <div class="card-footer text-center">
             <button type="submit" class="btn btn-primary submit-btn">Ajouter l'anime</button>
-            <button type="button" class="btn btn-secondary cancel-btn" data-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-secondary cancel-btn" onclick="hideModal()">Annuler</button>
         </div>
     </div>
 </form>
@@ -410,7 +399,7 @@ label {
     <!-- Search model Begin -->
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <div class="search-close-switch" onclick="hideSearchModel()"><i class="icon_close"></i></div>
             <form class="search-model-form">
                 <input type="text" id="search-input" placeholder="Search here.....">
             </form>
@@ -429,16 +418,70 @@ label {
     <script src="./build/assets/js/owl.carousel.min.js"></script>
     <script src="./build/assets/js/main.js"></script>
 
-    <!-- Script pour gérer le formulaire d'ajout d'anime -->
+    <!-- Script pour gérer le formulaire d'ajout et de modification d'anime -->
     <script>
-       
-function formulaire(){
-    $('#addAnimeModal').modal('show');
-}
-    // $(document).ready(function() {
-       
-    // });
+        document.addEventListener('DOMContentLoaded', function() {
+            var editButtons = document.querySelectorAll('.edit-anime');
+            
+            editButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var animeId = this.getAttribute('data-id');
+var titre = this.getAttribute('data-titre');
+var description = this.getAttribute('data-description');
+var posterLink = this.getAttribute('data-posterLink');
+var trailer = this.getAttribute('data-trailer');
+var studio = this.getAttribute('data-studio');
+var thumbnail = this.getAttribute('data-thumbnail');
+var rating = this.getAttribute('data-rating');
+var score = this.getAttribute('data-score');
+var rank = this.getAttribute('data-rank');
+var status = this.getAttribute('data-status');
+var yearCreation = this.getAttribute('data-yearcreation');
+var yearFin = this.getAttribute('data-yearfin');
 
+                    document.getElementById('titre').value = titre;
+                    document.getElementById('description').value = description;
+                    document.getElementById('posterLink').value = posterLink;
+                    document.getElementById('trailer').value = trailer;
+                    document.getElementById('studio').value = studio;
+                    document.getElementById('thumbnail').value = thumbnail;
+                  
+                   console.log(titre);
+                   
+                   
+                    document.getElementById('rating').value = rating;
+                    document.getElementById('score').value = score;
+                    document.getElementById('rank').value = rank;
+                    document.getElementById('status').value = status;
+                    document.getElementById('yearCreation').value = yearCreation;
+                    document.getElementById('yearFin').value = yearFin;
+
+                    document.getElementById('addAnimeModalLabel').innerText = 'Modifier l\'anime';
+                    document.querySelector('.anime-form').action = '{{ url("updateAnime") }}/' + animeId;
+                    document.querySelector('.submit-btn').innerText = 'Modifier l\'anime';
+
+                    document.getElementById('addAnimeModal').classList.add('show');
+                    document.getElementById('addAnimeModal').style.display = 'block';
+                    document.body.classList.add('modal-open');
+                });
+            });
+        });
+
+        function showModal() {
+            document.getElementById('addAnimeModal').classList.add('show');
+            document.getElementById('addAnimeModal').style.display = 'block';
+            document.body.classList.add('modal-open');
+        }
+
+        function hideModal() {
+            document.getElementById('addAnimeModal').classList.remove('show');
+            document.getElementById('addAnimeModal').style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }
+
+        function hideSearchModel() {
+            document.querySelector('.search-model').classList.remove('show');
+        }
     </script>
 </body>
 
