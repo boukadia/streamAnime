@@ -55,14 +55,11 @@ class AnimeController extends Controller
         return view("admin.index", ["animes" => $animes, "categories" => $categories]);
     }
 
-    public function test()
-    {
-        return view("user.test");
-    }
+    
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $dataValidate = $request->validate([
             "posterLink" => "required",
@@ -113,7 +110,7 @@ class AnimeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreanimeRequest $request)
+    public function create(StoreanimeRequest $request)
     {
         //
     }

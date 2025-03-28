@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Episode;
 use App\Http\Requests\StoreEpisodeRequest;
 use App\Http\Requests\UpdateEpisodeRequest;
+use Illuminate\Http\Request;
 
 class EpisodeController extends Controller
 {
@@ -13,7 +14,9 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        //
+        $episodes = Episode::all();
+
+        return view("user.episode", ["episodes" => $episodes]);
     }
 
     /**
@@ -27,9 +30,17 @@ class EpisodeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEpisodeRequest $request)
+    public function store(Request $request)
     {
-        //
+        $dataValidate = $request->validate([
+            "episodeNumber" => "required",
+            "releaseDate" => "required",
+            "saison_id" => "required",
+            "videoLink" => "required",
+            "duration" => "required",
+            "thumbnail" => "required", //n'est pas dans database
+        ]);
+        $episode = Episode::create($dataValidate);
     }
 
     /**
@@ -45,15 +56,21 @@ class EpisodeController extends Controller
      */
     public function edit(Episode $episode)
     {
-        //
+        return view("admin.episode.edit", ["episode", $episode]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEpisodeRequest $request, Episode $episode)
+    public function update(Request $request, Episode $episode)
     {
-        //
+        $dataValidate = $request->validate([
+            "titre" => "required",
+            "releaceDate" => "required",
+            "thumbnail" => "required", //n'est pas dans database
+
+        ]);
+        $episode->update($dataValidate);
     }
 
     /**
@@ -61,6 +78,7 @@ class EpisodeController extends Controller
      */
     public function destroy(Episode $episode)
     {
-        //
+        $episode->delete();
     }
+
 }

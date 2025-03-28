@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Film;
 use App\Http\Requests\StoreFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
+use Illuminate\Http\Request;
 
 class FilmController extends Controller
 {
@@ -13,7 +14,9 @@ class FilmController extends Controller
      */
     public function index()
     {
-        //
+        $films = Film::all();
+
+        return view("user.film", ["films" => $films]);
     }
 
     /**
@@ -27,9 +30,21 @@ class FilmController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFilmRequest $request)
+    public function store(Request $request)
     {
-        //
+        $dataValidate = $request->validate([
+            "posterLink" => "required",
+            "titre" => "required",
+            "description" => "required",
+            "yearCreation" => "required",
+            "yearFin" => "required",
+            "saisonNumber" => "required",
+            "trailer" => "required",
+            "anime_id" => "required", //select njib tous les animes inkhtar lId
+            "thumbnail" => "required", //n'est pas dans database
+            "status" => "required", //n'est pas dans database
+        ]);
+        $saison = Film::create($dataValidate);
     }
 
     /**
@@ -45,15 +60,26 @@ class FilmController extends Controller
      */
     public function edit(Film $film)
     {
-        //
+        return view("admin.film.edit", ["film", $film]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFilmRequest $request, Film $film)
+    public function update(Request $request, Film $film)
     {
-        //
+        $dataValidate = $request->validate([
+            "posterLink" => "required",//n'est pas dans database
+            "titre" => "required",
+            "description" => "required",
+            "yearCreation" => "required",
+            "yearFin" => "required",
+            
+            "trailer" => "required",
+            "thumbnail" => "required", //n'est pas dans database
+
+        ]);
+        $film->update($dataValidate);
     }
 
     /**
@@ -61,6 +87,6 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
-        //
+        $film->delete();
     }
 }

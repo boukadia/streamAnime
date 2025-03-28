@@ -12,7 +12,7 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+        rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="./build/assets/css/bootstrap.min.css" type="text/css">
@@ -27,9 +27,9 @@
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    <!-- <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -53,8 +53,8 @@
                                         <li><a href="./anime-details.html">Anime Details</a></li>
                                         <li><a href="./anime-watching.html">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./signup.html">Sign Up</a></li>
-                                        <li><a href="./login.html">Login</a></li>
+                                        <li><a href="{{ Route("registerForm") }}">Sig Up</a></li>
+                                        <li><a href="{{ Route("registerForm") }}">Login</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="./blog.html">Our Blog</a></li>
@@ -139,30 +139,30 @@
                             </div>
                         </div>
 
-                        
+
                         <div class="row" id="row">
                             @foreach ($animes as $anime )
-                            
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class='product__item'>
-                                        <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}'style='background-image: url({{  $anime->PosterLink}});'>
+                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}' style='background-image: url({{  $anime->PosterLink}});'>
                                         <div class='ep'></div>
-                                            <div class='comment'><i class='fa fa-comments'></i> 11</div>
-                                            <div class='view'><i class='fa fa-eye'></i> 9141</div>
-                                        </div>
-                                        <div class='product__item__text'>
+                                        <div class='comment'><i class='fa fa-comments'></i> 11</div>
+                                        <div class='view'><i class='fa fa-eye'></i> 9141</div>
+                                    </div>
+                                    <div class='product__item__text'>
                                         <ul>
-                                        @foreach ($anime->categories as $category)
-                                            
+                                            @foreach ($anime->categories as $category)
+
                                             <li>{{$category->name}}</li>
                                             @endforeach
-                                                </ul>
-                                                <h5><a href='#'>{{ $anime->titre }}</a></h5>
-                                               
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach
+                                        </ul>
+                                        <h5><a href='#'>{{ $anime->titre }}</a></h5>
+
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
                             <!-- ============================== -->
                             <!-- ============================== -->
                             <!-- ============================== -->
@@ -187,9 +187,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            
-                            
-                           
+
+
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="img/popular/popular-5.jpg">
@@ -206,7 +206,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="recent__product">
@@ -223,8 +223,8 @@
                             </div>
                         </div>
                         <div class="row">
-                          
-                           
+
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="img/recent/recent-4.jpg">
@@ -241,7 +241,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="live__product">
@@ -258,8 +258,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            
-                            
+
+
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="img/live/live-4.jpg">
@@ -276,7 +276,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -294,156 +294,158 @@
                             </ul>
                             <div class="filter__gallery">
                                 <div class="product__sidebar__view__item set-bg mix day years"
-                                data-setbg="img/sidebar/tv-1.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Boruto: Naruto next generations</a></h5>
+                                    data-setbg="img/sidebar/tv-1.jpg">
+                                    <div class="ep">18 / ?</div>
+                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                    <h5><a href="#">Boruto: Naruto next generations</a></h5>
+                                </div>
+                                <div class="product__sidebar__view__item set-bg mix month week"
+                                    data-setbg="img/sidebar/tv-2.jpg">
+                                    <div class="ep">18 / ?</div>
+                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                    <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
+                                </div>
+                                <div class="product__sidebar__view__item set-bg mix week years"
+                                    data-setbg="img/sidebar/tv-3.jpg">
+                                    <div class="ep">18 / ?</div>
+                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                    <h5><a href="#">Sword art online alicization war of underworld</a></h5>
+                                </div>
+                                <div class="product__sidebar__view__item set-bg mix years month"
+                                    data-setbg="img/sidebar/tv-4.jpg">
+                                    <div class="ep">18 / ?</div>
+                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                    <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
+                                </div>
+                                <div class="product__sidebar__view__item set-bg mix day"
+                                    data-setbg="img/sidebar/tv-5.jpg">
+                                    <div class="ep">18 / ?</div>
+                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                    <h5><a href="#">Fate stay night unlimited blade works</a></h5>
+                                </div>
                             </div>
-                            <div class="product__sidebar__view__item set-bg mix month week"
-                            data-setbg="img/sidebar/tv-2.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                         </div>
-                        <div class="product__sidebar__view__item set-bg mix week years"
-                        data-setbg="img/sidebar/tv-3.jpg">
-                        <div class="ep">18 / ?</div>
-                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                        <h5><a href="#">Sword art online alicization war of underworld</a></h5>
+                        <div class="product__sidebar__comment">
+                            <div class="section-title">
+                                <h5>New Comment</h5>
+                            </div>
+                            <div class="product__sidebar__comment__item">
+                                <div class="product__sidebar__comment__item__pic">
+                                    <img src="img/sidebar/comment-1.jpg" alt="">
+                                </div>
+                                <div class="product__sidebar__comment__item__text">
+                                    <ul>
+                                        <li>Active</li>
+                                        <li>Movie</li>
+                                    </ul>
+                                    <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
+                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+                                </div>
+                            </div>
+                            <div class="product__sidebar__comment__item">
+                                <div class="product__sidebar__comment__item__pic">
+                                    <img src="img/sidebar/comment-2.jpg" alt="">
+                                </div>
+                                <div class="product__sidebar__comment__item__text">
+                                    <ul>
+                                        <li>Active</li>
+                                        <li>Movie</li>
+                                    </ul>
+                                    <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
+                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+                                </div>
+                            </div>
+                            <div class="product__sidebar__comment__item">
+                                <div class="product__sidebar__comment__item__pic">
+                                    <img src="img/sidebar/comment-3.jpg" alt="">
+                                </div>
+                                <div class="product__sidebar__comment__item__text">
+                                    <ul>
+                                        <li>Active</li>
+                                        <li>Movie</li>
+                                    </ul>
+                                    <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
+                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+                                </div>
+                            </div>
+                            <div class="product__sidebar__comment__item">
+                                <div class="product__sidebar__comment__item__pic">
+                                    <img src="img/sidebar/comment-4.jpg" alt="">
+                                </div>
+                                <div class="product__sidebar__comment__item__text">
+                                    <ul>
+                                        <li>Active</li>
+                                        <li>Movie</li>
+                                    </ul>
+                                    <h5><a href="#">Monogatari Series: Second Season</a></h5>
+                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="product__sidebar__view__item set-bg mix years month"
-                    data-setbg="img/sidebar/tv-4.jpg">
-                    <div class="ep">18 / ?</div>
-                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                    <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                </div>
-                <div class="product__sidebar__view__item set-bg mix day"
-                data-setbg="img/sidebar/tv-5.jpg">
-                <div class="ep">18 / ?</div>
-                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                <h5><a href="#">Fate stay night unlimited blade works</a></h5>
-            </div>
-        </div>
-    </div>
-    <div class="product__sidebar__comment">
-        <div class="section-title">
-            <h5>New Comment</h5>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-1.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-2.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-3.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-4.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">Monogatari Series: Second Season</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Product Section End -->
-
-<!-- Footer Section Begin -->
-<footer class="footer">
-    <div class="page-up">
-        <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3">
-                <div class="footer__logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="footer__nav">
-                    <ul>
-                        <li class="active"><a href="./index.html">Homepage</a></li>
-                        <li><a href="./categories.html">Categories</a></li>
-                        <li><a href="./blog.html">Our Blog</a></li>
-                        <li><a href="#">Contacts</a></li>
-                    </ul>
+        </div>
+    </section>
+    <!-- Product Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="page-up">
+            <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer__logo">
+                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="footer__nav">
+                        <ul>
+                            <li class="active"><a href="./index.html">Homepage</a></li>
+                            <li><a href="./categories.html">Categories</a></li>
+                            <li><a href="./blog.html">Our Blog</a></li>
+                            <li><a href="#">Contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>
+                            document.write(new Date().getFullYear());
+                        </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+
                 </div>
             </div>
-            <div class="col-lg-3">
-                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
 
-              </div>
-          </div>
-      </div>
-  </footer>
-  <!-- Footer Section End -->
-
-  <!-- Search model Begin -->
-  <div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form" action="{{ route("search") }}" method="post">
-        @csrf
-            <input type="text" id="search-input" name="search" placeholder="Search here.....">
-        </form>
+    <!-- Search model Begin -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch"><i class="icon_close"></i></div>
+            <form class="search-model-form" action="{{ route("search") }}" method="post">
+                @csrf
+                <input type="text" id="search-input" name="search" placeholder="Search here.....">
+            </form>
+        </div>
     </div>
-</div>
-<!-- Search model end -->
+    <!-- Search model end -->
 
-<!-- Js Plugins -->
-<script src="./build/assets/js/script.js"></script>
-<script src="./build/assets/js/jquery-3.3.1.min.js"></script>
-<script src="./build/assets/js/bootstrap.min.js"></script>
-<script src="./build/assets/js/player.js"></script>
-<script src="./build/assets/js/jquery.nice-select.min.js"></script>
-<script src="./build/assets/js/mixitup.min.js"></script>
-<script src="./build/assets/js/jquery.slicknav.js"></script>
-<script src="./build/assets/js/owl.carousel.min.js"></script>
-<script src="./build/assets/js/main.js"></script>
+    <!-- Js Plugins -->
+    <script src="./build/assets/js/script.js"></script>
+    <script src="./build/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="./build/assets/js/bootstrap.min.js"></script>
+    <script src="./build/assets/js/player.js"></script>
+    <script src="./build/assets/js/jquery.nice-select.min.js"></script>
+    <script src="./build/assets/js/mixitup.min.js"></script>
+    <script src="./build/assets/js/jquery.slicknav.js"></script>
+    <script src="./build/assets/js/owl.carousel.min.js"></script>
+    <script src="./build/assets/js/main.js"></script>
 
 
 </body>

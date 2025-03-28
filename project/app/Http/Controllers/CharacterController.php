@@ -1,3 +1,5 @@
+<!-- ===========================ralation entre film et anime n'est pas definie dans database=====================================
+=========================== on a cercle dans database entre anime film charactere ===================================== -->
 <?php
 
 namespace App\Http\Controllers;
@@ -5,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\Character;
 use App\Http\Requests\StoreCharacterRequest;
 use App\Http\Requests\UpdateCharacterRequest;
+use Illuminate\Http\Request;
 
 class CharacterController extends Controller
 {
@@ -13,7 +16,9 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        //
+        $characters = Character::all();
+
+        return view("user.character", ["characters" => $characters]);
     }
 
     /**
@@ -27,15 +32,23 @@ class CharacterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCharacterRequest $request)
+    public function store(Request $request)
     {
-        //
+        $dataValidate = $request->validate([
+            "name" => "required",
+            "anime_id" => "required",
+            "glance" => "required",
+            "photoLink" => "required",
+
+            "thumbnail" => "required", //n'est pas dans database
+        ]);
+        $character = character::create($dataValidate);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Character $character)
+    public function show(character $character)
     {
         //
     }
@@ -45,15 +58,26 @@ class CharacterController extends Controller
      */
     public function edit(Character $character)
     {
-        //
+        return view("admin.character.edit", ["character", $character]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCharacterRequest $request, Character $character)
+    public function update(Request $request, Character $character)
     {
-        //
+        $dataValidate = $request->validate([
+            "posterLink" => "required", //n'est pas dans database
+            "titre" => "required",
+            "description" => "required",
+            "yearCreation" => "required",
+            "yearFin" => "required",
+
+            "trailer" => "required",
+            "thumbnail" => "required", //n'est pas dans database
+
+        ]);
+        $character->update($dataValidate);
     }
 
     /**
@@ -61,6 +85,6 @@ class CharacterController extends Controller
      */
     public function destroy(Character $character)
     {
-        //
+        $character->delete();
     }
 }

@@ -211,9 +211,9 @@ label {
         <input type="submit" name="" id="">
     </form>
     <!-- Page Preloder -->
-    <div id="preloder">
+    <!-- <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <!-- Header Section Begin -->
    
