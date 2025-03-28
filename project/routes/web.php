@@ -13,5 +13,6 @@ Route::post('updateAnime/{anime}', [AnimeController::class, "update"])->name("up
 Route::get('{anime}/delete', [AnimeController::class, "destroy"])->name("deleteAnime");
 Route::post('/search', [AnimeController::class, "home"])->name("search");
 
-Route::post("register",[AuthentController::class,"register"])->name("register");
+Route::post("/register",[AuthentController::class,"register"])->name("register");
+Route::post("/login",[AuthentController::class,"login"])->name("login");
 Route::get("registerForm",[AuthentController::class,"form"])->name("registerForm");
