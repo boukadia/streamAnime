@@ -87,7 +87,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-danger" href="#">
+                            <a class="nav-link text-danger" href="{{ Route("logOut") }}">
                                 <i class="bi bi-box-arrow-right me-2"></i>
                                 Logout
                             </a>
@@ -105,7 +105,7 @@
                             <i class="bi bi-list fs-5"></i>
                         </button>
 
-                        <div class="d-flex flex-grow-1 mx-3">
+                        <div class="d-flex flex-grow-1  mx-3">
                             <div class="input-group">
                                 <span class="input-group-text bg-light border-end-0"><i class="bi bi-search"></i></span>
                                 <input type="text" class="form-control bg-light border-start-0" placeholder="Search...">

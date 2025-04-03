@@ -36,12 +36,12 @@
                         <input type="text" name="name" class="form-control" id="register-name" placeholder="Entrez votre nom">
                     </div>
                     <div class="form-group">
-                        <label for="register-email">Email</label>
-                        <input type="email" name="email" class="form-control" id="register-email" placeholder="Entrez votre email">
+                        <label for="register_email">Email</label>
+                        <input type="email" name="register_email" class="form-control" id="register-email" placeholder="Entrez votre email">
                     </div>
                     <div class="form-group">
                         <label for="register-password">Mot de passe</label>
-                        <input type="password" name="password" class="form-control" id="register-password" placeholder="Entrez votre mot de passe">
+                        <input type="password" name="register_password" class="form-control" id="register-password" placeholder="Entrez votre mot de passe">
                     </div>
                 </div>
                 <div id="login-fields" style="display: none;">
@@ -155,9 +155,9 @@
             }
         });
 
-        @if($errors - > any())
+        @if($errors->any())
         var errorMessages = document.getElementById('errorMessages');
-        @foreach($errors - > all() as $error)
+        @foreach($errors->all() as $error)
         errorMessages.innerHTML += '<li>{{ $error }}</li>';
         @endforeach
         $('#errorModal').modal('show');

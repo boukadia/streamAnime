@@ -37,25 +37,29 @@ class AuthentController extends Controller
 public function form(){
     return view("connexion.inscription");
 }
-    public function logout()
+    public function logOut()
     {
-        
+        Auth::logout();
+        return redirect("/registerForm");
        
     }
 
 
     public function register(Request $request){
-        // $request->validate([
-        //     'name' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:',
-        // ]);
+        
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'register_email' => 'required|string|email|max:255|unique:users,email',
+            'register_password' => 'required|string|min:2',
+        ]);
+       
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'email' => $request->register_email,
+            'password' => Hash::make($request->register_password),
         ]);
-    //    dd($user);
+    
 
     }
    
