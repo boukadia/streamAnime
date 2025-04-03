@@ -22,8 +22,8 @@ class AuthentController extends Controller
         
         
         // Tentative d'authentification
-        if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->route('home'); 
+        if (Auth::attempt($request->only('email', 'password')) ) {
+            return redirect("/test"); 
         }
         else {
             return back()->withErrors([
@@ -31,6 +31,7 @@ class AuthentController extends Controller
             ]);
            
         }
+    
 
         // Retourner une erreur si la connexion échoue
     }
@@ -59,8 +60,12 @@ public function form(){
             'email' => $request->register_email,
             'password' => Hash::make($request->register_password),
         ]);
+        return redirect('/registerForm');
     
 
     }
+
+
+
    
 }
