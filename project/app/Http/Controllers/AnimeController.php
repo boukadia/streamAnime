@@ -6,6 +6,7 @@ use App\Models\anime;
 use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
 use App\Models\Category;
+use App\Models\Episode;
 use App\Models\Saison;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -58,13 +59,27 @@ class AnimeController extends Controller
         // $saison= Saison::where("anime_id",$anime->id)->get();
         // $saisons=$anime->saisons;
         
-        {
-            foreach ($saison->episodes as $episode) {
+        // {
+        //     foreach ($saison->episodes as $episode) {
           
-            echo "($episode->episodeNumber)";}
-        };
+        //     echo "($episode->episodeNumber)";}
+        // };
        
-        // return view("user.animeWatching", ["anime"=> $anime,"saisons"=>$saisons]);
+        return view("user.animeWatching", ["saison"=>$saison]);
+
+    }
+    public function episodeWatching( Episode $episode,Saison $saison){
+        // $anime->saisons()->get();
+        // $saison= Saison::where("anime_id",$anime->id)->get();
+        // $saisons=$anime->saisons;
+        
+        // {
+        //     foreach ($saison->episodes as $episode) {
+          
+        //     echo "($episode->episodeNumber)";}
+        // };
+       
+        return view("user.animeWatching", ["episode"=>$episode,"saison"=> $saison]);
 
     }
     public function index()

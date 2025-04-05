@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\AuthentController;
+use App\Http\Controllers\EpisodeController;
 use App\Http\Middleware\AdminMiddlware;
 use App\Http\Middleware\AuthMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -13,6 +14,9 @@ Route::post('/addAnimes', [AnimeController::class, "store"])->name("addAnime")->
 
 Route::get('{anime}/animeDetails', [AnimeController::class, "animeDetails"])->name("animeDetails");
 Route::get('{saison}/animeWatching', [AnimeController::class, "animeWatching"])->name("animeWatching");
+Route::get('{episode}/{saison}/episodeWatching', [AnimeController::class, "episodeWatching"])->name("episode");
+
+
 
 Route::post('updateAnime/{anime}', [AnimeController::class, "update"])->name("updateAnime")->middleware(AdminMiddlware::class);
 Route::get('{anime}/delete', [AnimeController::class, "destroy"])->name("deleteAnime")->middleware(AdminMiddlware::class);

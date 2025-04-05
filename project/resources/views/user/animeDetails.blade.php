@@ -38,7 +38,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="./index.html">
-                            <img loading="lazy" src="https://cdn.myanimelist.net/images/anime/4/19644.jpg" alt="">
+                            <img loading="lazy" src="img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -256,7 +256,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="footer__logo">
-                            <a href="./index.html"><img loading="lazy"  src="https://cdn.myanimelist.net/images/anime/4/19644.jpg" alt=""></a>
+                            <a href="./index.html"><img loading="lazy"  src="img/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-6">
