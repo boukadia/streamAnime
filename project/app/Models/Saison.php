@@ -12,7 +12,7 @@ class Saison extends Model
     public function animes(){
         return $this->belongsTo(Category::class,"anime_id");
     }
-    public function epsiodes(){
+    public function episodes(){
         return $this->hasMany(Episode::class);
     }
 }

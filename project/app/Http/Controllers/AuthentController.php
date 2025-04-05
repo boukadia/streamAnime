@@ -23,7 +23,7 @@ class AuthentController extends Controller
         
         // Tentative d'authentification
         if (Auth::attempt($request->only('email', 'password')) ) {
-            return redirect("/test"); 
+            return redirect("/home"); 
         }
         else {
             return back()->withErrors([

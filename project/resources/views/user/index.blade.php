@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -27,9 +27,7 @@
 
 <body>
     <!-- Page Preloder -->
-    <!-- <div id="preloder">
-        <div class="loader"></div>
-    </div> -->
+   
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -38,7 +36,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="./index.html">
-                            <img src="img/logo.png" alt="">
+                            <img loading="lazy" src="img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -157,7 +155,7 @@
                                             <li>{{$category->name}}</li>
                                             @endforeach
                                         </ul>
-                                        <h5><a href='#'>{{ $anime->titre }}</a></h5>
+                                        <h5><a href='{{ Route("animeDetails",$anime) }}'>{{ $anime->titre }}</a></h5>
 
                                     </div>
                                 </div>
@@ -224,10 +222,11 @@
                         </div>
                         <div class="row">
 
+@foreach ( $lastAnimes as $lastAnime )
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-4.jpg">
+<div class="col-lg-4 col-md-6 col-sm-6">
+    <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -237,10 +236,11 @@
                                             <li>Active</li>
                                             <li>Movie</li>
                                         </ul>
-                                        <h5><a href="#">Fate/Zero 2nd Season</a></h5>
+                                        <h5><a href="#">{{ $lastAnime->titre }}</a></h5>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
 
                         </div>
                     </div>
@@ -331,7 +331,7 @@
                             </div>
                             <div class="product__sidebar__comment__item">
                                 <div class="product__sidebar__comment__item__pic">
-                                    <img src="img/sidebar/comment-1.jpg" alt="">
+                                    <img loading="lazy" src="img/sidebar/comment-1.jpg" alt="">
                                 </div>
                                 <div class="product__sidebar__comment__item__text">
                                     <ul>
@@ -344,7 +344,7 @@
                             </div>
                             <div class="product__sidebar__comment__item">
                                 <div class="product__sidebar__comment__item__pic">
-                                    <img src="img/sidebar/comment-2.jpg" alt="">
+                                    <img loading="lazy" src="img/sidebar/comment-2.jpg" alt="">
                                 </div>
                                 <div class="product__sidebar__comment__item__text">
                                     <ul>
@@ -357,7 +357,7 @@
                             </div>
                             <div class="product__sidebar__comment__item">
                                 <div class="product__sidebar__comment__item__pic">
-                                    <img src="img/sidebar/comment-3.jpg" alt="">
+                                    <img loading="lazy" src="img/sidebar/comment-3.jpg" alt="">
                                 </div>
                                 <div class="product__sidebar__comment__item__text">
                                     <ul>
@@ -370,7 +370,7 @@
                             </div>
                             <div class="product__sidebar__comment__item">
                                 <div class="product__sidebar__comment__item__pic">
-                                    <img src="img/sidebar/comment-4.jpg" alt="">
+                                    <img loading="lazy" src="img/sidebar/comment-4.jpg" alt="">
                                 </div>
                                 <div class="product__sidebar__comment__item__text">
                                     <ul>
@@ -398,7 +398,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="footer__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img loading="lazy" src="img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">

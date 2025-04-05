@@ -6,6 +6,7 @@ use App\Models\anime;
 use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
 use App\Models\Category;
+use App\Models\Saison;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -40,13 +41,32 @@ class AnimeController extends Controller
             // "categories" => $categories]
             // $categories=$animes->categories();
             // $categories = Category::all();
-            // dd($request->search);
-            // dd($animes);
+            $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
+            
            
-            return view("user.index", ["animes" => $animes]);
+            return view("user.index", ["animes" => $animes,"lastAnimes"=> $last_anime]);
         }
     }
 
+    public function animeDetails(Anime $anime){
+        $saisons=$anime->saisons;
+
+        return view("user.animeDetails", ["anime"=> $anime,"saisons"=> $saisons]);
+    }
+    public function animeWatching( Saison $saison){
+        // $anime->saisons()->get();
+        // $saison= Saison::where("anime_id",$anime->id)->get();
+        // $saisons=$anime->saisons;
+        
+        {
+            foreach ($saison->episodes as $episode) {
+          
+            echo "($episode->episodeNumber)";}
+        };
+       
+        // return view("user.animeWatching", ["anime"=> $anime,"saisons"=>$saisons]);
+
+    }
     public function index()
     {
         return view("admin.dashboard");
