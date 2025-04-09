@@ -143,7 +143,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class='product__item'>
-                                    <div class='product__item__pic set-bg' data-setbg='build/assets/Devil-May-Cry-EP-400x243.jpg'>
+                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}'  /*data-setbg='build/assets/Devil-May-Cry-EP-400x243.jpg'*/ >
                                         <div class='ep'></div>
                                         <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                         <div class='view'><i class='fa fa-eye'></i> 9141</div>
@@ -226,7 +226,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
+                                    <div class="product__item__pic set-bg"  data-setbg='{{ $lastAnime->PosterLink }}'>
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -287,10 +287,11 @@
                                 <h5>Top Views</h5>
                             </div>
                             <ul class="filter__controls">
-                                <li class="active" data-filter="*">Day</li>
-                                <li data-filter=".week">Week</li>
-                                <li data-filter=".month">Month</li>
-                                <li data-filter=".years">Years</li>
+                                
+                                <li class="active" data-filter="all">All</li>
+                                <li data-filter="week">Week</li>
+                                <li data-filter="month">Month</li>
+                                <li data-filter="years">Years</li>
                             </ul>
                             <div class="filter__gallery">
                                 <div class="product__sidebar__view__item set-bg mix day years"
@@ -299,7 +300,7 @@
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                     <h5><a href="#">Boruto: Naruto next generations</a></h5>
                                 </div>
-                                <div class="product__sidebar__view__item set-bg mix month week"
+                                <div class="product__sidebar__view__item set-bg mix month "
                                     data-setbg="img/sidebar/tv-2.jpg">
                                     <div class="ep">18 / ?</div>
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -339,7 +340,6 @@
     <a href="{{ $animes->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
     @endif
     </div>
-    ===========
     
 
         </div>

@@ -74,24 +74,24 @@
     <!-- Header End -->
 
     <!-- Hero Section Begin -->
-   
+
     <!-- Hero Section End -->
 
     <!-- Product Section Begin -->
     <section class="product spad">
         <div class="container" id="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="">
                     <div class="trending__product">
-                        
+
 
 
                         <div class="row" id="row">
                             @foreach ($animes as $anime )
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-2 col-md-3 col-sm-6">
                                 <div class='product__item'>
-                                    <div class='product__item__pic set-bg' data-setbg='build/assets/Devil-May-Cry-EP-400x243.jpg'>
+                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}'>
                                         <div class='ep'></div>
                                         <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                         <div class='view'><i class='fa fa-eye'></i> 9141</div>
@@ -119,11 +119,11 @@
 
 
                     </div>
-                    
-                   
-                   
+
+
+
                 </div>
-              
+
             </div>
         </div>
     </section>

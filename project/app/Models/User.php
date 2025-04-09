@@ -34,6 +34,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+    public function favoriteAnimes()
+{
+    return $this->belongsToMany(Anime::class, 'user_anime_watchlist', 'user_id', 'anime_id');
+}
+
     /**
      * Get the attributes that should be cast.
      *
