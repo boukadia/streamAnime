@@ -31,14 +31,15 @@ class AnimeController extends Controller
             // $queryString = Input::get('search');
 
             $serch = $request->search;
+            // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
 
             // $animes=anime::search($request->search)->get();
-            $animes = anime::where('titre', 'LIKE', "%" . $serch . "%")->paginate(2);
-            return view("user.index", ["animes" => $animes]);
+            $animes = anime::where('titre', 'LIKE', "%" . $serch . "%")->get();
+            return view("user.animeSearch", ["animes" => $animes]);
         } else {
             // $animes = Anime::all();
             // $animes = Anime::with('categories')->get();
-            $animes = Anime::with('categories')->get();
+            $animes = Anime::with('categories')->paginate(5);
             // "categories" => $categories]
             // $categories=$animes->categories();
             // $categories = Category::all();

@@ -35,8 +35,11 @@ class AuthentController extends Controller
 
         // Retourner une erreur si la connexion échoue
     }
-public function form(){
-    return view("connexion.inscription");
+public function loginForm(){
+    return view("connexion.login");
+}
+public function registerForm(){
+    return view("connexion.register");
 }
     public function logOut()
     {
@@ -51,16 +54,16 @@ public function form(){
         
         $request->validate([
             'name' => 'required|string|max:255',
-            'register_email' => 'required|string|email|max:255|unique:users,email',
-            'register_password' => 'required|string|min:2',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:2',
         ]);
        
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->register_email,
-            'password' => Hash::make($request->register_password),
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
-        return redirect('/registerForm');
+        return redirect('/loginForm');
     
 
     }

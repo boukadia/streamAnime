@@ -27,7 +27,7 @@
 
 <body>
     <!-- Page Preloder -->
-   
+
 
     <!-- Header Section Begin -->
     <header class="header">
@@ -44,15 +44,15 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="./index.html">Homepage</a></li>
-                                <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
+                                <li class="active"><a href="{{ Route('home') }}">Homepage</a></li>
+                                <li><a href="{{Route("categorie")}}">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="./categories.html">Categories</a></li>
+                                        <li><a href="{{Route("categorie")}}">Categories</a></li>
                                         <li><a href="./anime-details.html">Anime Details</a></li>
                                         <li><a href="./anime-watching.html">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                         <li><a href="{{ Route("registerForm") }}">Sig Up</a></li>
-                                        <li><a href="{{ Route("registerForm") }}">Login</a></li>
+                                        <li><a href="{{ Route("loginForm") }}">Login</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="./blog.html">Our Blog</a></li>
@@ -64,7 +64,7 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="./login.html"><span class="icon_profile"></span></a>
+                        <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
                     </div>
                 </div>
             </div>
@@ -143,7 +143,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class='product__item'>
-                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}' style='background-image: url({{  $anime->PosterLink}});'>
+                                    <div class='product__item__pic set-bg' data-setbg='build/assets/Devil-May-Cry-EP-400x243.jpg'>
                                         <div class='ep'></div>
                                         <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                         <div class='view'><i class='fa fa-eye'></i> 9141</div>
@@ -222,10 +222,10 @@
                         </div>
                         <div class="row">
 
-@foreach ( $lastAnimes as $lastAnime )
+                            @foreach ( $lastAnimes as $lastAnime )
 
-<div class="col-lg-4 col-md-6 col-sm-6">
-    <div class="product__item">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
@@ -325,67 +325,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="product__sidebar__comment">
-                            <div class="section-title">
-                                <h5>New Comment</h5>
-                            </div>
-                            <div class="product__sidebar__comment__item">
-                                <div class="product__sidebar__comment__item__pic">
-                                    <img loading="lazy" src="img/sidebar/comment-1.jpg" alt="">
-                                </div>
-                                <div class="product__sidebar__comment__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-                                </div>
-                            </div>
-                            <div class="product__sidebar__comment__item">
-                                <div class="product__sidebar__comment__item__pic">
-                                    <img loading="lazy" src="img/sidebar/comment-2.jpg" alt="">
-                                </div>
-                                <div class="product__sidebar__comment__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
-                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-                                </div>
-                            </div>
-                            <div class="product__sidebar__comment__item">
-                                <div class="product__sidebar__comment__item__pic">
-                                    <img loading="lazy" src="img/sidebar/comment-3.jpg" alt="">
-                                </div>
-                                <div class="product__sidebar__comment__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
-                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-                                </div>
-                            </div>
-                            <div class="product__sidebar__comment__item">
-                                <div class="product__sidebar__comment__item__pic">
-                                    <img loading="lazy" src="img/sidebar/comment-4.jpg" alt="">
-                                </div>
-                                <div class="product__sidebar__comment__item__text">
-                                    <ul>
-                                        <li>Active</li>
-                                        <li>Movie</li>
-                                    </ul>
-                                    <h5><a href="#">Monogatari Series: Second Season</a></h5>
-                                    <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-                                </div>
-                            </div>
-                        </div>
+                      
                     </div>
                 </div>
             </div>
+
+            <div class="product__pagination">
+    @for ($i = 1; $i <= $animes->lastPage(); $i++)
+    <a href="{{ $animes->url($i) }}" class="{{ $animes->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
+    @endfor
+    
+    @if ($animes->currentPage() < $animes->lastPage())
+    <a href="{{ $animes->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+    @endif
+    </div>
+    ===========
+    
+
         </div>
+      
+
     </section>
     <!-- Product Section End -->
 

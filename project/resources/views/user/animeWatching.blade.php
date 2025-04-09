@@ -66,7 +66,7 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="./login.html"><span class="icon_profile"></span></a>
+                        <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 <div class="col-lg-12">
                     <div  class="anime__video__player">
                         <video id="player"  playsinline controls data-poster="https://img.youtube.com/vi/gY5nDXOtv_o/default.jpg">
-                            <source src="https://dc615.4shared.com/img/apS0Zkunjq/f7b43542/dlink__2Fdownload_2FapS0Zkunjq_3Fsbsr_3D133edf655bd99afe01f5b7e465c9c998b43_26bip_3DMTA1LjcxLjEzMy40Ng_26lgfp_3D66_26bip_3DMTA1LjcxLjEzMy40Ng_26bip_3DMTA1LjcxLjEzMy40Ng/preview.mp4" type="video/mp4" />
+                            <source src="https://dc706.4shared.com/img/oTYFok2djq/2a8c0f62/dlink__2Fdownload_2FoTYFok2djq_3Fsbsr_3D3b608b76753e2bd8c6c59899c825243fb43_26bip_3DMTA1Ljc0LjY2Ljk3_26lgfp_3D66_26bip_3DMTA1Ljc0LjY2Ljk3_26bip_3DMTA1Ljc0LjY2Ljk3/preview.mp4" type="video/mp4" />
                             <!-- Captions are optional -->
                             <track kind="captions" label="English captions" src="#" srclang="en" default />
                         </video>
@@ -192,6 +192,7 @@
             </div>
         </div>
     </section>
+    
     <!-- Anime Section End -->
 
     <!-- Footer Section Begin -->
