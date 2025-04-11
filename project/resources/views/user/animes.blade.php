@@ -113,21 +113,15 @@
                         </div>
 
 
-                      
-
                         <div class="row" id="row">
                             @foreach ($animes as $anime )
-                            @php $saison = $anime->saisons()->orderByDesc('saisonNumber')->first()@endphp
-                            @if ($saison) 
-                  @php $episode=$saison->episodes()->orderBy('episodeNumber',"desc")->first() @endphp 
-                  
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class='product__item'>
                                     <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}' /*data-setbg='build/assets/Devil-May-Cry-EP-400x243.jpg' */>
-                                    <div class='comment'><i class='fa fa-comments'></i> 11</div>
-                                    <div class='view'><i class='fa fa-eye'></i> 9141</div>
-                                    <div class='ep'> episode {{ $episode->episodeNumber }}</div>
+                                        <div class='ep'></div>
+                                        <div class='comment'><i class='fa fa-comments'></i> 11</div>
+                                        <div class='view'><i class='fa fa-eye'></i> 9141</div>
                                     </div>
                                     <div class='product__item__text'>
                                         <ul>
@@ -136,12 +130,11 @@
                                             <li>{{$category->name}}</li>
                                             @endforeach
                                         </ul>
-                                        <h5><a href='{{ Route("episode",[$episode,$saison]) }}'>{{ $anime->titre }}</a></h5>
+                                        <h5><a href='{{ Route("animeDetails",$anime) }}'>{{ $anime->titre }}</a></h5>
 
                                     </div>
                                 </div>
                             </div>
-                            @endif
                             @endforeach
                             <!-- ============================== -->
                             <!-- ============================== -->
@@ -313,7 +306,16 @@
                 </div>
             </div>
 
-           
+            <div class="product__pagination">
+                @for ($i = 1; $i <= $animes->lastPage(); $i++)
+                    <a href="{{ $animes->url($i) }}" class="{{ $animes->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
+                    @endfor
+
+                    @if ($animes->currentPage() < $animes->lastPage())
+                        <a href="{{ $animes->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+                        @endif
+            </div>
+
 
         </div>
 

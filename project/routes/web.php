@@ -10,7 +10,8 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 // ->middleware("auth.api")
 Route::get('/', [AnimeController::class, "home"])->name("home");
-Route::get('/dashboard', [AnimeController::class, "index"])->middleware(AdminMiddlware::class);
+Route::get('/allAnimes', [AnimeController::class, "index"])->name("index");
+Route::get('/dashboard', [AnimeController::class, "dashBoard"])->middleware(AdminMiddlware::class);
 Route::get('/contentManagement', [AnimeController::class, "manageAnimes"])->name("contentManagement")->middleware(AdminMiddlware::class);
 Route::post('/addAnimes', [AnimeController::class, "store"])->name("addAnime")->middleware(AdminMiddlware::class);
 

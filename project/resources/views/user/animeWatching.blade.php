@@ -108,7 +108,7 @@
                         <div class="section-title">
                             <h5>List Name</h5>
                         </div>
-                        @foreach ($saison->episodes as $episode)
+                        @foreach ($episodes as $episode)
                         
                         <a href="{{ Route("episode",[$episode,$saison]) }}">Ep  {{ $episode->episodeNumber }}</a>
                         @endforeach

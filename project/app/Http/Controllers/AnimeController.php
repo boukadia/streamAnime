@@ -24,30 +24,25 @@ class AnimeController extends Controller
     //     // dd($request->search);
     // return view("user.index",["animes"=>$animes]);
     // }
-    public function derniereEpisodes() {
+    public function home() {
     //     $saisons = Saison::all();
     //     foreach( $saisons as $saison ) {
     //      echo $saison->episodes()->orderBy("episodeNumber","desc")->first(); //dernier episode pour chaque saison
     // }
 
-    $animes = Anime::with('saisons.episodes')->get();
+    $animes = Anime::with('saisons.episodes')->orderByDesc("created_at")->limit(24)->get();
+    $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
 
-    foreach ($animes as $anime) {
-        $saison = $anime->saisons()->orderByDesc('saisonNumber')->first(); 
-        if ($saison) {
-            {
-                echo  $saison->episodes()->orderBy('episodeNumber',"desc")->first(); //dernier episode pour chaque saison
-                
-            }
-            echo "<br>";
-        }
-    }
+    
+    return view("user.index", ["animes" => $animes,"lastAnimes"=> $last_anime]);
+
+   
     
 
         
     }
     
-    public function home(Request $request)
+    public function index(Request $request)
     {
 
         if ($request->search!=null) {
@@ -62,14 +57,16 @@ class AnimeController extends Controller
         } else {
             // $animes = Anime::all();
             // $animes = Anime::with('categories')->get();
-            $animes = Anime::with('categories')->paginate(5);
+            // $animes = Anime::with('categories')->paginate(5);
+            $animes = Anime::with('categories')->orderBy('yearCreation', 'desc')->paginate(5);
+
             // "categories" => $categories]
             // $categories=$animes->categories();
             // $categories = Category::all();
             $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
             
            
-            return view("user.index", ["animes" => $animes,"lastAnimes"=> $last_anime]);
+            return view("user.animes", ["animes" => $animes,"lastAnimes"=> $last_anime]);
         }
     }
 
@@ -88,6 +85,7 @@ class AnimeController extends Controller
           
         //     echo "($episode->episodeNumber)";}
         // };
+        
        
         return view("user.animeWatching", ["saison"=>$saison]);
 
@@ -102,11 +100,12 @@ class AnimeController extends Controller
           
         //     echo "($episode->episodeNumber)";}
         // };
-       
-        return view("user.animeWatching", ["episode"=>$episode,"saison"=> $saison]);
+        $episodes = $saison->episodes()->orderByDesc('episodeNumber')->get();
+            
+        return view("user.animeWatching", ["episode"=>$episode,"saison"=> $saison,"episodes"=> $episodes]);
 
     }
-    public function index()
+    public function dashBoard()
     {
         return view("admin.dashboard");
     }
