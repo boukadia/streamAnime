@@ -33,3 +33,7 @@ Route::get("/home")->middleware(AuthMiddleware::class);
 Route::get("/logOut", [AuthentController::class, "logOut"])->name("logOut");
 Route::get("/registerForm", [AuthentController::class, "registerForm"])->name("registerForm");
 Route::get("/loginForm", [AuthentController::class, "loginForm"])->name("loginForm");
+
+
+
+Route::get('/derniereEpisodes', [AnimeController::class, "derniereEpisodes"])->name("test");

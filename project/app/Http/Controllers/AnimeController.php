@@ -24,6 +24,29 @@ class AnimeController extends Controller
     //     // dd($request->search);
     // return view("user.index",["animes"=>$animes]);
     // }
+    public function derniereEpisodes() {
+    //     $saisons = Saison::all();
+    //     foreach( $saisons as $saison ) {
+    //      echo $saison->episodes()->orderBy("episodeNumber","desc")->first(); //dernier episode pour chaque saison
+    // }
+
+    $animes = Anime::with('saisons.episodes')->get();
+
+    foreach ($animes as $anime) {
+        $saison = $anime->saisons()->orderByDesc('saisonNumber')->first(); 
+        if ($saison) {
+            {
+                echo  $saison->episodes()->orderBy('episodeNumber',"desc")->first(); //dernier episode pour chaque saison
+                
+            }
+            echo "<br>";
+        }
+    }
+    
+
+        
+    }
+    
     public function home(Request $request)
     {
 

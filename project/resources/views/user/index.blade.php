@@ -76,43 +76,18 @@
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
-            <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+            <div class="hero__slider">
+                <div class="slide active">
+                    <img src="/build/assets/img/hero/hero-1.jpg" alt="Slide 1">
                 </div>
-                <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="slide">
+                    <img src="/build/assets/img/hero/hero-1.jpg" alt="Slide 2">
                 </div>
-                <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="slide">
+                    <img src="/build/assets/img/hero/hero-1.jpg" alt="Slide 3">
                 </div>
+                <button class="arrow arrow-left">❮</button>
+                <button class="arrow arrow-right">❯</button>
             </div>
         </div>
     </section>
@@ -143,7 +118,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class='product__item'>
-                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}'  /*data-setbg='build/assets/Devil-May-Cry-EP-400x243.jpg'*/ >
+                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}' /*data-setbg='build/assets/Devil-May-Cry-EP-400x243.jpg' */>
                                         <div class='ep'></div>
                                         <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                         <div class='view'><i class='fa fa-eye'></i> 9141</div>
@@ -190,7 +165,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/popular/popular-5.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="/build/assets/img/popular/popular-5.jpg">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -226,7 +201,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg"  data-setbg='{{ $lastAnime->PosterLink }}'>
+                                    <div class="product__item__pic set-bg" data-setbg='{{ $lastAnime->PosterLink }}'>
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -262,7 +237,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/live/live-4.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="/build/assets/img/live/live-4.jpg">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -287,7 +262,7 @@
                                 <h5>Top Views</h5>
                             </div>
                             <ul class="filter__controls">
-                                
+
                                 <li class="active" data-filter="all">All</li>
                                 <li data-filter="week">Week</li>
                                 <li data-filter="month">Month</li>
@@ -295,55 +270,55 @@
                             </ul>
                             <div class="filter__gallery">
                                 <div class="product__sidebar__view__item set-bg mix day years"
-                                    data-setbg="img/sidebar/tv-1.jpg">
+                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
                                     <div class="ep">18 / ?</div>
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                     <h5><a href="#">Boruto: Naruto next generations</a></h5>
                                 </div>
                                 <div class="product__sidebar__view__item set-bg mix month "
-                                    data-setbg="img/sidebar/tv-2.jpg">
+                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
                                     <div class="ep">18 / ?</div>
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                     <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                                 </div>
                                 <div class="product__sidebar__view__item set-bg mix week years"
-                                    data-setbg="img/sidebar/tv-3.jpg">
+                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
                                     <div class="ep">18 / ?</div>
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                     <h5><a href="#">Sword art online alicization war of underworld</a></h5>
                                 </div>
                                 <div class="product__sidebar__view__item set-bg mix years month"
-                                    data-setbg="img/sidebar/tv-4.jpg">
+                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
                                     <div class="ep">18 / ?</div>
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                     <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
                                 </div>
                                 <div class="product__sidebar__view__item set-bg mix day"
-                                    data-setbg="img/sidebar/tv-5.jpg">
+                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
                                     <div class="ep">18 / ?</div>
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                     <h5><a href="#">Fate stay night unlimited blade works</a></h5>
                                 </div>
                             </div>
                         </div>
-                      
+
                     </div>
                 </div>
             </div>
 
             <div class="product__pagination">
-    @for ($i = 1; $i <= $animes->lastPage(); $i++)
-    <a href="{{ $animes->url($i) }}" class="{{ $animes->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
-    @endfor
-    
-    @if ($animes->currentPage() < $animes->lastPage())
-    <a href="{{ $animes->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
-    @endif
-    </div>
-    
+                @for ($i = 1; $i <= $animes->lastPage(); $i++)
+                    <a href="{{ $animes->url($i) }}" class="{{ $animes->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
+                    @endfor
+
+                    @if ($animes->currentPage() < $animes->lastPage())
+                        <a href="{{ $animes->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+                        @endif
+            </div>
+
 
         </div>
-      
+
 
     </section>
     <!-- Product Section End -->
@@ -371,11 +346,10 @@
                     </div>
                 </div>
                 <div class="col-lg-3">
-                    <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <p>
                         Copyright &copy;<script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                        </script> All rights reserved </p>
 
                 </div>
             </div>
