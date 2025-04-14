@@ -13,4 +13,8 @@ class Film extends Model
     public function character(){
         return $this->belongsToMany(Character::class,"character_film");
     }
+    public function categories()
+{
+    return $this->belongsToMany(Category::class,"categories_film","film_id","category_id");
+}
 }

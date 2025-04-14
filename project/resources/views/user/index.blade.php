@@ -15,14 +15,14 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="./build/assets/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -45,6 +45,8 @@
                         <nav class="header__menu mobile-menu">
                             <ul>
                                 <li class="active"><a href="{{ Route('home') }}">Homepage</a></li>
+                                <li class=""><a href="{{ Route('animes') }}">Animes</a></li>
+                                <li class=""><a href="{{ Route('films') }}">Films</a></li>
                                 <li><a href="{{Route("categorie")}}">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="{{Route("categorie")}}">Categories</a></li>
@@ -368,15 +370,15 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
-    <script src="./build/assets/js/script.js"></script>
-    <script src="./build/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="./build/assets/js/bootstrap.min.js"></script>
-    <script src="./build/assets/js/player.js"></script>
-    <script src="./build/assets/js/jquery.nice-select.min.js"></script>
-    <script src="./build/assets/js/mixitup.min.js"></script>
-    <script src="./build/assets/js/jquery.slicknav.js"></script>
-    <script src="./build/assets/js/owl.carousel.min.js"></script>
-    <script src="./build/assets/js/main.js"></script>
+    <script src="/build/assets/js/script.js"></script>
+    <script src="/build/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="/build/assets/js/bootstrap.min.js"></script>
+    <script src="/build/assets/js/player.js"></script>
+    <script src="/build/assets/js/jquery.nice-select.min.js"></script>
+    <script src="/build/assets/js/mixitup.min.js"></script>
+    <script src="/build/assets/js/jquery.slicknav.js"></script>
+    <script src="/build/assets/js/owl.carousel.min.js"></script>
+    <script src="/build/assets/js/main.js"></script>
 
 
 </body>

@@ -195,7 +195,7 @@
                                 <div class="product__sidebar__view__item set-bg" loading="lazy" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
                                     <div class="ep">18 / ?</div>
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="{{ Route('animeWatching', $saison) }}">{{ $saison->titre }}</a></h5>
+                                    <h5><a href="{{ Route('allEpisodes', $saison) }}">{{ $saison->titre }}</a></h5>
                                 </div>
                             </div>
                             @endforeach

@@ -75,67 +75,7 @@
     </header>
     <!-- Header End -->
 
-    <div class="anime-filter">
-        <!-- MAIN SECTION -->
-        <!-- <div class="main-section">
-            <div class="container">
-                <h3>نوع الأنمي [ Movie ]</h3>
-            </div>
-        </div> -->
-        <!-- END MAIN SECTION -->
 
-        <!-- FILTER SECTION -->
-        <div class="second-section">
-            <div class="container">
-                <div class="anime-filter-options">
-                    <ul>
-                        <!-- Section Dropdown -->
-                        <li>
-                            <div class="dropdown">
-                                <button class="btn">القسم <span class="caret">▼</span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">الانمي المترجم</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- Genre Dropdown -->
-                        <li>
-                            <div class="dropdown">
-                                <button class="btn">تصنيف الأنمي <span class="caret">▼</span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">أطفال</a></li>
-                                    <li><a href="#">أكشن</a></li>
-                                    <li><a href="#">دراما</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- Status Dropdown -->
-                        <li>
-                            <div class="dropdown">
-                                <button class="btn">حالة الأنمي <span class="caret">▼</span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">لم يعرض بعد</a></li>
-                                    <li><a href="#">مكتمل</a></li>
-                                    <li><a href="#">يعرض الآن</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="alphabetical-filter">
-                    <div class="text-center">
-                        <ul class="pagination">
-                            <li><a href="#">A</a></li>
-                            <li><a href="#">B</a></li>
-                            <li><a href="#">C</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- END FILTER SECTION -->
-    </div>
     <!-- Hero Section End -->
 
     <!-- Product Section Begin -->
@@ -149,23 +89,23 @@
 
 
                     <div class="row" id="row">
-                        @foreach ($animes as $anime )
+                        @foreach ($films as $film )
 
                         <div class="col-lg-2 col-md-3 col-sm-6">
                             <div class='product__item'>
-                                <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}'>
+                                <div class='product__item__pic set-bg' data-setbg='{{ $film->PosterLink }}'>
                                     <div class='ep'></div>
                                     <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                     <div class='view'><i class='fa fa-eye'></i> 9141</div>
                                 </div>
                                 <div class='product__item__text'>
                                     <ul>
-                                        @foreach ($anime->categories as $category)
+                                        @foreach ($film->categories as $category)
 
                                         <li>{{$category->name}}</li>
                                         @endforeach
                                     </ul>
-                                    <h5><a href='{{ Route("animeDetails",$anime) }}'>{{ $anime->titre }}</a></h5>
+                                    <h5><a href='{{ Route("filmDetails",$film) }}'>{{ $film->titre }}</a></h5>
 
                                 </div>
                             </div>
@@ -196,12 +136,12 @@
 
 
         <div class="product__pagination">
-            @for ($i = 1; $i <= $animes->lastPage(); $i++)
-                <a href="{{ $animes->url($i) }}" class="{{ $animes->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
+            @for ($i = 1; $i <= $films->lastPage(); $i++)
+                <a href="{{ $films->url($i) }}" class="{{ $films->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
                 @endfor
 
-                @if ($animes->currentPage() < $animes->lastPage())
-                    <a href="{{ $animes->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+                @if ($films->currentPage() < $films->lastPage())
+                    <a href="{{ $films->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
                     @endif
         </div>
 

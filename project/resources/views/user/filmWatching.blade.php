@@ -99,7 +99,8 @@
                 <div class="col-lg-12">
                     <div  class="anime__video__player">
                         <video id="player"  playsinline controls data-poster="https://img.youtube.com/vi/gY5nDXOtv_o/default.jpg">
-                            <source src="https://dc584.4shared.com/img/cFpp-vJbge/92ab0635/dlink__2Fdownload_2FcFpp-vJbge_3Fsbsr_3D02c7081d3aa7b21a510a11e4078ed208b44_26bip_3DMTg1LjE3Ny4xMjYuMTI3_26lgfp_3D66_26bip_3DMTg1LjE3Ny4xMjYuMTI3_26bip_3DMTg1LjE3Ny4xMjYuMTI3/preview.mp4" type="video/mp4" />
+                            <source src="{{ $film->videoLink }}" type="video/mp4" />
+                            
                             <!-- Captions are optional -->
                             <track kind="captions" label="English captions" src="#" srclang="en" default />
                         </video>
@@ -108,10 +109,10 @@
                         <div class="section-title">
                             <h5>List Name</h5>
                         </div>
-                        @foreach ($saison->episodes as $episode)
+                       
                         
-                        <a href="{{ Route("episode",[$episode,$saison]) }}">Ep  {{ $episode->episodeNumber }}</a>
-                        @endforeach
+                        <a href="{{ Route("film",[$film]) }}"></a>
+                      
                        
                     </div>
                 </div>

@@ -14,9 +14,13 @@ class FilmController extends Controller
      */
     public function index()
     {
-        $films = Film::all();
+        // $films = Film::all();
+        // $films = Film::with('categories')->orderBy('releaseDate', 'desc')->paginate(5);
 
-        return view("user.film", ["films" => $films]);
+        // return view("user.films", ["films" => $films]);
+        // $film=Film::with('categories')->get();
+        $films=Film::with('categories')->orderBy('releaseDate','desc')->paginate(5);
+        return view("user.films",["films"=>$films]);
     }
 
     /**
@@ -27,6 +31,17 @@ class FilmController extends Controller
         //
     }
 
+    public function filmDetails(Film $film){
+       
+
+        return view("user.filmDetails", ["film"=>$film]);
+    }
+
+    public function filmWatching(Film $film){
+        // $saisons=$film->saisons;
+
+        return view("user.filmWatching", ["film"=>$film]);
+    }
     /**
      * Store a newly created resource in storage.
      */

@@ -4,29 +4,34 @@ use App\Http\Controllers\AnimeController;
 use App\Http\Controllers\AuthentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EpisodeController;
+use App\Http\Controllers\FilmController;
 use App\Http\Middleware\AdminMiddlware;
 use App\Http\Middleware\AuthMiddleware;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 // ->middleware("auth.api")
 Route::get('/', [AnimeController::class, "home"])->name("home");
-Route::get('/allAnimes', [AnimeController::class, "index"])->name("index");
+Route::get('/allAnimes', [AnimeController::class, "index"])->name("animes");
 Route::get('/dashboard', [AnimeController::class, "dashBoard"])->middleware(AdminMiddlware::class);
 Route::get('/contentManagement', [AnimeController::class, "manageAnimes"])->name("contentManagement")->middleware(AdminMiddlware::class);
 Route::post('/addAnimes', [AnimeController::class, "store"])->name("addAnime")->middleware(AdminMiddlware::class);
 
 Route::post('/categories', [CategoryController::class, "index"])->name("categorie");
 
+Route::get('/films', [FilmController::class, "index"])->name("films");
+Route::get('{film}/filmWatching', [FilmController::class, "filmWatching"])->name("film");
+Route::get('{film}/filmDetails', [FilmController::class, "filmDetails"])->name("filmDetails");
 
 Route::get('{anime}/animeDetails', [AnimeController::class, "animeDetails"])->name("animeDetails");
 Route::get('{saison}/animeWatching', [AnimeController::class, "animeWatching"])->name("animeWatching");
 Route::get('{episode}/{saison}/episodeWatching', [AnimeController::class, "episodeWatching"])->name("episode");
 
+Route::get('{saison}/allEpisodes', [AnimeController::class, "allEpisodes"])->name("allEpisodes");
 
 
 Route::post('updateAnime/{anime}', [AnimeController::class, "update"])->name("updateAnime")->middleware(AdminMiddlware::class);
 Route::get('{anime}/delete', [AnimeController::class, "destroy"])->name("deleteAnime")->middleware(AdminMiddlware::class);
-Route::post('/search', [AnimeController::class, "home"])->name("search");
+Route::post('/search', [AnimeController::class, "index"])->name("search");
 
 Route::post("/register", [AuthentController::class, "register"])->name("register");
 Route::post("/login", [AuthentController::class, "login"])->name("login");
