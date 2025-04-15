@@ -51,11 +51,16 @@ class AnimeController extends Controller
         }
     }
     public function filtrageParEtat($status){
-        // dd($status) ;
             $categories = Category::all();
         
             $animes = Anime::where("status",$status)->paginate(10);
-            // dd($animes);
+            return view("user.animes", ["animes" => $animes,"categories" => $categories]);
+        
+    }
+    public function filtrageParType($type){
+            $categories = Category::all();
+        
+            $animes = Anime::where("type",$type)->paginate(10);
             return view("user.animes", ["animes" => $animes,"categories" => $categories]);
         
     }

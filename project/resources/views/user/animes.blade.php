@@ -95,11 +95,11 @@
                                 <button  onclick="hiddeen(event)" class="btn">النوع <span class="caret">▼</span></button>
                                 <ul id="animeType" class="dropdown-menu hidden" >
                                    
-                                    <li><a  href="{{Route("filtrageParType","TV")}}">TV</a></li>
-                                    <li><a  href="{{Route("filtrageParType","MOVIE")}}">MOVIE</a></li>
-                                    <li><a  href="{{Route("filtrageParType","OVA")}}">OVA</a></li>
-                                    <li><a  href="{{Route("filtrageParType","ONA")}}">ONA</a></li>
-                                    <li><a  href="{{Route("filtrageParType","SPECIAL")}}">SPECIAL</a></li>
+                                    <li><a  href="{{Route("filtrageParType",["type"=>"TV"])}}">TV</a></li>
+                                    <li><a  href="{{Route("filtrageParType",["type"=>"MOVIE"])}}">MOVIE</a></li>
+                                    <li><a  href="{{Route("filtrageParType",["type"=>"OVA"])}}">OVA</a></li>
+                                    <li><a  href="{{Route("filtrageParType",["type"=>"ONA"])}}">ONA</a></li>
+                                    <li><a  href="{{Route("filtrageParType",["type"=>"SPECIAL"])}}">SPECIAL</a></li>
 
                                     
 
