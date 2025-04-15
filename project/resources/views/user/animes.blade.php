@@ -91,29 +91,39 @@
                     <ul>
                         <!-- Section Dropdown -->
                         <li>
-                            <div class="dropdown">
-                                <button class="btn">القسم <span class="caret">▼</span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">الانمي المترجم</a></li>
+                            <div class="dropdownn">
+                                <button  onclick="hiddeen(event)" class="btn">النوع <span class="caret">▼</span></button>
+                                <ul id="animeType" class="dropdown-menu hidden" >
+                                   
+                                    <li><a  href="#">TV</a></li>
+                                    <li><a  href="#">MOVIE</a></li>
+                                    <li><a  href="#">OVA</a></li>
+                                    <li><a  href="#">ONA</a></li>
+                                    <li><a  href="#">SPECIAL</a></li>
+
+                                    
+
                                 </ul>
                             </div>
                         </li>
                         <!-- Genre Dropdown -->
                         <li>
-                            <div class="dropdown">
-                                <button class="btn">تصنيف الأنمي <span class="caret">▼</span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">أطفال</a></li>
-                                    <li><a href="#">أكشن</a></li>
-                                    <li><a href="#">دراما</a></li>
+                            <div class="dropdownn">
+                                <button onclick="hiddeen(event)" class="btn">تصنيف الأنمي <span class="caret">▼</span></button>
+                                <ul id="animeCategories" class="dropdown-menu hidden" >
+                                    @foreach ( $categories as $category )
+                                    <li><a  href="#">{{ $category->name }}</a></li>
+
+                                    @endforeach
+
                                 </ul>
                             </div>
                         </li>
                         <!-- Status Dropdown -->
                         <li>
-                            <div class="dropdown">
-                                <button class="btn">حالة الأنمي <span class="caret">▼</span></button>
-                                <ul class="dropdown-menu">
+                            <div class="dropdownn">
+                                <button  onclick="hiddeen(event)" class="btn">حالة الأنمي <span class="caret">▼</span></button>
+                                <ul id="animeEtat"  class="dropdown-menu hidden">
                                     <li><a href="#">لم يعرض بعد</a></li>
                                     <li><a href="#">مكتمل</a></li>
                                     <li><a href="#">يعرض الآن</a></li>
@@ -269,7 +279,29 @@
     <script src="./build/assets/js/owl.carousel.min.js"></script>
     <script src="./build/assets/js/main.js"></script>
 
+    <script>
+      
+        // let dropdownMenus = document.querySelectorAll('.dropdown-menu');
+        // let animeCategories = document.getElementById('animeCategories');
+        // let animeEtat = document.getElementById('animeEtat');
+        // let animeSection = document.getElementById('animeSection');
 
+        
+
+        function hiddeen() {
+            // console.log(event.target.parentElement.children[1])
+            event.target.nextElementSibling.classList.toggle("hidden")
+//             if (!test.classList.contains("activve")) {
+//   test.classList.add("activve");
+// } else {
+//   test.classList.remove("activve");
+// }
+// animeCategories.classList.toggle('hidden')
+// animeEtat.classList.toggle('hidden')
+// animeSection.classList.toggle('hidden')
+            
+        };
+    </script>
 </body>
 
 </html>

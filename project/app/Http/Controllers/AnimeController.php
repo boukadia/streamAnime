@@ -62,14 +62,18 @@ class AnimeController extends Controller
 
             // "categories" => $categories]
             // $categories=$animes->categories();
-            // $categories = Category::all();
+            $categories = Category::all();
             
             
            
-            return view("user.animes", ["animes" => $animes]);
+            return view("user.animes", ["animes" => $animes,"categories" => $categories]);
         }
     }
 
+    public function filtrage(){
+
+
+    }
     public function animeDetails(Anime $anime){
         $saisons=$anime->saisons;
 
