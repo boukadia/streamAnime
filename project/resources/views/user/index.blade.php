@@ -44,7 +44,7 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="{{ Route('home') }}">Homepage</a></li>
+                                <li class=""><a href="{{ Route('home') }}">Homepage</a></li>
                                 <li class=""><a href="{{ Route('animes') }}">Animes</a></li>
                                 <li class=""><a href="{{ Route('films') }}">Films</a></li>
                                 <li><a href="{{Route("categorie")}}">Categories <span class="arrow_carrot-down"></span></a>
@@ -142,7 +142,7 @@
                                         </ul>
                                        
 
-                                        <h5><a href='{{ Route("episode",[$episode,$saison]) }}'>{{ $anime->titre }}</a></h5>
+                                        <h5><a href='{{ Route("episode",[$episode,$saison]) }}'>{{ $saison->titre }}</a></h5>
 
                                     </div>
                                 </div>

@@ -42,18 +42,38 @@ class AnimeController extends Controller
         
     }
     
+    public function filtrageParCategory(Category $category){
+        if($category){
+            $categories = Category::all();
+        
+            $animes = $category->animes()->paginate(10);
+            return view("user.animes", ["animes" => $animes,"categories" => $categories]);
+        }
+    }
+    public function filtrageParEtat($status){
+        // dd($status) ;
+            $categories = Category::all();
+        
+            $animes = Anime::where("status",$status)->paginate(10);
+            // dd($animes);
+            return view("user.animes", ["animes" => $animes,"categories" => $categories]);
+        
+    }
     public function index(Request $request)
     {
 
         if ($request->search!=null) {
             // $queryString = Input::get('search');
 
-            $serch = $request->search;
+            $search = $request->search;
             // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
-
+// dd($search);
             // $animes=anime::search($request->search)->get();
-            $animes = anime::where('titre', 'LIKE', "%" . $serch . "%")->get();
-            return view("user.animeSearch", ["animes" => $animes]);
+            $categories = Category::all();
+
+            $animes = anime::with('categories')->where('titre', 'LIKE', '%' . $search . '%')->paginate(10);
+            
+            return view("user.animes", ["animes" => $animes,"categories" => $categories]);
         } else {
             // $animes = Anime::all();
             // $animes = Anime::with('categories')->get();

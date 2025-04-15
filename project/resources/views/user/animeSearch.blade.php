@@ -7,7 +7,7 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
+    <title>An</title>
     @vite(['resources/js/app.js']) <!-- Intégration Vite -->
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -44,7 +44,9 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="{{ Route('home') }}">Homepage</a></li>
+                                <li class=""><a href="{{ Route('home') }}">Homepage</a></li>
+                                <li class=""><a href="{{ Route('animes') }}">Animes</a></li>
+                                <li class=""><a href="{{ Route('films') }}">Films</a></li>
                                 <li><a href="{{Route("categorie")}}">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="{{Route("categorie")}}">Categories</a></li>

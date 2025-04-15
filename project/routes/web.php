@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 // ->middleware("auth.api")
 Route::get('/', [AnimeController::class, "home"])->name("home");
 Route::get('/allAnimes', [AnimeController::class, "index"])->name("animes");
+Route::get('{category}/filtrage', [AnimeController::class, "filtrageParCategory"])->name("filtrageParCategory");
+Route::get('{status}/filtrageParEtat', [AnimeController::class, "filtrageParEtat"])->name("filtrageParEtat");
+Route::get('{}/filtrage', [AnimeController::class, "filtrageParType"])->name("filtrageParType");
 Route::get('/dashboard', [AnimeController::class, "dashBoard"])->middleware(AdminMiddlware::class);
 Route::get('/contentManagement', [AnimeController::class, "manageAnimes"])->name("contentManagement")->middleware(AdminMiddlware::class);
 Route::post('/addAnimes', [AnimeController::class, "store"])->name("addAnime")->middleware(AdminMiddlware::class);
