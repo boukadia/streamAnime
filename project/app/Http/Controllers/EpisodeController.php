@@ -14,9 +14,11 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        $episodes = Episode::all();
-
-        return view("user.episode", ["episodes" => $episodes]);
+        $episodes = Episode::with("saisons")->orderByDesc("created_at")->paginate(10);
+// foreach ($episodes as $episode) {
+//    dump($episode->saisons->titre) ;
+// }
+        return view("user.episodes", ["episodes" => $episodes]);
     }
 
     /**

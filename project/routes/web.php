@@ -30,8 +30,9 @@ Route::get('/{anime}/{type}/anime-film', [AnimeController::class, "animeFilm"])-
 Route::get('{anime}/animeDetails', [AnimeController::class, "animeDetails"])->name("animeDetails");
 Route::get('{saison}/animeWatching', [AnimeController::class, "animeWatching"])->name("animeWatching");
 Route::get('{episode}/{saison}/episodeWatching', [AnimeController::class, "episodeWatching"])->name("episode");
+Route::get('/allEpisodes', [EpisodeController::class, "index"])->name("allEpisodes");
 
-Route::get('{saison}/allEpisodes', [AnimeController::class, "allEpisodes"])->name("allEpisodes");
+Route::get('{saison}/episodes', [AnimeController::class, "episodes"])->name("episodes");
 
 
 Route::post('updateAnime/{anime}', [AnimeController::class, "update"])->name("updateAnime")->middleware(AdminMiddlware::class);

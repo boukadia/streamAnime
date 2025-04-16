@@ -94,7 +94,7 @@
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class='product__item'>
                                 <div class='product__item__pic set-bg' data-setbg='{{ $episode->PosterLink }}'>
-                                    <div  class='ep'>  <a href='{{ Route("episode",[$episode,$saison]) }}'> Episode {{ $episode->episodeNumber }}</a></div>
+                                    <div  class='ep'>  <a href='{{ Route("episode",[$episode,$episode->saisons]) }}'> Episode {{ $episode->episodeNumber }}</a></div>
                                     <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                     <div class='view'><i class='fa fa-eye'></i> 9141</div>
                                 </div>

@@ -138,7 +138,7 @@ class AnimeController extends Controller
         return view("user.animeWatching", ["saison"=>$saison]);
 
     }
-    public function allEpisodes(Saison $saison){
+    public function episodes(Saison $saison){
         $episodes=$saison->episodes()->paginate(5);
         // dd($episodes);
         return view("user.episodes",['episodes'=>$episodes,'saison'=>$saison]);
