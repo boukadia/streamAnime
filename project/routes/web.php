@@ -23,7 +23,9 @@ Route::post('/categories', [CategoryController::class, "index"])->name("categori
 
 Route::get('/films', [FilmController::class, "index"])->name("films");
 Route::get('{film}/filmWatching', [FilmController::class, "filmWatching"])->name("film");
-Route::get('{film}/filmDetails', [FilmController::class, "filmDetails"])->name("filmDetails");
+Route::get('{film:id}/filmDetails', [FilmController::class, "filmDetails"])->name("filmDetails");
+
+Route::get('/{anime}/{type}/anime-film', [AnimeController::class, "animeFilm"])->name("anime-film"); //Rediriger selon le type de l'anime : si c’est un film, rediriger vers la page des films, sinon rediriger vers la page des séries. "
 
 Route::get('{anime}/animeDetails', [AnimeController::class, "animeDetails"])->name("animeDetails");
 Route::get('{saison}/animeWatching', [AnimeController::class, "animeWatching"])->name("animeWatching");

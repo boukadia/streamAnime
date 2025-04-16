@@ -131,7 +131,7 @@
                                     <div class='view'><i class='fa fa-eye'></i> 9141</div>
                                     <div class='ep'> episode {{ $episode->episodeNumber }}</div>
                                     <div class='type'>{{ $anime->type }}</div>
-                                    <div class='state'>{{ $anime->status }}</div>
+                                    <div class='state'>{{ $saison->status }}</div>
                                     </div>
                                     <div class='product__item__text'>
                                         <ul>

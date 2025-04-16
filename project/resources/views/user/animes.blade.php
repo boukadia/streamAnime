@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Anime | Template</title>
+    <link rel="website icon" type ="png" href="/build/assets/img/logo1.svg">
     @vite(['resources/js/app.js']) <!-- Intégration Vite -->
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -36,7 +37,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="/index.html">
-                            <img loading="lazy" src="img/logo.png" alt="">
+                            <img loading="lazy" src="/build/assets/img/MBK.webp" alt="">
                         </a>
                     </div>
                 </div>
@@ -175,7 +176,7 @@
                                         <li>{{$category->name}}</li>
                                         @endforeach
                                     </ul>
-                                    <h5><a href='{{ Route("animeDetails",$anime) }}'>{{ $anime->titre }}</a></h5>
+                                    <h5><a href='{{ Route("anime-film",["type"=>$anime->type,$anime]) }}'>{{ $anime->titre }}</a></h5>
 
                                 </div>
                             </div>

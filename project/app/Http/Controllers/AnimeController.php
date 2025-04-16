@@ -7,6 +7,7 @@ use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
 use App\Models\Category;
 use App\Models\Episode;
+use App\Models\Film;
 use App\Models\Saison;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -57,10 +58,26 @@ class AnimeController extends Controller
             return view("user.animes", ["animes" => $animes,"categories" => $categories]);
         
     }
+    
+    public function animeFilm($anime,$type){
+        if($type==="MOVIE"){
+            return redirect()->route("filmDetails",$anime);
+        }
+        else{
+            return redirect()->route("animeDetails",$anime);
+
+        }
+    }
     public function filtrageParType($type){
             $categories = Category::all();
-        
+        if($type==="MOVIE"){
+            $animes = Film:: paginate(10);
+
+        }
+        else{
             $animes = Anime::where("type",$type)->paginate(10);
+        }
+            
             return view("user.animes", ["animes" => $animes,"categories" => $categories]);
         
     }
