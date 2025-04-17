@@ -15,14 +15,14 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="./build/assets/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="./build/assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/build/assets/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="./index.html">
+                        <a href="/index.html">
                             <img loading="lazy" src="img/logo.png" alt="">
                         </a>
                     </div>
@@ -50,14 +50,14 @@
                                 <li><a href="{{Route("categorie")}}">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="{{Route("categorie")}}">Categories</a></li>
-                                        <li><a href="./anime-details.html">Anime Details</a></li>
-                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
+                                        <li><a href="/anime-details.html">Anime Details</a></li>
+                                        <li><a href="/anime-watching.html">Anime Watching</a></li>
+                                        <li><a href="/blog-details.html">Blog Details</a></li>
                                         <li><a href="{{ Route("registerForm") }}">Sig Up</a></li>
                                         <li><a href="{{ Route("loginForm") }}">Login</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="./blog.html">Our Blog</a></li>
+                                <li><a href="/blog.html">Our Blog</a></li>
                                 <li><a href="#">Contacts</a></li>
                             </ul>
                         </nav>
@@ -75,7 +75,74 @@
     </header>
     <!-- Header End -->
 
+    <div class="anime-filter">
+        <!-- MAIN SECTION -->
+        <!-- <div class="main-section">
+            <div class="container">
+                <h3>نوع الأنمي [ Movie ]</h3>
+            </div>
+        </div> -->
+        <!-- END MAIN SECTION -->
 
+        <!-- FILTER SECTION -->
+        <div class="second-section">
+            <div class="container">
+                <div class="anime-filter-options">
+                    <ul>
+                        <!-- Section Dropdown -->
+                        <li>
+                            <div class="dropdownn">
+                                <button  onclick="hiddeen(event)" class="btn">النوع <span class="caret">▼</span></button>
+                                <ul id="animeType" class="dropdown-menu hidden" >
+                                   
+                                    <li><a  href="{{  Route("films")}}">MOVIE</a></li>
+                                    
+
+                                    
+
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- Genre Dropdown -->
+                        <li>
+                            <div class="dropdownn">
+                                <button onclick="hiddeen(event)" class="btn">تصنيف الأنمي <span class="caret">▼</span></button>
+                                <ul id="animeCategories" class="dropdown-menu hidden" >
+                                    @foreach ( $categories as $category )
+                                    <li><a  href="{{ Route("filmFiltrageParCategory",$category) }}">{{ $category->name }}</a></li>
+
+                                    @endforeach
+
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- Status Dropdown -->
+                        <li>
+                            <div class="dropdownn">
+                                <button  onclick="hiddeen(event)" class="btn">حالة الأنمي <span class="caret">▼</span></button>
+                                <ul id="animeEtat"  class="dropdown-menu hidden">
+                                    <li><a href="{{Route("filtrageParEtat", ['status' => 'Pas encore'])}}">Pas encore</a></li>
+                                    <li><a href="{{Route("filtrageParEtat", ['status' => 'Complet'])}}">Complet</a></li>
+                                    <li><a href="{{Route("filtrageParEtat", ['status' => 'En cours'])}}">En cours</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="alphabetical-filter">
+                    <div class="text-center">
+                        <ul class="pagination">
+                            <li><a href="#">A</a></li>
+                            <li><a href="#">B</a></li>
+                            <li><a href="#">C</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END FILTER SECTION -->
+    </div>
     <!-- Hero Section End -->
 
     <!-- Product Section Begin -->
@@ -93,7 +160,7 @@
 
                         <div class="col-lg-2 col-md-3 col-sm-6">
                             <div class='product__item'>
-                                <div class='product__item__pic set-bg' data-setbg='{{ $film->PosterLink }}'>
+                                <div class='product__item__pic set-bg' data-setbg='{{ $film->posterLink }}'>
                                     <div class='ep'></div>
                                     <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                     <div class='view'><i class='fa fa-eye'></i> 9141</div>
@@ -161,15 +228,15 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="footer__logo">
-                        <a href="./index.html"><img loading="lazy" src="img/logo.png" alt=""></a>
+                        <a href="/index.html"><img loading="lazy" src="img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li class="active"><a href="./index.html">Homepage</a></li>
-                            <li><a href="./categories.html">Categories</a></li>
-                            <li><a href="./blog.html">Our Blog</a></li>
+                            <li class="active"><a href="/index.html">Homepage</a></li>
+                            <li><a href="/categories.html">Categories</a></li>
+                            <li><a href="/blog.html">Our Blog</a></li>
                             <li><a href="#">Contacts</a></li>
                         </ul>
                     </div>
@@ -199,16 +266,40 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
-    <script src="./build/assets/js/script.js"></script>
-    <script src="./build/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="./build/assets/js/bootstrap.min.js"></script>
-    <script src="./build/assets/js/player.js"></script>
-    <script src="./build/assets/js/jquery.nice-select.min.js"></script>
-    <script src="./build/assets/js/mixitup.min.js"></script>
-    <script src="./build/assets/js/jquery.slicknav.js"></script>
-    <script src="./build/assets/js/owl.carousel.min.js"></script>
-    <script src="./build/assets/js/main.js"></script>
+    <script src="/build/assets/js/script.js"></script>
+    <script src="/build/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="/build/assets/js/bootstrap.min.js"></script>
+    <script src="/build/assets/js/player.js"></script>
+    <script src="/build/assets/js/jquery.nice-select.min.js"></script>
+    <script src="/build/assets/js/mixitup.min.js"></script>
+    <script src="/build/assets/js/jquery.slicknav.js"></script>
+    <script src="/build/assets/js/owl.carousel.min.js"></script>
+    <script src="/build/assets/js/main.js"></script>
 
+
+    <script>
+      
+      // let dropdownMenus = document.querySelectorAll('.dropdown-menu');
+      // let animeCategories = document.getElementById('animeCategories');
+      // let animeEtat = document.getElementById('animeEtat');
+      // let animeSection = document.getElementById('animeSection');
+
+      
+
+      function hiddeen() {
+          // console.log(event.target.parentElement.children[1])
+          event.target.nextElementSibling.classList.toggle("hidden")
+//             if (!test.classList.contains("activve")) {
+//   test.classList.add("activve");
+// } else {
+//   test.classList.remove("activve");
+// }
+// animeCategories.classList.toggle('hidden')
+// animeEtat.classList.toggle('hidden')
+// animeSection.classList.toggle('hidden')
+          
+      };
+      </script>
 
 </body>
 

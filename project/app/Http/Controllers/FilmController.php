@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Film;
 use App\Http\Requests\StoreFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
@@ -19,8 +20,10 @@ class FilmController extends Controller
 
         // return view("user.films", ["films" => $films]);
         // $film=Film::with('categories')->get();
+        $categories = Category::all();
+
         $films=Film::with('categories')->orderBy('releaseDate','desc')->paginate(5);
-        return view("user.films",["films"=>$films]);
+        return view("user.films",["films"=>$films,"categories"=>$categories]);
     }
 
     /**
@@ -29,6 +32,14 @@ class FilmController extends Controller
     public function create()
     {
         //
+    }
+    public function filtrageParCategory(Category $category)
+    {
+        $categories = Category::all();
+
+       $films= $category->filmes()->paginate(10);
+       return view("user.films",["films"=>$films,"categories"=>$categories]);
+
     }
 
     public function filmDetails(Film $film){

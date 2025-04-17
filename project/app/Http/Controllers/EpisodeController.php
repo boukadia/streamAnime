@@ -14,7 +14,7 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        $episodes = Episode::with("saisons")->orderByDesc("created_at")->paginate(10);
+        $episodes = Episode::with("saisons")->orderByDesc("created_at")->paginate(20);
 // foreach ($episodes as $episode) {
 //    dump($episode->saisons->titre) ;
 // }

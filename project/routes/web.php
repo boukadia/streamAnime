@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AnimeController::class, "home"])->name("home");
 Route::get('/allAnimes', [AnimeController::class, "index"])->name("animes");
 Route::get('{category}/filtrage', [AnimeController::class, "filtrageParCategory"])->name("filtrageParCategory");
+Route::get('{category}/movieFiltrage', [FilmController::class, "filtrageParCategory"])->name("filmFiltrageParCategory");
 Route::get('{status}/filtrageParEtat', [AnimeController::class, "filtrageParEtat"])->name("filtrageParEtat");
 Route::get('{type}/filtrageParType', [AnimeController::class, "filtrageParType"])->name("filtrageParType");
 Route::get('/dashboard', [AnimeController::class, "dashBoard"])->middleware(AdminMiddlware::class);

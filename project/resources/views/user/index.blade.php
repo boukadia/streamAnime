@@ -83,10 +83,10 @@
                     <img src="/build/assets/img/hero/hero-1.jpg" alt="Slide 1">
                 </div>
                 <div class="slide">
-                    <img src="/build/assets/img/hero/hero-1.jpg" alt="Slide 2">
+                    <img src="/build/assets/img/slide.avif" alt="Slide 2">
                 </div>
                 <div class="slide">
-                    <img src="/build/assets/img/hero/hero-1.jpg" alt="Slide 3">
+                    <img src="/build/assets/img/slide.avif" alt="Slide 3">
                 </div>
                 <button class="arrow arrow-left">❮</button>
                 <button class="arrow arrow-right">❯</button>
@@ -126,7 +126,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class='product__item'>
-                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}' /*data-setbg='build/assets/Devil-May-Cry-EP-400x243.jpg' */>
+                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->posterLink }}' >
                                     <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                     <div class='view'><i class='fa fa-eye'></i> 9141</div>
                                     <div class='ep'> episode {{ $episode->episodeNumber }}</div>
@@ -214,7 +214,7 @@
 
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg='{{ $lastAnime->PosterLink }}'>
+                                    <div class="product__item__pic set-bg" data-setbg='{{ $lastAnime->posterLink }}'>
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
