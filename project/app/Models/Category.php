@@ -13,4 +13,8 @@ class Category extends Model
     public function animes(){
         return $this->belongsToMany(Anime::class,"anime_category");
     }
+
+    public function filmes(){
+        return $this->belongsToMany(Film::class,"categories_film","category_id","film_id");
+    }
 }

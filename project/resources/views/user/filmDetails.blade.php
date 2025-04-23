@@ -46,7 +46,7 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="{{ Route('home') }}">Homepage</a></li>
+                                <li class=""><a href="{{ Route('home') }}">Homepage</a></li>
                                 <li class=""><a href="{{ Route('animes') }}">Animes</a></li>
                                 <li class=""><a href="{{ Route('films') }}">Films</a></li>
                                 <li><a href="{{Route("categorie")}}">Categories <span class="arrow_carrot-down"></span></a>
@@ -107,7 +107,7 @@
                     <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
-                                <h3>{{ $anime->titre }}</h3>
+                                <h3>{{ $film->titre }}</h3>
                                 <span>フェイト／ステイナイト, Feito／sutei naito</span>
                             </div>
                             <div class="anime__details__rating">
@@ -148,7 +148,7 @@
                             </div>
                             <div class="anime__details__btn">
                                 <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                <a href="{{ Route("animeWatching",$anime) }}" class="watch-btn"><span>Watch Now</span> <i
+                                <a href="{{ Route("film",$film) }}" class="watch-btn"><span>Watch Now</span> <i
                                         class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
@@ -191,15 +191,15 @@
                         </div>
 
                         <div class="row g-3">
-                            @foreach ($saisons as $saison)
+                            
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                                 <div class="product__sidebar__view__item set-bg" loading="lazy" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
                                     <div class="ep">18 / ?</div>
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="{{ Route('episodes', $saison) }}">{{ $saison->titre }}</a></h5>
+                                    <h5><a href="{{ Route('film', $film) }}">{{ $film->titre }}</a></h5>
                                 </div>
                             </div>
-                            @endforeach
+                            
                         </div>
                     </div>
                 </div>
@@ -225,7 +225,7 @@
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li class=""><a href="./index.html">Homepage</a></li>
+                            <li class="active"><a href="./index.html">Homepage</a></li>
                             <li><a href="./categories.html">Categories</a></li>
                             <li><a href="./blog.html">Our Blog</a></li>
                             <li><a href="#">Contacts</a></li>

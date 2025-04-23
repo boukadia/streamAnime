@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
 
 <head>
     <meta charset="UTF-8">
@@ -27,10 +27,10 @@
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    <!-- <div id="preloder">
         <div class="loader"></div>
-    </div>
-
+    </div> -->
+   
     <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
@@ -46,7 +46,7 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="{{ Route('home') }}">Homepage</a></li>
+                                <li class=""><a href="{{ Route('home') }}">Homepage</a></li>
                                 <li class=""><a href="{{ Route('animes') }}">Animes</a></li>
                                 <li class=""><a href="{{ Route('films') }}">Films</a></li>
                                 <li><a href="{{Route("categorie")}}">Categories <span class="arrow_carrot-down"></span></a>
@@ -85,85 +85,49 @@
                     <div class="breadcrumb__links">
                         <a href="./index.html"><i class="fa fa-home"></i> Home</a>
                         <a href="./categories.html">Categories</a>
-                        <span>Romance</span>
+                        <a href="#">Romance</a>
+                        <span>Fate Stay Night: Unlimited Blade</span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Breadcrumb End -->
-
+   
     <!-- Anime Section Begin -->
     <section class="anime-details spad">
         <div class="container">
-            <div class="anime__details__content">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" loading="lazy" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                        </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div  class="anime__video__player">
+                        <video id="player"  playsinline controls data-poster="https://img.youtube.com/vi/gY5nDXOtv_o/default.jpg">
+                            <source src="{{ $film->videoLink }}" type="video/mp4" />
+                            
+                            <!-- Captions are optional -->
+                            <track kind="captions" label="English captions" src="#" srclang="en" default />
+                        </video>
                     </div>
-                    <div class="col-lg-9">
-                        <div class="anime__details__text">
-                            <div class="anime__details__title">
-                                <h3>{{ $anime->titre }}</h3>
-                                <span>フェイト／ステイナイト, Feito／sutei naito</span>
-                            </div>
-                            <div class="anime__details__rating">
-                                <div class="rating">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
-                                </div>
-                                <span>1.029 Votes</span>
-                            </div>
-                            <p>Every human inhabiting the world of Alcia is branded by a “Count” or a number written on
-                                their body. For Hina’s mother, her total drops to 0 and she’s pulled into the Abyss,
-                                never to be seen again. But her mother’s last words send Hina on a quest to find a
-                                legendary hero from the Waste War - the fabled Ace!</p>
-                            <div class="anime__details__widget">
-                                <div class="row">
-                                    <div class="col-lg-6 col-md-6">
-                                        <ul>
-                                            <li><span>Type:</span> TV Series</li>
-                                            <li><span>Studios:</span> Lerche</li>
-                                            <li><span>Date aired:</span> Oct 02, 2019 to ?</li>
-                                            <li><span>Status:</span> Airing</li>
-                                            <li><span>Genre:</span> Action, Adventure, Fantasy, Magic</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-lg-6 col-md-6">
-                                        <ul>
-                                            <li><span>Scores:</span> 7.31 / 1,515</li>
-                                            <li><span>Rating:</span> 8.5 / 161 times</li>
-                                            <li><span>Duration:</span> 24 min/ep</li>
-                                            <li><span>Quality:</span> HD</li>
-                                            <li><span>Views:</span> 131,541</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                <a href="{{ Route("animeWatching",$anime) }}" class="watch-btn"><span>Watch Now</span> <i
-                                        class="fa fa-angle-right"></i></a>
-                            </div>
+                    <div class="anime__details__episodes">
+                        <div class="section-title">
+                            <h5>List Name</h5>
                         </div>
+                       
+                        
+                        <a href="{{ Route("film",[$film]) }}"></a>
+                      
+                       
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="col-lg-8 col-md-8">
+            <div class="row">
+                <div class="col-lg-8">
                     <div class="anime__details__review">
                         <div class="section-title">
                             <h5>Reviews</h5>
                         </div>
                         <div class="anime__review__item">
                             <div class="anime__review__item__pic">
-                                <img loading="lazy" src="https://cdn.myanimelist.net/images/anime/4/19644.jpg" alt="">
+                                <img src="img/anime/review-1.jpg" alt="">
                             </div>
                             <div class="anime__review__item__text">
                                 <h6>Chris Curry - <span>1 Hour ago</span></h6>
@@ -171,8 +135,52 @@
                                     "demons" LOL</p>
                             </div>
                         </div>
-
-
+                        <div class="anime__review__item">
+                            <div class="anime__review__item__pic">
+                                <img src="img/anime/review-2.jpg" alt="">
+                            </div>
+                            <div class="anime__review__item__text">
+                                <h6>Lewis Mann - <span>5 Hour ago</span></h6>
+                                <p>Finally it came out ages ago</p>
+                            </div>
+                        </div>
+                        <div class="anime__review__item">
+                            <div class="anime__review__item__pic">
+                                <img src="img/anime/review-3.jpg" alt="">
+                            </div>
+                            <div class="anime__review__item__text">
+                                <h6>Louis Tyler - <span>20 Hour ago</span></h6>
+                                <p>Where is the episode 15 ? Slow update! Tch</p>
+                            </div>
+                        </div>
+                        <div class="anime__review__item">
+                            <div class="anime__review__item__pic">
+                                <img src="img/anime/review-4.jpg" alt="">
+                            </div>
+                            <div class="anime__review__item__text">
+                                <h6>Chris Curry - <span>1 Hour ago</span></h6>
+                                <p>whachikan Just noticed that someone categorized this as belonging to the genre
+                                    "demons" LOL</p>
+                            </div>
+                        </div>
+                        <div class="anime__review__item">
+                            <div class="anime__review__item__pic">
+                                <img src="img/anime/review-5.jpg" alt="">
+                            </div>
+                            <div class="anime__review__item__text">
+                                <h6>Lewis Mann - <span>5 Hour ago</span></h6>
+                                <p>Finally it came out ages ago</p>
+                            </div>
+                        </div>
+                        <div class="anime__review__item">
+                            <div class="anime__review__item__pic">
+                                <img src="img/anime/review-6.jpg" alt="">
+                            </div>
+                            <div class="anime__review__item__text">
+                                <h6>Louis Tyler - <span>20 Hour ago</span></h6>
+                                <p>Where is the episode 15 ? Slow update! Tch</p>
+                            </div>
+                        </div>
                     </div>
                     <div class="anime__details__form">
                         <div class="section-title">
@@ -184,30 +192,10 @@
                         </form>
                     </div>
                 </div>
-                <div>
-                    <div class="anime__details__sidebar">
-                        <div class="section-title">
-                            <h5>you might like...</h5>
-                        </div>
-
-                        <div class="row g-3">
-                            @foreach ($saisons as $saison)
-                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                                <div class="product__sidebar__view__item set-bg" loading="lazy" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="{{ Route('episodes', $saison) }}">{{ $saison->titre }}</a></h5>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
-
             </div>
         </div>
     </section>
+    
     <!-- Anime Section End -->
 
     <!-- Footer Section Begin -->
@@ -219,13 +207,13 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="footer__logo">
-                        <a href="./index.html"><img loading="lazy" src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="footer__nav">
                         <ul>
-                            <li class=""><a href="./index.html">Homepage</a></li>
+                            <li class="active"><a href="./index.html">Homepage</a></li>
                             <li><a href="./categories.html">Categories</a></li>
                             <li><a href="./blog.html">Our Blog</a></li>
                             <li><a href="#">Contacts</a></li>
@@ -256,14 +244,15 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
-    <script src="/build/assets/js/jquery-3.3.1.min.js"></script>
-    <script src="/build/assets/js/bootstrap.min.js"></script>
-    <script src="/build/assets/js/player.js"></script>
-    <script src="/build/assets/js/jquery.nice-select.min.js"></script>
-    <script src="/build/assets/js/mixitup.min.js"></script>
-    <script src="/build/assets/js/jquery.slicknav.js"></script>
-    <script src="/build/assets/js/owl.carousel.min.js"></script>
-    <script src="/build/assets/js/main.js"></script>
+    <script src="./build/assets/js/script.js"></script>
+    <script src="./build/assets/js/jquery-3.3.1.min.js"></script>
+    <script src="./build/assets/js/bootstrap.min.js"></script>
+    <script src="./build/assets/js/player.js"></script>
+    <script src="./build/assets/js/jquery.nice-select.min.js"></script>
+    <script src="./build/assets/js/mixitup.min.js"></script>
+    <script src="./build/assets/js/jquery.slicknav.js"></script>
+    <script src="./build/assets/js/owl.carousel.min.js"></script>
+    <script src="./build/assets/js/main.js"></script>
 
 </body>
 

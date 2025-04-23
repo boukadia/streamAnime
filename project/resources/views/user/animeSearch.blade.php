@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,30 +7,28 @@
     <meta name="keywords" content="Anime, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Anime | Template</title>
-
+    <title>An</title>
+    @vite(['resources/js/app.js']) <!-- Intégration Vite -->
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="/build/assets/css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="/build/assets/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/build/assets/css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="/build/assets/css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="/build/assets/css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="/build/assets/css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="/build/assets/css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="/build/assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="./build/assets/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="./build/assets/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="./build/assets/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="./build/assets/css/plyr.css" type="text/css">
+    <link rel="stylesheet" href="./build/assets/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="./build/assets/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="./build/assets/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="./build/assets/css/style.css" type="text/css">
 </head>
 
 <body>
     <!-- Page Preloder -->
-    <!-- <div id="preloder">
-        <div class="loader"></div>
-    </div> -->
-   
+
+
     <!-- Header Section Begin -->
     <header class="header">
         <div class="container">
@@ -77,83 +75,61 @@
     </header>
     <!-- Header End -->
 
-    <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option">
-        <div class="container">
+    <!-- Hero Section Begin -->
+
+    <!-- Hero Section End -->
+
+    <!-- Product Section Begin -->
+    <section class="product spad">
+        <div class="container" id="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
-                        <a href="#">Romance</a>
-                        <span>Fate Stay Night: Unlimited Blade</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
-   
-    <!-- Anime Section Begin -->
-    <section class="anime-details spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div  class="anime__video__player">
-                        <video id="player"  playsinline controls data-poster="{{ $episode->videoLink }}" type="video/mp4" />
-                            <!-- Captions are optional -->
-                            <track kind="captions" label="English captions" src="" srclang="en" default />
-                        </video>
-                    </div>
-                    <div class="anime__details__episodes">
-                        <div class="section-title">
-                            <h5>List Name</h5>
-                        </div>
-                        @foreach ($episodes as $episod)
-                        
-                        <a href="{{ Route("episode",[$episod,$saison]) }}">Ep  {{ $episod->episodeNumber }}</a>
-                        @endforeach
-                       
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="anime__details__review">
-                        <div class="section-title">
-                            <h5>Reviews</h5>
-                        </div>
-                        @foreach ($episode->users as $user )
-                        
-                        
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img src="img/anime/review-1.jpg" alt="">
+                <div class="">
+                    <div class="trending__product">
+
+
+
+                        <div class="row" id="row">
+                            @foreach ($animes as $anime )
+
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class='product__item'>
+                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->posterLink }}'>
+                                        <div class='ep'></div>
+                                        <div class='comment'><i class='fa fa-comments'></i> 11</div>
+                                        <div class='view'><i class='fa fa-eye'></i> 9141</div>
+                                    </div>
+                                    <div class='product__item__text'>
+                                        <ul>
+                                            @foreach ($anime->categories as $category)
+
+                                            <li>{{$category->name}}</li>
+                                            @endforeach
+                                        </ul>
+                                        <h5><a href='{{ Route("animeDetails",$anime) }}'>{{ $anime->titre }}</a></h5>
+
+                                    </div>
+                                </div>
                             </div>
-                            <div class="anime__review__item__text">
-                                <h6>{{ $user->name }} - <span>{{ date("d-m-y  H:i:s") }}</span></h6>
-                                <p>{{ $user->pivot->comment }}</p>
-                            </div>
+                            @endforeach
+                            <!-- ============================== -->
+                            <!-- ============================== -->
+                            <!-- ============================== -->
+                            <!-- ============================== -->
+                            <!-- ============================== -->
                         </div>
-                        @endforeach
-                       
+
+
+
                     </div>
-                    <div class="anime__details__form">
-                        <div class="section-title">
-                            <h5>Your Comment</h5>
-                        </div>
-                        <form action="{{ Route('addComment',[$episode,$saison]) }}" method="POST">
-                            @csrf
-                            <textarea name="comment" placeholder="Your Comment"></textarea>
-                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
-                        </form>
-                    </div>
+
+
+
                 </div>
+
             </div>
         </div>
     </section>
-    
-    <!-- Anime Section End -->
+    <!-- Product Section End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer">
@@ -164,7 +140,7 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="footer__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="./index.html"><img loading="lazy" src="img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -193,8 +169,9 @@
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
             <div class="search-close-switch"><i class="icon_close"></i></div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
+            <form class="search-model-form" action="{{ route("search") }}" method="post">
+                @csrf
+                <input type="text" id="search-input" name="search" placeholder="Search here.....">
             </form>
         </div>
     </div>
@@ -210,6 +187,7 @@
     <script src="./build/assets/js/jquery.slicknav.js"></script>
     <script src="./build/assets/js/owl.carousel.min.js"></script>
     <script src="./build/assets/js/main.js"></script>
+
 
 </body>
 

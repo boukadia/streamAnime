@@ -7,6 +7,7 @@ use App\Http\Requests\StoreanimeRequest;
 use App\Http\Requests\UpdateanimeRequest;
 use App\Models\Category;
 use App\Models\Episode;
+use App\Models\Film;
 use App\Models\Saison;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -24,65 +25,222 @@ class AnimeController extends Controller
     //     // dd($request->search);
     // return view("user.index",["animes"=>$animes]);
     // }
-    public function home(Request $request)
+
+    public function favoryAnimes()
     {
 
-        if ($request->search!=null) {
+        return view("user.favoryAnimes");
+    }
+    public function home()
+    {
+        //     $saisons = Saison::all();
+        //     foreach( $saisons as $saison ) {
+        //      echo $saison->episodes()->orderBy("episodeNumber","desc")->first(); //dernier episode pour chaque saison
+        // }
+
+        $animes = Anime::with('saisons.episodes')->orderByDesc("created_at")->limit(24)->get();
+        $last_anime = Saison::orderBy('updated_at', 'desc')->limit(12)->get();
+        // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
+        // $last_anime = Anime::with('saisons')->orderBy('updated_at','desc')->get();
+        //    foreach($last_anime as $anime){
+        //     if($anime->saisons->isNotEmpty()){
+
+        //         dump(  $anime->saisons()->orderByDesc("created_at")->first()->titre);
+        //     }
+        // }
+
+        // dd($last_anime);
+        $resultats = [];
+
+        $saisons = Saison::with("episodes")->get();
+
+        foreach ($saisons as $saison) {
+            $somme = $saison->episodes->sum('counter');
+
+            $resultats[] = [
+                'saison' => $saison,
+                'somme_counter' => $somme,
+            ];
+        }
+        usort($resultats, function ($a, $b) {
+            return $b['somme_counter'] <=> $a['somme_counter'];
+        });
+        $resultats = array_slice($resultats, 0, 12);
+
+        return view("user.index", ["animes" => $animes, "lastAnimes" => $last_anime, "resultats" => $resultats]);
+    }
+
+    public function filtrageParCategory(Category $category)
+    {
+        if ($category) {
+            $categories = Category::all();
+
+            $animes = $category->animes()->paginate(10);
+            return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+        }
+    }
+    public function filtrageParEtat($status)
+    {
+        $categories = Category::all();
+
+        $animes = Anime::where("status", $status)->paginate(10);
+        return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+    }
+
+    public function animeFilm($anime, $type)
+    {
+        if ($type === "MOVIE") {
+            return redirect()->route("filmDetails", $anime);
+        } else {
+            return redirect()->route("animeDetails", $anime);
+        }
+    }
+    public function filtrageParType($type)
+    {
+        $categories = Category::all();
+        if ($type === "MOVIE") {
+            $animes = Film::paginate(10);
+        } else {
+            $animes = Anime::where("type", $type)->paginate(10);
+        }
+
+        return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+    }
+    public function index(Request $request)
+    {
+
+        if ($request->search != null) {
             // $queryString = Input::get('search');
 
-            $serch = $request->search;
-
+            $search = $request->search;
+            // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
+            // dd($search);
             // $animes=anime::search($request->search)->get();
-            $animes = anime::where('titre', 'LIKE', "%" . $serch . "%")->paginate(2);
-            return view("user.index", ["animes" => $animes]);
+            $categories = Category::all();
+
+            $animes = anime::with('categories')->where('titre', 'LIKE', '%' . $search . '%')->paginate(10);
+
+            return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+        } else if ($request->lettre) {
+            $categories = Category::all();
+
+            $animes = anime::with('categories')->where('titre', 'LIKE',  $request->lettre . '%')->paginate(10);
+
+            return view("user.animes", ["animes" => $animes, "categories" => $categories]);
         } else {
             // $animes = Anime::all();
             // $animes = Anime::with('categories')->get();
-            $animes = Anime::with('categories')->get();
+            // $animes = Anime::with('categories')->paginate(5);
+            $animes = Anime::with('categories')->orderBy('yearCreation', 'desc')->paginate(5);
+
             // "categories" => $categories]
             // $categories=$animes->categories();
-            // $categories = Category::all();
-            $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
-            
-           
-            return view("user.index", ["animes" => $animes,"lastAnimes"=> $last_anime]);
+            $categories = Category::all();
+
+
+
+            return view("user.animes", ["animes" => $animes, "categories" => $categories]);
         }
     }
 
-    public function animeDetails(Anime $anime){
-        $saisons=$anime->saisons;
+    public function filtrage() {}
+    public function animeDetails(Anime $anime)
+    {
+        $saisons = $anime->saisons;
 
-        return view("user.animeDetails", ["anime"=> $anime,"saisons"=> $saisons]);
+        return view("user.animeDetails", ["anime" => $anime, "saisons" => $saisons]);
     }
-    public function animeWatching( Saison $saison){
+    public function animeWatching(Saison $saison)
+    {
         // $anime->saisons()->get();
         // $saison= Saison::where("anime_id",$anime->id)->get();
         // $saisons=$anime->saisons;
-        
+
         // {
         //     foreach ($saison->episodes as $episode) {
-          
+
         //     echo "($episode->episodeNumber)";}
         // };
-       
-        return view("user.animeWatching", ["saison"=>$saison]);
+        // $epsiodes=$saison::with('episodes');
+        // $saison=$saison::with("episodes");
 
+
+        return view("user.animeWatching", ["saison" => $saison]);
     }
-    public function episodeWatching( Episode $episode,Saison $saison){
+    public function episodes(Saison $saison)
+    {
+        $episodes = $saison->episodes()->paginate(10);
+        // dd($episodes);
+        return view("user.episodes", ['episodes' => $episodes, 'saison' => $saison]);
+    }
+    public function episodeWatching(Episode $episode, Saison $saison)
+    {
         // $anime->saisons()->get();
         // $saison= Saison::where("anime_id",$anime->id)->get();
         // $saisons=$anime->saisons;
-        
+
         // {
         //     foreach ($saison->episodes as $episode) {
-          
+
         //     echo "($episode->episodeNumber)";}
         // };
+
        
-        return view("user.animeWatching", ["episode"=>$episode,"saison"=> $saison]);
+        $episodes = $saison->episodes()->orderByDesc('episodeNumber')->get();
+
+        return view("user.animeWatching", ["episode" => $episode, "saison" => $saison, "episodes" => $episodes]);
+    }
+
+    public function comments(Request $request, Episode $episode,Saison $saison)
+    {
+        $episode->users()->attach($request->user()->id, [
+            "comment" => $request->comment]);
+        
+
+        return redirect()->route("episode", ["episode" => $episode, "saison" => $saison]);
 
     }
-    public function index()
+    public function filmComments(Request $request, Film $film)
+    {
+        // $filmm=Film::find(1);
+        $filmm=Film::where("id",1)->get();
+        echo $filmm;
+        // $comments=$film->users->pivot->comment;
+
+        // return redirect()->route("episode", ["episode" => $episode]);
+
+    }
+    public function counter(Episode   $episode, Saison $saison)
+
+    {
+        $episode->update(["counter" => number_format($episode->counter + 1)]);
+
+        return redirect()->route("episode", [$episode, $saison]);
+    }
+    public function plupartAnimes()
+    {
+        $resultats = [];
+
+        $saisons = Saison::with("episodes")->get();
+
+        foreach ($saisons as $saison) {
+            $somme = $saison->episodes->sum('counter');
+
+            $resultats[] = [
+                'saison' => $saison,
+                'somme_counter' => $somme,
+            ];
+        }
+
+        usort($resultats, function ($a, $b) {
+            return $b['somme_counter'] <=> $a['somme_counter'];
+        });
+
+        dd($resultats[1]["saison"]->titre);
+        return view("user.index", ["resultats" => $resultats]);
+    }
+
+    public function dashBoard()
     {
         return view("admin.dashboard");
     }
@@ -93,7 +251,7 @@ class AnimeController extends Controller
         return view("admin.index", ["animes" => $animes, "categories" => $categories]);
     }
 
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -167,8 +325,8 @@ class AnimeController extends Controller
     public function edit(anime $anime)
     {
         $categories = Category::all();
-        
-        return view("admin.anime.edit", ["anime" => $anime,"categories"=>$categories]);
+
+        return view("admin.anime.edit", ["anime" => $anime, "categories" => $categories]);
     }
 
     /**

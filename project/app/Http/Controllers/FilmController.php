@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Film;
 use App\Http\Requests\StoreFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
@@ -12,11 +13,26 @@ class FilmController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $films = Film::all();
+        if($request->lettre==null){
+            // $films = Film::all();
+        // $films = Film::with('categories')->orderBy('releaseDate', 'desc')->paginate(5);
 
-        return view("user.film", ["films" => $films]);
+        // return view("user.films", ["films" => $films]);
+        // $film=Film::with('categories')->get();
+        $categories = Category::all();
+
+        $films=Film::with('categories')->orderBy('releaseDate','desc')->paginate(5);
+        return view("user.films",["films"=>$films,"categories"=>$categories]);
+        }
+        else{
+            $categories = Category::all();
+
+            $films=Film::with('categories')->where('titre', 'LIKE',   $request->lettre . '%')->orderBy('releaseDate','desc')->paginate(5);
+            return view("user.films",["films"=>$films,"categories"=>$categories]);
+        }
+        
     }
 
     /**
@@ -26,7 +42,26 @@ class FilmController extends Controller
     {
         //
     }
+    public function filtrageParCategory(Category $category)
+    {
+        $categories = Category::all();
 
+       $films= $category->filmes()->paginate(10);
+       return view("user.films",["films"=>$films,"categories"=>$categories]);
+
+    }
+
+    public function filmDetails(Film $film){
+       
+
+        return view("user.filmDetails", ["film"=>$film]);
+    }
+
+    public function filmWatching(Film $film){
+        // $saisons=$film->saisons;
+
+        return view("user.filmWatching", ["film"=>$film]);
+    }
     /**
      * Store a newly created resource in storage.
      */

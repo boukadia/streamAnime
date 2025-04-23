@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/build/assets/css/style.css" type="text/css">
 </head>
 
-<body>
+<body >
     <!-- Page Preloder -->
 
 
@@ -135,11 +135,33 @@
                 </div>
 
                 <div class="alphabetical-filter">
-                    <div class="text-center">
+                    <div dir="ltr" class="text-center">
                         <ul class="pagination">
-                            <li><a href="#">A</a></li>
-                            <li><a href="#">B</a></li>
-                            <li><a href="#">C</a></li>
+                        <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"A"]) }}">A</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"B"]) }}">B</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"C"]) }}">C</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"D"]) }}">D</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"E"]) }}">E</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"F"]) }}">F</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"G"]) }}">G</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"H"]) }}">H</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"I"]) }}">I</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"J"]) }}">J</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"K"]) }}">K</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"L"]) }}">L</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"M"]) }}">M</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"N"]) }}">N</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"O"]) }}">O</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"P"]) }}">P</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"Q"]) }}">Q</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"R"]) }}">R</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"S"]) }}">S</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"T"]) }}">T</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"V"]) }}">V</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"W"]) }}">W</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"X"]) }}">X</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"Y"]) }}">Y</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"Z"]) }}">Z</a></li>
                         </ul>
                     </div>
                 </div>
@@ -160,32 +182,26 @@
 
 
                     <div class="row" id="row">
-                        @foreach ($saisons as $saison )
-@php
-//$saisons=$anime->saisons()->where("status",$status)->paginate(5);
+                        @foreach ($animes as $anime )
 
-@endphp
-<!-- @foreach ( $saisons as $saison ) -->
+                        <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class='product__item'>
+                                <div class='product__item__pic set-bg' data-setbg="/build/assets/img/anime/{{ $anime->posterLink }}">
+                                    <div class='comment'><i class='fa fa-comments'></i> 11</div>
+                                    <div class='view'><i class='fa fa-eye'></i> 9141</div>
+                                </div>
+                                <div class='product__item__text'>
+                                    <ul>
+                                        @foreach ($anime->categories as $category)
 
-<div class="col-lg-2 col-md-3 col-sm-6">
-    <div class='product__item'>
-        <div class='product__item__pic set-bg' data-setbg='{{ $saison->posterLink }}'>
-            <div class='ep'></div>
-            <div class='comment'><i class='fa fa-comments'></i> 11</div>
-            <div class='view'><i class='fa fa-eye'></i> 9141</div>
-        </div>
-        <div class='product__item__text'>
-            <ul>
-                @foreach ($saison->animes()->get() as $category)
-                
-                <li>{{$category->name}}</li>
-                @endforeach
-            </ul>
-            
-        </div>
-    </div>
-</div>
-<!-- @endforeach -->
+                                        <li>{{$category->name}}</li>
+                                        @endforeach
+                                    </ul>
+                                    <h5><a href='{{ Route("anime-film",["type"=>$anime->type,$anime]) }}'>{{ $anime->titre }}</a></h5>
+
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                         <!-- ============================== -->
                         <!-- ============================== -->
@@ -212,12 +228,12 @@
 
 
         <div class="product__pagination">
-            @for ($i = 1; $i <= $saisons->lastPage(); $i++)
-                <a href="{{ $saisons->url($i) }}" class="{{ $saisons->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
+            @for ($i = 1; $i <= $animes->lastPage(); $i++)
+                <a href="{{ $animes->url($i) }}" class="{{ $animes->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
                 @endfor
 
-                @if ($saisons->currentPage() < $saisons->lastPage())
-                    <a href="{{ $saisons->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+                @if ($animes->currentPage() < $animes->lastPage())
+                    <a href="{{ $animes->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
                     @endif
         </div>
 

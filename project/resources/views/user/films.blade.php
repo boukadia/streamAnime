@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Anime | Template</title>
-    <link rel="website icon" type ="png" href="/build/assets/img/logo1.svg">
     @vite(['resources/js/app.js']) <!-- Intégration Vite -->
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -37,7 +36,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="/index.html">
-                            <img loading="lazy" src="/build/assets/img/MBK.webp" alt="">
+                            <img loading="lazy" src="img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -96,11 +95,8 @@
                                 <button  onclick="hiddeen(event)" class="btn">النوع <span class="caret">▼</span></button>
                                 <ul id="animeType" class="dropdown-menu hidden" >
                                    
-                                    <li><a  href="{{Route("filtrageParType",["type"=>"TV"])}}">TV</a></li>
-                                    <li><a  href="{{Route("filtrageParType",["type"=>"MOVIE"])}}">MOVIE</a></li>
-                                    <li><a  href="{{Route("filtrageParType",["type"=>"OVA"])}}">OVA</a></li>
-                                    <li><a  href="{{Route("filtrageParType",["type"=>"ONA"])}}">ONA</a></li>
-                                    <li><a  href="{{Route("filtrageParType",["type"=>"SPECIAL"])}}">SPECIAL</a></li>
+                                    <li><a  href="{{  Route("films")}}">MOVIE</a></li>
+                                    
 
                                     
 
@@ -113,7 +109,7 @@
                                 <button onclick="hiddeen(event)" class="btn">تصنيف الأنمي <span class="caret">▼</span></button>
                                 <ul id="animeCategories" class="dropdown-menu hidden" >
                                     @foreach ( $categories as $category )
-                                    <li><a  href="{{ Route("filtrageParCategory",$category) }}">{{ $category->name }}</a></li>
+                                    <li><a  href="{{ Route("filmFiltrageParCategory",$category) }}">{{ $category->name }}</a></li>
 
                                     @endforeach
 
@@ -121,25 +117,38 @@
                             </div>
                         </li>
                         <!-- Status Dropdown -->
-                        <li>
-                            <div class="dropdownn">
-                                <button  onclick="hiddeen(event)" class="btn">حالة الأنمي <span class="caret">▼</span></button>
-                                <ul id="animeEtat"  class="dropdown-menu hidden">
-                                    <li><a href="{{Route("filtrageParEtat", ['status' => 'Pas encore'])}}">Pas encore</a></li>
-                                    <li><a href="{{Route("filtrageParEtat", ['status' => 'Complet'])}}">Complet</a></li>
-                                    <li><a href="{{Route("filtrageParEtat", ['status' => 'En cours'])}}">En cours</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
 
                 <div class="alphabetical-filter">
-                    <div class="text-center">
+                    <div dir="ltr" class="text-center">
                         <ul class="pagination">
-                            <li><a href="#">A</a></li>
-                            <li><a href="#">B</a></li>
-                            <li><a href="#">C</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"A"]) }}">A</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"B"]) }}">B</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"C"]) }}">C</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"D"]) }}">D</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"E"]) }}">E</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"F"]) }}">F</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"G"]) }}">G</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"H"]) }}">H</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"I"]) }}">I</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"J"]) }}">J</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"K"]) }}">K</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"L"]) }}">L</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"M"]) }}">M</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"N"]) }}">N</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"O"]) }}">O</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"P"]) }}">P</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"Q"]) }}">Q</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"R"]) }}">R</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"S"]) }}">S</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"T"]) }}">T</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"V"]) }}">V</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"W"]) }}">W</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"X"]) }}">X</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"Y"]) }}">Y</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"Z"]) }}">Z</a></li>
                         </ul>
                     </div>
                 </div>
@@ -160,32 +169,27 @@
 
 
                     <div class="row" id="row">
-                        @foreach ($saisons as $saison )
-@php
-//$saisons=$anime->saisons()->where("status",$status)->paginate(5);
+                        @foreach ($films as $film )
 
-@endphp
-<!-- @foreach ( $saisons as $saison ) -->
+                        <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class='product__item'>
+                                <div class='product__item__pic set-bg' data-setbg='{{ $film->posterLink }}'>
+                                    <div class='ep'></div>
+                                    <div class='comment'><i class='fa fa-comments'></i> 11</div>
+                                    <div class='view'><i class='fa fa-eye'></i> 9141</div>
+                                </div>
+                                <div class='product__item__text'>
+                                    <ul>
+                                        @foreach ($film->categories as $category)
 
-<div class="col-lg-2 col-md-3 col-sm-6">
-    <div class='product__item'>
-        <div class='product__item__pic set-bg' data-setbg='{{ $saison->posterLink }}'>
-            <div class='ep'></div>
-            <div class='comment'><i class='fa fa-comments'></i> 11</div>
-            <div class='view'><i class='fa fa-eye'></i> 9141</div>
-        </div>
-        <div class='product__item__text'>
-            <ul>
-                @foreach ($saison->animes()->get() as $category)
-                
-                <li>{{$category->name}}</li>
-                @endforeach
-            </ul>
-            
-        </div>
-    </div>
-</div>
-<!-- @endforeach -->
+                                        <li>{{$category->name}}</li>
+                                        @endforeach
+                                    </ul>
+                                    <h5><a href='{{ Route("filmDetails",$film) }}'>{{ $film->titre }}</a></h5>
+
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                         <!-- ============================== -->
                         <!-- ============================== -->
@@ -212,12 +216,12 @@
 
 
         <div class="product__pagination">
-            @for ($i = 1; $i <= $saisons->lastPage(); $i++)
-                <a href="{{ $saisons->url($i) }}" class="{{ $saisons->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
+            @for ($i = 1; $i <= $films->lastPage(); $i++)
+                <a href="{{ $films->url($i) }}" class="{{ $films->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
                 @endfor
 
-                @if ($saisons->currentPage() < $saisons->lastPage())
-                    <a href="{{ $saisons->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+                @if ($films->currentPage() < $films->lastPage())
+                    <a href="{{ $films->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
                     @endif
         </div>
 
@@ -285,18 +289,19 @@
     <script src="/build/assets/js/owl.carousel.min.js"></script>
     <script src="/build/assets/js/main.js"></script>
 
+
     <script>
       
-        // let dropdownMenus = document.querySelectorAll('.dropdown-menu');
-        // let animeCategories = document.getElementById('animeCategories');
-        // let animeEtat = document.getElementById('animeEtat');
-        // let animeSection = document.getElementById('animeSection');
+      // let dropdownMenus = document.querySelectorAll('.dropdown-menu');
+      // let animeCategories = document.getElementById('animeCategories');
+      // let animeEtat = document.getElementById('animeEtat');
+      // let animeSection = document.getElementById('animeSection');
 
-        
+      
 
-        function hiddeen() {
-            // console.log(event.target.parentElement.children[1])
-            event.target.nextElementSibling.classList.toggle("hidden")
+      function hiddeen() {
+          // console.log(event.target.parentElement.children[1])
+          event.target.nextElementSibling.classList.toggle("hidden")
 //             if (!test.classList.contains("activve")) {
 //   test.classList.add("activve");
 // } else {
@@ -305,9 +310,10 @@
 // animeCategories.classList.toggle('hidden')
 // animeEtat.classList.toggle('hidden')
 // animeSection.classList.toggle('hidden')
-            
-        };
-    </script>
+          
+      };
+      </script>
+
 </body>
 
 </html>
