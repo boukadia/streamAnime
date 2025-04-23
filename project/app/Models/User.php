@@ -39,6 +39,41 @@ class User extends Authenticatable
 {
     return $this->belongsToMany(Anime::class, 'user_anime_watchlist', 'user_id', 'anime_id');
 }
+public function episodes(){
+    return $this->belongsToMany(Episode::class,"episodes_comments","user_id","episode_id")->withPivot("comment");
+}
+public function films(){
+    return $this->belongsToMany(Film::class,"films_comments","user_id","film_id")->withPivot("comment");
+}
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    /**
+     * The attributes that should be appends.
+     *
+     * @var array<string>
+     */
+    protected $appends = [
+        'is_admin',
+    ];
+
+    /**
+     * Get the is_admin attribute.
+     *
+     * @return bool
+     */
+    public function getIsAdminAttribute(): bool
+    {
+        return $this->role === 'admin';
+}
 
     /**
      * Get the attributes that should be cast.

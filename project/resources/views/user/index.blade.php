@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="/build/assets/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/build/assets/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/build/assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 </head>
 
 <body>
@@ -63,12 +65,16 @@
                         </nav>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <div class="header__right">
-                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
-                    </div>
-                </div>
+               <div class="col-lg-2">
+    <div class="header__right">
+        <a href="#" class="search-switch"><span class="icon_search"></span></a>
+        <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
+        <a href="{{ Route('favoryAnimes') }}" title="Ma watchlist">
+            <i class="bi bi-bookmark" style="font-size: 20px;"></i>
+        </a>
+    </div>
+</div>
+
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
@@ -80,13 +86,13 @@
         <div class="container">
             <div class="hero__slider">
                 <div class="slide active">
-                    <img src="/build/assets/img/hero/hero-1.jpg" alt="Slide 1">
+                    <img src="/build/assets/img/anime/One-piece.png" alt="Slide 1">
                 </div>
                 <div class="slide">
                     <img src="/build/assets/img/slide.avif" alt="Slide 2">
                 </div>
                 <div class="slide">
-                    <img src="/build/assets/img/slide.avif" alt="Slide 3">
+                    <img src="/build/assets/img/anime/TheBeginningAfterTheEnd.png" alt="Slide 3">
                 </div>
                 <button class="arrow arrow-left">❮</button>
                 <button class="arrow arrow-right">❯</button>
@@ -99,7 +105,7 @@
     <section class="product spad">
         <div class="container" id="container">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="trending__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
@@ -117,18 +123,18 @@
 
                       
 
-                        <div class="row" id="row">
+                        <div class="row cardrow" id="row">
                             @foreach ($animes as $anime )
                             @php $saison = $anime->saisons()->orderByDesc('saisonNumber')->first()@endphp
                             @if ($saison) 
                   @php $episode=$saison->episodes()->orderBy('episodeNumber',"desc")->first() @endphp 
                   
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-2 col-md-4 col-sm-12">
                                 <div class='product__item'>
-                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->posterLink }}' >
-                                    <div class='comment'><i class='fa fa-comments'></i> 11</div>
-                                    <div class='view'><i class='fa fa-eye'></i> 9141</div>
+                                    <div class='product__item__pic set-bg' data-setbg='/build/assets/img/anime/{{ $anime->posterLink }}' >
+                                        <div class='view'><i class='fa fa-eye'></i> {{ $episode->counter }}</div>
+                                    <!-- <div class='comment'><i class='fa fa-comments'></i> 11</div> -->
                                     <div class='ep'> episode {{ $episode->episodeNumber }}</div>
                                     <div class='type'>{{ $anime->type }}</div>
                                     <div class='state'>{{ $saison->status }}</div>
@@ -142,7 +148,7 @@
                                         </ul>
                                        
 
-                                        <h5><a href='{{ Route("episode",[$episode,$saison]) }}'>{{ $saison->titre }}</a></h5>
+                                        <h5><a href='{{ Route("counter",[$episode,$saison]) }}'>{{ $saison->titre }}</a></h5>
 
                                     </div>
                                 </div>
@@ -167,32 +173,35 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
-                                <div class="btn__all">
-                                    <a href="{{ route("allEpisodes") }}" class="primary-btn">View All <span class="arrow_right"></span></a>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="row">
 
 
+                            @foreach ($resultats as $resultat)
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
+
+
+<div class="col-lg-2 col-md-4 col-sm-6">
+    <div class="product__item">
                                     <div class="product__item__pic set-bg" data-setbg="/build/assets/img/popular/popular-5.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                        <!-- <div class="ep">18 / 18</div> -->
+                                        <!-- <div class="comment"><i class="fa fa-comments"></i> 11</div> -->
+                                        <div class="view"><i class="fa fa-eye"></i> {{ $resultat["somme_counter"] }}</div>
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
                                             <li>Active</li>
                                             <li>Movie</li>
                                         </ul>
-                                        <h5><a href="#">Mushishi Zoku Shou 2nd Season</a></h5>
+                                        
+                                        <h5><a href="#">{{  $resultat["saison"]->titre;}}</a></h5>
                                     </div>
                                 </div>
                             </div>
-
+                            
+                            @endforeach
                         </div>
                     </div>
                     <div class="recent__product">
@@ -204,20 +213,20 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href={{ route("allEpisodes") }}" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    <a href="{{ route("allEpisodes") }}" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row cardrow">
 
                             @foreach ( $lastAnimes as $lastAnime )
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-2 col-md-4 col-sm-12">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg='{{ $lastAnime->posterLink }}'>
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                    <div class="product__item__pic set-bg" data-setbg='/build/assets/img/anime/{{ $lastAnime->posterLink }}'>
+                                        <!-- <div class="ep">18 / 18</div> -->
+                                        <!-- <div class="comment"><i class="fa fa-comments"></i> 11</div> -->
+                                        <!-- <div class="view"><i class="fa fa-eye"></i> 9141</div> -->
                                     </div>
                                     <div class="product__item__text">
                                         <ul>
@@ -234,55 +243,7 @@
                     </div>
                    
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-8">
-                    <div class="product__sidebar">
-                        <div class="product__sidebar__view">
-                            <div class="section-title">
-                                <h5>Top Views</h5>
-                            </div>
-                            <ul class="filter__controls">
-
-                                <li class="active" data-filter="all">All</li>
-                                <li data-filter="week">Week</li>
-                                <li data-filter="month">Month</li>
-                                <li data-filter="years">Years</li>
-                            </ul>
-                            <div class="filter__gallery">
-                                <div class="product__sidebar__view__item set-bg mix day years"
-                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Boruto: Naruto next generations</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix month "
-                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix week years"
-                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix years month"
-                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix day"
-                                    data-setbg="/build/assets/img/popular/popular-5.jpg">
-                                    <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    <h5><a href="#">Fate stay night unlimited blade works</a></h5>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
+               
             </div>
 
            

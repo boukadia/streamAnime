@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/build/assets/css/style.css" type="text/css">
 </head>
 
-<body>
+<body >
     <!-- Page Preloder -->
 
 
@@ -135,11 +135,33 @@
                 </div>
 
                 <div class="alphabetical-filter">
-                    <div class="text-center">
+                    <div dir="ltr" class="text-center">
                         <ul class="pagination">
-                            <li><a href="#">A</a></li>
-                            <li><a href="#">B</a></li>
-                            <li><a href="#">C</a></li>
+                        <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"A"]) }}">A</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"B"]) }}">B</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"C"]) }}">C</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"D"]) }}">D</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"E"]) }}">E</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"F"]) }}">F</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"G"]) }}">G</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"H"]) }}">H</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"I"]) }}">I</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"J"]) }}">J</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"K"]) }}">K</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"L"]) }}">L</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"M"]) }}">M</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"N"]) }}">N</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"O"]) }}">O</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"P"]) }}">P</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"Q"]) }}">Q</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"R"]) }}">R</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"S"]) }}">S</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"T"]) }}">T</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"V"]) }}">V</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"W"]) }}">W</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"X"]) }}">X</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"Y"]) }}">Y</a></li>
+                            <li><a href="{{ Route("animeSearchByLettre",["lettre"=>"Z"]) }}">Z</a></li>
                         </ul>
                     </div>
                 </div>
@@ -164,8 +186,7 @@
 
                         <div class="col-lg-2 col-md-3 col-sm-6">
                             <div class='product__item'>
-                                <div class='product__item__pic set-bg' data-setbg='{{ $anime->posterLink }}'>
-                                    <div class='ep'></div>
+                                <div class='product__item__pic set-bg' data-setbg="/build/assets/img/anime/{{ $anime->posterLink }}">
                                     <div class='comment'><i class='fa fa-comments'></i> 11</div>
                                     <div class='view'><i class='fa fa-eye'></i> 9141</div>
                                 </div>

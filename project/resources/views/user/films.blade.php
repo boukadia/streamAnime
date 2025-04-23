@@ -117,25 +117,38 @@
                             </div>
                         </li>
                         <!-- Status Dropdown -->
-                        <li>
-                            <div class="dropdownn">
-                                <button  onclick="hiddeen(event)" class="btn">حالة الأنمي <span class="caret">▼</span></button>
-                                <ul id="animeEtat"  class="dropdown-menu hidden">
-                                    <li><a href="{{Route("filtrageParEtat", ['status' => 'Pas encore'])}}">Pas encore</a></li>
-                                    <li><a href="{{Route("filtrageParEtat", ['status' => 'Complet'])}}">Complet</a></li>
-                                    <li><a href="{{Route("filtrageParEtat", ['status' => 'En cours'])}}">En cours</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
 
                 <div class="alphabetical-filter">
-                    <div class="text-center">
+                    <div dir="ltr" class="text-center">
                         <ul class="pagination">
-                            <li><a href="#">A</a></li>
-                            <li><a href="#">B</a></li>
-                            <li><a href="#">C</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"A"]) }}">A</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"B"]) }}">B</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"C"]) }}">C</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"D"]) }}">D</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"E"]) }}">E</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"F"]) }}">F</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"G"]) }}">G</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"H"]) }}">H</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"I"]) }}">I</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"J"]) }}">J</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"K"]) }}">K</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"L"]) }}">L</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"M"]) }}">M</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"N"]) }}">N</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"O"]) }}">O</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"P"]) }}">P</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"Q"]) }}">Q</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"R"]) }}">R</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"S"]) }}">S</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"T"]) }}">T</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"V"]) }}">V</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"W"]) }}">W</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"X"]) }}">X</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"Y"]) }}">Y</a></li>
+                            <li><a href="{{ Route("filmSearchByLettre",["lettre"=>"Z"]) }}">Z</a></li>
                         </ul>
                     </div>
                 </div>

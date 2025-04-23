@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\FilmController;
 use App\Http\Middleware\AdminMiddlware;
+use App\Http\Middleware\Authe;
 use App\Http\Middleware\AuthMiddleware;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::post('/addAnimes', [AnimeController::class, "store"])->name("addAnime")->
 Route::post('/categories', [CategoryController::class, "index"])->name("categorie");
 
 Route::get('/films', [FilmController::class, "index"])->name("films");
+Route::get('{lettre}/animeSearch', [AnimeController::class, "index"])->name("animeSearchByLettre");
+Route::get('{lettre}/filmSearch', [FilmController::class, "index"])->name("filmSearchByLettre");
 Route::get('{film}/filmWatching', [FilmController::class, "filmWatching"])->name("film");
 Route::get('{film:id}/filmDetails', [FilmController::class, "filmDetails"])->name("filmDetails");
 
@@ -49,4 +52,10 @@ Route::get("/loginForm", [AuthentController::class, "loginForm"])->name("loginFo
 
 
 
+Route::get('{episode}/{saison}/counter', [AnimeController::class, "counter"])->name("counter");
 Route::get('/derniereEpisodes', [AnimeController::class, "derniereEpisodes"])->name("test");
+Route::get('/plupartAnimes', [AnimeController::class, "plupartAnimes"])->name("plupartAnimes");
+Route::get('/favoryAnimes', [AnimeController::class, "favoryAnimes"])->name("favoryAnimes")->middleware(Authe::class);
+
+Route::post('{episode}/{saison}/addComment', [AnimeController::class, "Comments"])->name("addComment");
+Route::get('/filmComments', [AnimeController::class, "filmComments"])->name("filmComments");
