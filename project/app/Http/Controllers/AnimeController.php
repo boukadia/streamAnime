@@ -200,16 +200,7 @@ class AnimeController extends Controller
         return redirect()->route("episode", ["episode" => $episode, "saison" => $saison]);
 
     }
-    public function filmComments(Request $request, Film $film)
-    {
-        // $filmm=Film::find(1);
-        $filmm=Film::where("id",1)->get();
-        echo $filmm;
-        // $comments=$film->users->pivot->comment;
-
-        // return redirect()->route("episode", ["episode" => $episode]);
-
-    }
+   
     public function counter(Episode   $episode, Saison $saison)
 
     {

@@ -23,6 +23,6 @@ class Episode extends Model
         return $this->belongsTo(Saison::class,"saison_id");
     }
     public function users(){
-        return $this->belongsToMany(User::class,"episodes_comments","episode_id","user_id")->withPivot("comment");
+        return $this->belongsToMany(User::class,"episodes_comments","episode_id","user_id")->withPivot("comment","created_at");
     }
 }

@@ -40,10 +40,10 @@ class User extends Authenticatable
     return $this->belongsToMany(Anime::class, 'user_anime_watchlist', 'user_id', 'anime_id');
 }
 public function episodes(){
-    return $this->belongsToMany(Episode::class,"episodes_comments","user_id","episode_id")->withPivot("comment");
+    return $this->belongsToMany(Episode::class,"episodes_comments","user_id","episode_id")->withPivot("comment","created_at");
 }
 public function films(){
-    return $this->belongsToMany(Film::class,"films_comments","user_id","film_id")->withPivot("comment");
+    return $this->belongsToMany(Film::class,"films_comments","user_id","film_id")->withPivot("comment","created_at");
 }
 
     /**

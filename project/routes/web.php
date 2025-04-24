@@ -58,4 +58,4 @@ Route::get('/plupartAnimes', [AnimeController::class, "plupartAnimes"])->name("p
 Route::get('/favoryAnimes', [AnimeController::class, "favoryAnimes"])->name("favoryAnimes")->middleware(Authe::class);
 
 Route::post('{episode}/{saison}/addComment', [AnimeController::class, "Comments"])->name("addComment");
-Route::get('/filmComments', [AnimeController::class, "filmComments"])->name("filmComments");
+Route::post('{film}/addCommentFilm', [FilmController::class, "filmComments"])->name("addCommentFilm");
