@@ -24,13 +24,13 @@ class FilmController extends Controller
         $categories = Category::all();
 
         $films=Film::with('categories')->orderBy('releaseDate','desc')->paginate(5);
-        return view("user.films",["films"=>$films,"categories"=>$categories]);
+        return view("user.films.films",["films"=>$films,"categories"=>$categories]);
         }
         else{
             $categories = Category::all();
 
             $films=Film::with('categories')->where('titre', 'LIKE',   $request->lettre . '%')->orderBy('releaseDate','desc')->paginate(5);
-            return view("user.films",["films"=>$films,"categories"=>$categories]);
+            return view("user.films.films",["films"=>$films,"categories"=>$categories]);
         }
         
     }
@@ -47,20 +47,20 @@ class FilmController extends Controller
         $categories = Category::all();
 
        $films= $category->filmes()->paginate(10);
-       return view("user.films",["films"=>$films,"categories"=>$categories]);
+       return view("user.films.films",["films"=>$films,"categories"=>$categories]);
 
     }
 
     public function filmDetails(Film $film){
        
 
-        return view("user.filmDetails", ["film"=>$film]);
+        return view("user.films.filmDetails", ["film"=>$film]);
     }
 
     public function filmWatching(Film $film){
         // $saisons=$film->saisons;
 
-        return view("user.filmWatching", ["film"=>$film]);
+        return view("user.films.filmWatching", ["film"=>$film]);
     }
     /**
      * Store a newly created resource in storage.

@@ -18,7 +18,7 @@ class EpisodeController extends Controller
 // foreach ($episodes as $episode) {
 //    dump($episode->saisons->titre) ;
 // }
-        return view("user.episodes", ["episodes" => $episodes]);
+        return view("user.episodes.episodes", ["episodes" => $episodes]);
     }
 
     /**

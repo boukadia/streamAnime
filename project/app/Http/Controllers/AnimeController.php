@@ -29,7 +29,7 @@ class AnimeController extends Controller
     public function favoryAnimes()
     {
 
-        return view("user.favoryAnimes");
+        return view("user.animes.favoryAnimes");
     }
     public function home()
     {
@@ -67,7 +67,7 @@ class AnimeController extends Controller
         });
         $resultats = array_slice($resultats, 0, 12);
 
-        return view("user.index", ["animes" => $animes, "lastAnimes" => $last_anime, "resultats" => $resultats]);
+        return view("user.animes.index", ["animes" => $animes, "lastAnimes" => $last_anime, "resultats" => $resultats]);
     }
 
     public function filtrageParCategory(Category $category)
@@ -76,7 +76,7 @@ class AnimeController extends Controller
             $categories = Category::all();
 
             $animes = $category->animes()->paginate(10);
-            return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+            return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
         }
     }
     public function filtrageParEtat($status)
@@ -84,7 +84,7 @@ class AnimeController extends Controller
         $categories = Category::all();
 
         $animes = Anime::where("status", $status)->paginate(10);
-        return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+        return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
     }
 
     public function animeFilm($anime, $type)
@@ -104,7 +104,7 @@ class AnimeController extends Controller
             $animes = Anime::where("type", $type)->paginate(10);
         }
 
-        return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+        return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
     }
     public function index(Request $request)
     {
@@ -120,13 +120,13 @@ class AnimeController extends Controller
 
             $animes = anime::with('categories')->where('titre', 'LIKE', '%' . $search . '%')->paginate(10);
 
-            return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+            return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
         } else if ($request->lettre) {
             $categories = Category::all();
 
             $animes = anime::with('categories')->where('titre', 'LIKE',  $request->lettre . '%')->paginate(10);
 
-            return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+            return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
         } else {
             // $animes = Anime::all();
             // $animes = Anime::with('categories')->get();
@@ -139,7 +139,7 @@ class AnimeController extends Controller
 
 
 
-            return view("user.animes", ["animes" => $animes, "categories" => $categories]);
+            return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
         }
     }
 
@@ -148,7 +148,7 @@ class AnimeController extends Controller
     {
         $saisons = $anime->saisons;
 
-        return view("user.animeDetails", ["anime" => $anime, "saisons" => $saisons]);
+        return view("user.animes.animeDetails", ["anime" => $anime, "saisons" => $saisons]);
     }
     public function animeWatching(Saison $saison)
     {
@@ -165,13 +165,13 @@ class AnimeController extends Controller
         // $saison=$saison::with("episodes");
 
 
-        return view("user.animeWatching", ["saison" => $saison]);
+        return view("user.animes.animeWatching", ["saison" => $saison]);
     }
     public function episodes(Saison $saison)
     {
         $episodes = $saison->episodes()->paginate(10);
         // dd($episodes);
-        return view("user.episodes", ['episodes' => $episodes, 'saison' => $saison]);
+        return view("user.episodes.episodes", ['episodes' => $episodes, 'saison' => $saison]);
     }
     public function episodeWatching(Episode $episode, Saison $saison)
     {
@@ -188,7 +188,7 @@ class AnimeController extends Controller
        
         $episodes = $saison->episodes()->orderByDesc('episodeNumber')->get();
 
-        return view("user.animeWatching", ["episode" => $episode, "saison" => $saison, "episodes" => $episodes]);
+        return view("user.animes.animeWatching", ["episode" => $episode, "saison" => $saison, "episodes" => $episodes]);
     }
 
     public function comments(Request $request, Episode $episode,Saison $saison)
@@ -237,7 +237,7 @@ class AnimeController extends Controller
         });
 
         dd($resultats[1]["saison"]->titre);
-        return view("user.index", ["resultats" => $resultats]);
+        return view("user.animes.index", ["resultats" => $resultats]);
     }
 
     public function dashBoard()
@@ -248,7 +248,7 @@ class AnimeController extends Controller
     {
         $animes = Anime::all();
         $categories = Category::all();
-        return view("admin.index", ["animes" => $animes, "categories" => $categories]);
+        return view("admin.animes.index", ["animes" => $animes, "categories" => $categories]);
     }
 
 
