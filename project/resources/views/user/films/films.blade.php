@@ -174,9 +174,8 @@
                         <div class="col-lg-2 col-md-3 col-sm-6">
                             <div class='product__item'>
                                 <div class='product__item__pic set-bg' data-setbg='{{ $film->posterLink }}'>
-                                    <div class='ep'></div>
-                                    <div class='comment'><i class='fa fa-comments'></i> 11</div>
-                                    <div class='view'><i class='fa fa-eye'></i> 9141</div>
+                                    <div class='comment'><i class='fa fa-comments'></i> {{ $film->users->count() }}</div>
+                                    <div class='view'><i class='fa fa-eye'></i> {{ $film->counter }}</div>
                                 </div>
                                 <div class='product__item__text'>
                                     <ul>
@@ -185,7 +184,8 @@
                                         <li>{{$category->name}}</li>
                                         @endforeach
                                     </ul>
-                                    <h5><a href='{{ Route("filmDetails",$film) }}'>{{ $film->titre }}</a></h5>
+                                    <!-- <h5><a href='{{ Route("filmDetails",$film) }}'>{{ $film->titre }}</a></h5> -->
+                                    <h5><a href='{{ Route("viewCounter",$film) }}'>{{ $film->titre }}</a></h5>
 
                                 </div>
                             </div>

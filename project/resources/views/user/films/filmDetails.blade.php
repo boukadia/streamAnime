@@ -100,8 +100,8 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="anime__details__pic set-bg" loading="lazy" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                            <!-- <div class="comment"><i class="fa fa-comments"></i> 11</div> -->
+                            <!-- <div class="view"><i class="fa fa-eye"></i> 9141</div> -->
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -195,7 +195,7 @@
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                                 <div class="product__sidebar__view__item set-bg" loading="lazy" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
                                     <div class="ep">18 / ?</div>
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                    <div class="view"><i class="fa fa-eye"></i> {{ $film->counter }}</div>
                                     <h5><a href="{{ Route('film', $film) }}">{{ $film->titre }}</a></h5>
                                 </div>
                             </div>

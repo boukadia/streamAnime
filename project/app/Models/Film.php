@@ -19,6 +19,6 @@ class Film extends Model
 }
 public function users()
 {
-    return $this->belongsToMany(User::class,"films_comments","film_id","user_id")->withPivot("comment");
+    return $this->belongsToMany(User::class,"films_comments","film_id","user_id")->withPivot("comment","created_at");
 }
 }

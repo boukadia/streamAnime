@@ -131,7 +131,7 @@
                                 <img src="img/anime/review-1.jpg" alt="">
                             </div>
                             <div class="anime__review__item__text">
-                                <h6>{{ $user->name }} - <span>{{ date("d-m-y  H:i:s") }}</span></h6>
+                                <h6>{{ $user->name }} - <span>{{ $user->pivot->created_at->format('d-m-y H:i:s') }}</span></h6>
                                 <p>{{ $user->pivot->comment }}</p>
                             </div>
                         </div>

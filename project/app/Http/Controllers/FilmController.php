@@ -7,6 +7,7 @@ use App\Models\Film;
 use App\Http\Requests\StoreFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FilmController extends Controller
 {
@@ -35,6 +36,21 @@ class FilmController extends Controller
         
     }
 
+
+    public function filmComments(Request $request, Film $film)
+    {
+        $user=Auth::user();
+        $film->users()->attach($user->id, ["comment" => $request->comment,"created_at" => now()]);
+    //    $comment= $filmm->users->pivot("comment");
+    //    dd($comment);
+        // $filmm=Film::where("id",1)->get();
+        // echo $filmm;
+        // $comments=$film->users->pivot->comment;
+        return redirect()->route("film", ["film" => $film]);
+
+        // return redirect()->route("episode", ["episode" => $episode]);
+
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -123,5 +139,10 @@ class FilmController extends Controller
     public function destroy(Film $film)
     {
         $film->delete();
+    }
+    public function counter(Film $film)
+    {
+        $film->increment('counter');
+        return redirect()->route("filmDetails", ["film" => $film]);
     }
 }

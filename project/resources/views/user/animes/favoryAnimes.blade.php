@@ -311,7 +311,7 @@
       <!-- Anime Card 1 -->
       <div class="anime-card">
         <div class="anime-card-img">
-          <img src="assets/images/anime1.jpg" alt="Demon Slayer">
+          <img src="/build/assets/img/anime/anne.jpg" alt="Demon Slayer">
           <div class="overlay">
             <button class="play-btn"><i class="fas fa-play"></i></button>
           </div>
@@ -325,56 +325,7 @@
         </div>
       </div>
       
-      <!-- Anime Card 2 -->
-      <div class="anime-card">
-        <div class="anime-card-img">
-          <img src="assets/images/anime2.jpg" alt="Attack on Titan">
-          <div class="overlay">
-            <button class="play-btn"><i class="fas fa-play"></i></button>
-          </div>
-          <span class="rating">9.5</span>
-          <button class="favorite-btn active"><i class="fas fa-heart"></i></button>
-        </div>
-        <div class="anime-card-content">
-          <h3>Attack on Titan</h3>
-          <p class="anime-genre">Action, Drame, Fantaisie sombre</p>
-          <p class="anime-description">L'humanité lutte pour sa survie face aux titans qui menacent son existence.</p>
-        </div>
-      </div>
       
-      <!-- Anime Card 3 -->
-      <div class="anime-card">
-        <div class="anime-card-img">
-          <img src="assets/images/anime3.jpg" alt="Jujutsu Kaisen">
-          <div class="overlay">
-            <button class="play-btn"><i class="fas fa-play"></i></button>
-          </div>
-          <span class="rating">9.0</span>
-          <button class="favorite-btn active"><i class="fas fa-heart"></i></button>
-        </div>
-        <div class="anime-card-content">
-          <h3>Jujutsu Kaisen</h3>
-          <p class="anime-genre">Action, Surnaturel</p>
-          <p class="anime-description">Yuji Itadori rejoint une école d'exorcistes après avoir ingéré un doigt maudit.</p>
-        </div>
-      </div>
-      
-      <!-- Anime Card 4 -->
-      <div class="anime-card">
-        <div class="anime-card-img">
-          <img src="assets/images/anime4.jpg" alt="One Piece">
-          <div class="overlay">
-            <button class="play-btn"><i class="fas fa-play"></i></button>
-          </div>
-          <span class="rating">9.3</span>
-          <button class="favorite-btn active"><i class="fas fa-heart"></i></button>
-        </div>
-        <div class="anime-card-content">
-          <h3>One Piece</h3>
-          <p class="anime-genre">Aventure, Action, Comédie</p>
-          <p class="anime-description">Luffy et son équipage naviguent à la recherche du trésor légendaire, le One Piece.</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>

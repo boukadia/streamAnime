@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="/build/assets/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/build/assets/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/build/assets/css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 </head>
 
 <body >
@@ -188,7 +190,8 @@
                             <div class='product__item'>
                                 <div class='product__item__pic set-bg' data-setbg="/build/assets/img/anime/{{ $anime->posterLink }}">
                                     <div class='comment'><i class='fa fa-comments'></i> 11</div>
-                                    <div class='view'><i class='fa fa-eye'></i> 9141</div>
+                                    <div class='view'><a href="{{ Route("addFavoryAnimes",$anime) }}"><i class="bi bi-heart-fill"></i></a>
+                                    </div>
                                 </div>
                                 <div class='product__item__text'>
                                     <ul>
