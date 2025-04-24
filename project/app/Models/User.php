@@ -35,7 +35,7 @@ class User extends Authenticatable
     ];
 
 
-    public function favoriteAnimes()
+    public function animes()
 {
     return $this->belongsToMany(Anime::class, 'user_anime_watchlist', 'user_id', 'anime_id');
 }

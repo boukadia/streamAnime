@@ -140,4 +140,9 @@ class FilmController extends Controller
     {
         $film->delete();
     }
+    public function counter(Film $film)
+    {
+        $film->increment('counter');
+        return redirect()->route("filmDetails", ["film" => $film]);
+    }
 }

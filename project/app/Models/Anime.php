@@ -35,6 +35,8 @@ class Anime extends Model
 {
     return $this->belongsToMany(User::class, 'user_anime_watchlist', 'anime_id', 'user_id');
 }
+public function users(){
+    return $this->belongsToMany(User::class, 'user_anime_watchlist', 'anime_id', 'user_id');}
 
     public function saisons(){
         return $this->hasMany(Saison::class);

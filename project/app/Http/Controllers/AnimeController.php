@@ -12,7 +12,7 @@ use App\Models\Saison;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Input\Input;
 
 class AnimeController extends Controller
@@ -30,6 +30,30 @@ class AnimeController extends Controller
     {
 
         return view("user.animes.favoryAnimes");
+    }
+    public function addFavoryAnimes(Anime $anime)
+    {
+       if(Auth::check()){
+        $user = Auth::user();
+        foreach($user->animes as $anim){
+            if($anim->id == $anime->id){
+                return redirect()->route("animes");
+            }
+        }
+        $anime->users()->attach(Auth::user()->id, [
+            "created_at" => now()
+        ]);
+        return redirect()->route("animes");
+
+
+       }
+       else {
+        return redirect()->route("loginForm");
+       }
+       
+    
+
+        // return redirect()->route("animes");
     }
     public function home()
     {
