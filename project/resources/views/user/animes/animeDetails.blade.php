@@ -113,15 +113,15 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="anime__details__pic set-bg" loading="lazy" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                            <!-- <div class="comment"><i class="fa fa-comments"></i> 11</div> -->
+                            <div class="view"><i class="fa fa-eye"></i> {{ $anime->counter }}</div>
                         </div>
                     </div>
                     <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
                                 <h3>{{ $anime->titre }}</h3>
-                                <span>フェイト／ステイナイト, Feito／sutei naito</span>
+                                <!-- <span>フェイト／ステイナイト, Feito／sutei naito</span> -->
                             </div>
                             <div class="anime__details__rating">
                                 <div class="rating">
@@ -133,19 +133,21 @@
                                 </div>
                                 <span>1.029 Votes</span>
                             </div>
-                            <p>Every human inhabiting the world of Alcia is branded by a “Count” or a number written on
-                                their body. For Hina’s mother, her total drops to 0 and she’s pulled into the Abyss,
-                                never to be seen again. But her mother’s last words send Hina on a quest to find a
-                                legendary hero from the Waste War - the fabled Ace!</p>
+                            <p>{{ $anime->description }}</p>
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Type:</span> TV Series</li>
-                                            <li><span>Studios:</span> Lerche</li>
-                                            <li><span>Date aired:</span> Oct 02, 2019 to ?</li>
-                                            <li><span>Status:</span> Airing</li>
-                                            <li><span>Genre:</span> Action, Adventure, Fantasy, Magic</li>
+                                            <li><span>Type:</span> {{ $anime->type }}</li>
+                                            <li><span>Studios:</span> {{ $anime->studio }}</li>
+                                            <li><span>Date aired:</span>  {{ $anime->yearCreation }}</li>
+                                            <li><span>Status:</span> {{ $anime->status }}</li>
+                                            <li><span>Genre:</span> 
+                                             @foreach ($anime->categories as $categorie )
+                                           {{ $categorie->name}}
+                                            
+                                            @endforeach 
+                                        </li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
