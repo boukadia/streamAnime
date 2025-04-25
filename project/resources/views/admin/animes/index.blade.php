@@ -8,190 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Anime | Template</title>
-    <style>
-        /* Main Form Styling */
-        .anime-form {
-            font-family: 'Poppins', sans-serif;
-        }
 
-        .anime-form-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
-            margin-bottom: 30px;
-        }
-
-        .card-header {
-            background: linear-gradient(90deg, #4a00e0 0%, #8e2de2 100%);
-            border: none;
-            padding: 20px;
-        }
-
-        .form-title {
-            color: #ffffff;
-            font-weight: 600;
-            margin: 0;
-            text-align: center;
-            font-size: 1.5rem;
-        }
-
-        .card-body {
-            padding: 30px;
-            background-color: #192133;
-        }
-
-        .card-footer {
-            background-color: #1a1a2e;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px;
-        }
-
-        /* Input Styling */
-        .custom-input,
-        .custom-select {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(122, 86, 223, 0.2);
-            border-radius: 8px;
-            color: #ffffff;
-            padding: 12px 15px;
-            transition: all 0.3s ease;
-        }
-
-        .custom-input:focus,
-        .custom-select:focus {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-color: #7a56df;
-            box-shadow: 0 0 0 0.2rem rgba(122, 86, 223, 0.25);
-            color: #ffffff;
-        }
-
-        .custom-select {
-            height: auto;
-            padding-right: 30px;
-        }
-
-        .custom-select[multiple] {
-            height: auto;
-            min-height: 100px;
-        }
-
-        /* File Upload Styling */
-        .custom-file-label {
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(122, 86, 223, 0.2);
-            color: #ffffff;
-            border-radius: 8px;
-            padding: 12px 15px;
-        }
-
-        .custom-file-label::after {
-            height: 100%;
-            background-color: #7a56df;
-            border-radius: 0 8px 8px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .image-upload-container {
-            background-color: rgba(255, 255, 255, 0.02);
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .divider-text {
-            display: inline-block;
-            width: 100%;
-            text-align: center;
-            color: #8e9aaf;
-            position: relative;
-        }
-
-        .divider-text::before,
-        .divider-text::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            width: 45%;
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        .divider-text::before {
-            left: 0;
-        }
-
-        .divider-text::after {
-            right: 0;
-        }
-
-        /* Helper Text */
-        .helper-text {
-            color: #8e9aaf;
-            font-size: 0.75rem;
-            margin-top: 5px;
-        }
-
-        /* Button Styling */
-        .submit-btn {
-            background: linear-gradient(90deg, #e53637 0%, #ff5f6d 100%);
-            border: none;
-            border-radius: 50px;
-            padding: 10px 30px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(229, 54, 55, 0.3);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(229, 54, 55, 0.4);
-        }
-
-        .cancel-btn {
-            background-color: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            padding: 10px 30px;
-            color: #ffffff;
-            margin-left: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .cancel-btn:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-
-        /* Label Styling */
-        label {
-            color: #ffffff;
-            font-weight: 500;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 767.98px) {
-            .card-body {
-                padding: 20px 15px;
-            }
-
-            .custom-input,
-            .custom-select,
-            .custom-file-label {
-                padding: 10px;
-            }
-
-            .submit-btn,
-            .cancel-btn {
-                width: 100%;
-                margin: 5px 0;
-            }
-        }
-    </style>
     @vite(['resources/js/app.js']) <!-- Intégration Vite -->
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -211,11 +28,7 @@
 
 <body>
 
-    <form action="{{ route('search') }}" method="post">
-        @csrf
-        <input type="text" name="search" id="">
-        <input type="submit" name="" id="">
-    </form>
+
     <!-- Page Preloder -->
     <!-- <div id="preloder">
         <div class="loader"></div>
@@ -233,7 +46,8 @@
     <section class="product spad">
         <div class="container" id="container">
             <div class="row">
-                <div class="col-lg-8">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+
                     <div class="trending__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
@@ -251,17 +65,19 @@
                         <div class="row" id="row">
                             @foreach ($animes as $anime )
 
-                            <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="col-lg-2 col-md-4 col-sm-12">
+
                                 <div class='product__item'>
-                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}' style='background-image: url({{  $anime->PosterLink}});'>
-                                        <div class='ep'></div>
-                                        <div class='comment'><i class='fa fa-comments'></i> 11</div>
-                                        <div class='view'><i class='fa fa-eye'></i> 9141</div>
+                                    <div class='product__item__pic set-bg' data-setbg='{{ $anime->PosterLink }}'>
+                                        <div class='view'><i class='fa fa-eye'></i> {{ $anime->counter }}</div>
                                     </div>
                                     <div class='product__item__text'>
                                         <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
+                                            @foreach ($anime->categories as $categorie)
+                                            <li>{{ $categorie->name }}</li>
+
+                                            @endforeach
+
                                         </ul>
                                         <h5><a href='#'>{{ $anime->titre }}</a></h5>
                                         <div class='' style='display:flex;justify-content:space-around'>
@@ -282,6 +98,15 @@
                     </div>
                 </div>
             </div>
+            <div class="product__pagination">
+                @for ($i = 1; $i <= $animes->lastPage(); $i++)
+                    <a href="{{ $animes->url($i) }}" class="{{ $animes->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
+                    @endfor
+
+                    @if ($animes->currentPage() < $animes->lastPage())
+                        <a href="{{ $animes->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+                        @endif
+            </div>
         </div>
     </section>
     <!-- Product Section End -->
@@ -301,7 +126,6 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <form action="{{ route('addAnime') }}" method="POST" class="anime-form">
                         @csrf
                         <div class="card anime-form-card">
@@ -316,31 +140,23 @@
                                             <label for="titre">Titre</label>
                                             <input type="text" class="form-control custom-input" id="titre" name="titre" required>
                                         </div>
-
                                         <div class="form-group">
                                             <label for="description">Description</label>
                                             <textarea class="form-control custom-input" id="description" name="description" rows="4"></textarea>
                                         </div>
-
                                         <div class="form-group">
                                             <label for="genre">Genre</label>
-
-                                            @foreach ($categories as $categorie )
-
+                                            @foreach ($categories as $categorie)
                                             <input type="checkbox" id="categorie" name="categories[]" value="{{ $categorie->id }}">{{ $categorie->name }}
                                             @endforeach
-
-
                                             <small class="form-text helper-text">Maintenez la touche Ctrl (ou Cmd) pour sélectionner plusieurs genres</small>
                                         </div>
                                     </div>
-
                                     <!-- Right Column -->
                                     <div class="col-md-6">
                                         <div class="form-group image-upload-container">
                                             <input type="url" class="form-control custom-input mt-2" id="posterLink" name="posterLink" placeholder="URL de l'image...">
                                         </div>
-
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="trailer">Trailer</label>
@@ -354,29 +170,26 @@
                                                 <label for="thumbnail">Thumbnail</label>
                                                 <input type="text" class="form-control custom-input" id="thumbnail" name="thumbnail">
                                             </div>
-
                                             <div class="form-group col-md-6">
-                                                <label for="rating">Rating</small></label>
+                                                <label for="rating">Rating</label>
                                                 <input type="text" class="form-control custom-input" id="rating" name="rating">
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="score">Score</small></label>
+                                                <label for="score">Score</label>
                                                 <input type="text" class="form-control custom-input" id="score" name="score">
                                             </div>
-
                                             <div class="form-group col-md-6">
                                                 <label for="rank">Note <small>(sur 10)</small></label>
                                                 <input type="number" class="form-control custom-input" id="rank" name="rank" min="0" max="10" step="0.1">
                                             </div>
                                         </div>
-
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="status">Statut</label>
                                                 <select class="form-control custom-select" id="status" name="status">
-                                                    <option value="ongoing">En cours</option>
-                                                    <option value="completed">Terminé</option>
-                                                    <option value="upcoming">À venir</option>
+                                                    <option value="En cours">En cours</option>
+                                                    <option value="Complet">Complet</option>
+                                                    <option value="Pas encore">Pas encore</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-6">

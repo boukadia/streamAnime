@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EpisodeController;
 use App\Http\Controllers\FilmController;
+use App\Http\Controllers\SaisonController;
 use App\Http\Middleware\AdminMiddlware;
 use App\Http\Middleware\Authe;
 use App\Http\Middleware\AuthMiddleware;
@@ -61,3 +62,4 @@ Route::get('{anime}/addFavoryAnimes', [AnimeController::class, "addFavoryAnimes"
 
 Route::post('{episode}/{saison}/addComment', [AnimeController::class, "Comments"])->name("addComment");
 Route::post('{film}/addCommentFilm', [FilmController::class, "filmComments"])->name("addCommentFilm");
+Route::get('/saisonsManagement',[SaisonController::class,"manageSaison"])->name("saisonsManagement")->middleware(AdminMiddlware::class);
