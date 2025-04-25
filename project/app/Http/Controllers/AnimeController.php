@@ -28,8 +28,22 @@ class AnimeController extends Controller
 
     public function favoryAnimes()
     {
+$user = Auth::user();
+        // $user = Auth::user();
+        // $animes = Anime::with('saisons.episodes')->orderByDesc("created_at")->limit(24)->get();
+        // $last_anime = Saison::orderBy('updated_at', 'desc')->limit(12)->get();
+        // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
+        // $last_anime = Anime::with('saisons')->orderBy('updated_at','desc')->get();
+        //    foreach($last_anime as $anime){
+        //     if($anime->saisons->isNotEmpty()){
 
-        return view("user.animes.favoryAnimes");
+        //         dump(  $anime->saisons()->orderByDesc("created_at")->first()->titre);
+        //     }
+        // }
+
+        // dd($last_anime);
+$animes=$user->animes()->with("saisons.episodes")->orderByDesc("created_at")->get();
+        return view("user.animes.favoryAnimes",["animes"=>$animes]);
     }
     public function addFavoryAnimes(Anime $anime)
     {

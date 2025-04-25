@@ -73,7 +73,7 @@
           
             <a href="#" class="search-switch"><span class="icon_search"></span></a>
           <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
-          <a href="" title="Ma watchlist">
+          <a href="{{ route("favoryAnimes") }}" title="Ma watchlist">
             <i class="bi bi-bookmark" style="font-size: 20px;"></i>
           </a>
           <a href="{{ route('logOut') }}" title="Se déconnecter" class="text-danger">

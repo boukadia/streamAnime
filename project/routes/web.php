@@ -58,7 +58,7 @@ Route::get('{film}/counter', [FilmController::class, "counter"])->name("viewCoun
 Route::get('/derniereEpisodes', [AnimeController::class, "derniereEpisodes"])->name("test");
 Route::get('/plupartAnimes', [AnimeController::class, "plupartAnimes"])->name("plupartAnimes");
 Route::get('/favoryAnimes', [AnimeController::class, "favoryAnimes"])->name("favoryAnimes")->middleware(Authe::class);
-Route::get('{anime}/addFavoryAnimes', [AnimeController::class, "addFavoryAnimes"])->name("addFavoryAnimes");
+Route::get('{anime}/addFavoryAnimes', [AnimeController::class, "addFavoryAnimes"])->name("addFavoryAnimes")->middleware(Authe::class);
 
 Route::post('{episode}/{saison}/addComment', [AnimeController::class, "Comments"])->name("addComment");
 Route::post('{film}/addCommentFilm', [FilmController::class, "filmComments"])->name("addCommentFilm");

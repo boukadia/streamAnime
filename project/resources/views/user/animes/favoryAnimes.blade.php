@@ -117,21 +117,27 @@
     
     <div class="favoritees-grid">
       <!-- Anime Card 1 -->
-      <div class="animee-caard">
-        <div class="animee-caard-img">
-          <img src="/build/assets/img/anime/anne.jpg" alt="Demon Slayer">
-          <div class="overlayy">
-            <button class="plaay-btn"><i class="fas fa-play"></i></button>
-          </div>
-          <span class="raating">9.2</span>
+       @foreach ($animes as $anime )
+       
+       <div class="animee-caard">
+         <div class="animee-caard-img">
+           <img src="/build/assets/img/anime/{{ $anime->posterLink }}" alt="Demon Slayer">
+           <div class="overlayy">
+             <button class="plaay-btn"><i class="fas fa-play"></i></button>
+            </div>
+            <span class="raating">9.2</span>
           <button class="favoritte-btn active"><i class="fas fa-heart"></i></button>
         </div>
         <div class="animee-caard-content">
-          <h3>Demon Slayer</h3>
-          <p class="animme-genre">Action, Fantastique</p>
-          <p class="animee-description">Tanjiro Kamado devient chasseur de démons après le massacre de sa famille.</p>
+          <h3>{{ $anime->titre }}</h3>
+          @foreach ($anime->categories as $categorie)
+          
+          <p class="animme-genre">{{ $categorie->name }}</p>
+          @endforeach
+          <p class="animee-description">{{ $anime->description }}</p>
         </div>
       </div>
+      @endforeach
       
       
     </div>
