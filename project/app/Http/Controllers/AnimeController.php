@@ -28,7 +28,7 @@ class AnimeController extends Controller
 
     public function favoryAnimes()
     {
-$user = Auth::user();
+        $user = Auth::user();
         // $user = Auth::user();
         // $animes = Anime::with('saisons.episodes')->orderByDesc("created_at")->limit(24)->get();
         // $last_anime = Saison::orderBy('updated_at', 'desc')->limit(12)->get();
@@ -42,30 +42,27 @@ $user = Auth::user();
         // }
 
         // dd($last_anime);
-$animes=$user->animes()->with("saisons.episodes")->orderByDesc("created_at")->get();
-        return view("user.animes.favoryAnimes",["animes"=>$animes]);
+        $animes = $user->animes()->with("saisons.episodes")->orderByDesc("created_at")->get();
+        return view("user.animes.favoryAnimes", ["animes" => $animes]);
     }
     public function addFavoryAnimes(Anime $anime)
     {
-       if(Auth::check()){
-        $user = Auth::user();
-        foreach($user->animes as $anim){
-            if($anim->id == $anime->id){
-                return redirect()->route("animes");
+        if (Auth::check()) {
+            $user = Auth::user();
+            foreach ($user->animes as $anim) {
+                if ($anim->id == $anime->id) {
+                    return redirect()->route("animes");
+                }
             }
+            $anime->users()->attach(Auth::user()->id, [
+                "created_at" => now()
+            ]);
+            return redirect()->route("animes");
+        } else {
+            return redirect()->route("loginForm");
         }
-        $anime->users()->attach(Auth::user()->id, [
-            "created_at" => now()
-        ]);
-        return redirect()->route("animes");
 
 
-       }
-       else {
-        return redirect()->route("loginForm");
-       }
-       
-    
 
         // return redirect()->route("animes");
     }
@@ -223,22 +220,22 @@ $animes=$user->animes()->with("saisons.episodes")->orderByDesc("created_at")->ge
         //     echo "($episode->episodeNumber)";}
         // };
 
-       
+
         $episodes = $saison->episodes()->orderByDesc('episodeNumber')->get();
 
         return view("user.animes.animeWatching", ["episode" => $episode, "saison" => $saison, "episodes" => $episodes]);
     }
 
-    public function comments(Request $request, Episode $episode,Saison $saison)
+    public function comments(Request $request, Episode $episode, Saison $saison)
     {
         $episode->users()->attach($request->user()->id, [
-            "comment" => $request->comment]);
-        
+            "comment" => $request->comment
+        ]);
+
 
         return redirect()->route("episode", ["episode" => $episode, "saison" => $saison]);
-
     }
-   
+
     public function counter(Episode   $episode, Saison $saison)
 
     {
@@ -273,7 +270,7 @@ $animes=$user->animes()->with("saisons.episodes")->orderByDesc("created_at")->ge
     {
         return view("admin.dashboard");
     }
-   
+
     public function manageAnimes()
     {
         $animes = Anime::with('categories')->orderBy('created_at', 'desc')->paginate(10);
@@ -306,9 +303,9 @@ $animes=$user->animes()->with("saisons.episodes")->orderByDesc("created_at")->ge
         ]);
 
         $anime = Anime::create($dataValidate);
-      
 
-        $anime->categories()->attach($request->categories, ["created_at"=>now()]);
+
+        $anime->categories()->attach($request->categories, ["created_at" => now()]);
         // $anime->categories()->sync(array_fill_keys($request->categories, ['created_at' => now()]));
     }
 
@@ -344,7 +341,6 @@ $animes=$user->animes()->with("saisons.episodes")->orderByDesc("created_at")->ge
     public function update(Request $request, anime $anime)
     {
         $anime->update($request->all());
-
     }
 
     /**

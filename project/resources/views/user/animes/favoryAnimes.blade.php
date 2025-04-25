@@ -129,7 +129,8 @@
           <button class="favoritte-btn active"><i class="fas fa-heart"></i></button>
         </div>
         <div class="animee-caard-content">
-          <h3>{{ $anime->titre }}</h3>
+        <h3><a href='{{ Route("anime-film",["type"=>$anime->type,$anime]) }}'>{{ $anime->titre }}</a></h3>
+
           @foreach ($anime->categories as $categorie)
           
           <p class="animme-genre">{{ $categorie->name }}</p>
