@@ -259,9 +259,10 @@ class AnimeController extends Controller
     {
         return view("admin.dashboard");
     }
+   
     public function manageAnimes()
     {
-        $animes = Anime::all();
+        $animes = Anime::with('categories')->orderBy('created_at', 'desc')->paginate(10);
         $categories = Category::all();
         return view("admin.animes.index", ["animes" => $animes, "categories" => $categories]);
     }
@@ -291,31 +292,10 @@ class AnimeController extends Controller
         ]);
 
         $anime = Anime::create($dataValidate);
-        // $anime->categories()->sync($request->categories);
+      
 
-        // dd ($request);
-        // $anime=anime::create($request->all());
-        // $anime->categories()->attach(["category_id"=>$request->genre,"anime_id"=>$anime->id]);
-        // $anime=anime::findOrFail();
-
-        //    $anime= anime::create([
-        //         "titre"=>$request->titre,
-        //         "posterLink"=>$request->posterLink,
-        //         "description"=>$request->description,
-        //         "yearCreation"=>$request->yearCreation,
-        //         "yearFin"=>$request->yearFin,
-        //         "trailer"=>$request->trailer,
-        //         "studio"=>$request->studio,
-        //         "thumbnail"=>$request->thumbnail,
-        //         "status"=>$request->status,
-        //         "rating"=>$request->rating,
-        //         "rank"=>$request->rank,
-        //         "score"=>$request->score,
-
-        // ]);
-        // dd($request);
-
-        $anime->categories()->sync($request->categories);
+        $anime->categories()->attach($request->categories, ["created_at"=>now()]);
+        // $anime->categories()->sync(array_fill_keys($request->categories, ['created_at' => now()]));
     }
 
     /**
@@ -350,6 +330,7 @@ class AnimeController extends Controller
     public function update(Request $request, anime $anime)
     {
         $anime->update($request->all());
+
     }
 
     /**

@@ -18,6 +18,14 @@ class SaisonController extends Controller
 
         return view("user.saison", ["saisons" => $saisons]);
     }
+    
+    public function manageSaison()
+    {
+        $saisons = Saison::with('animes')->paginate(10);
+        
+        return view("admin.animes.saisons", ["saisons" => $saisons]);
+    }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -44,7 +52,7 @@ class SaisonController extends Controller
             "thumbnail" => "required", //n'est pas dans database
             "status" => "required", //n'est pas dans database
         ]);
-        $saison = Saison::create($dataValidate);
+         Saison::create($dataValidate);
     }
 
     /**
