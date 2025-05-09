@@ -173,7 +173,7 @@
 
                         <div class="col-lg-2 col-md-3 col-sm-6">
                             <div class='product__item'>
-                                <div class='product__item__pic set-bg' data-setbg='{{ $film->posterLink }}'>
+                                <div class='product__item__pic set-bg' data-setbg='/build/assets/img/anime/{{ $film->posterLink }}'>
                                     <div class='comment'><i class='fa fa-comments'></i> {{ $film->users->count() }}</div>
                                     <div class='view'><i class='fa fa-eye'></i> {{ $film->counter }}</div>
                                 </div>

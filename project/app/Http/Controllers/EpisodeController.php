@@ -20,6 +20,11 @@ class EpisodeController extends Controller
 // }
         return view("user.episodes.episodes", ["episodes" => $episodes]);
     }
+    public function episodesManagement()
+    {
+        $episodes = Episode::with("saisons")->orderByDesc("created_at")->paginate(20);
+        return view("admin.saisons.episodes.manage", ["episodes" => $episodes]);
+    }
 
     /**
      * Show the form for creating a new resource.

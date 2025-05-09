@@ -28,6 +28,55 @@
 
 <body>
 
+<div class="row">
+      <!-- Sidebar -->
+      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <div class="text-center mb-4">
+                        <h3 class="text-white">Admin Panel</h3>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="index.html">
+                                <i class="fas fa-home me-2"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" href="{{ Route("contentManagement") }}">
+                                <i class="fas fa-tv me-2"></i>
+                                Animes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="seasons.html">
+                                <i class="fas fa-calendar-alt me-2"></i>
+                                Saisons
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="users.html">
+                                <i class="fas fa-users me-2"></i>
+                                Utilisateurs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="statistics.html">
+                                <i class="fas fa-chart-bar me-2"></i>
+                                Statistiques
+                            </a>
+                        </li>
+                        <li class="nav-item mt-5">
+                            <a class="nav-link text-white" href="#">
+                                <i class="fas fa-sign-out-alt me-2"></i>
+                                Déconnexion
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Main content -->
 
     <!-- Page Preloder -->
     <!-- <div id="preloder">
@@ -45,7 +94,9 @@
     <!-- Product Section Begin -->
     <section class="product spad">
         <div class="container" id="container">
+            
             <div class="row">
+                
             <div class="col-lg-12 col-md-12 col-sm-12">
 
                     <div class="trending__product">
@@ -225,6 +276,7 @@
         </div>
     </div>
     <!-- Search model end -->
+    </div>
 
     <!-- Js Plugins -->
     <script src="./build/assets/js/script.js"></script>
@@ -244,18 +296,18 @@
             editButtons.forEach(function(button) {
                 button.addEventListener('click', function() {
                     var animeId = this.getAttribute('data-id');
-                    var titre = this.getAttribute('data-titre');
+                    // var titre = this.getAttribute('data-titre');
                     var description = this.getAttribute('data-description');
                     var posterLink = this.getAttribute('data-posterLink');
                     var trailer = this.getAttribute('data-trailer');
                     var studio = this.getAttribute('data-studio');
-                    var thumbnail = this.getAttribute('data-thumbnail');
-                    var rating = this.getAttribute('data-rating');
-                    var score = this.getAttribute('data-score');
-                    var rank = this.getAttribute('data-rank');
-                    var status = this.getAttribute('data-status');
-                    var yearCreation = this.getAttribute('data-yearcreation');
-                    var yearFin = this.getAttribute('data-yearfin');
+                    // var thumbnail = this.getAttribute('data-thumbnail');
+                    // var rating = this.getAttribute('data-rating');
+                    // var score = this.getAttribute('data-score');
+                    // var rank = this.getAttribute('data-rank');
+                    // var status = this.getAttribute('data-status');
+                    // var yearCreation = this.getAttribute('data-yearcreation');
+                    // var yearFin = this.getAttribute('data-yearfin');
 
                     console.log(event.target.parentElement);
                     document.getElementById('titre').value = titre;

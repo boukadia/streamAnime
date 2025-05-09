@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Episode;
 use App\Models\Film;
 use App\Models\Saison;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -68,23 +69,13 @@ class AnimeController extends Controller
     }
     public function home()
     {
-        //     $saisons = Saison::all();
-        //     foreach( $saisons as $saison ) {
-        //      echo $saison->episodes()->orderBy("episodeNumber","desc")->first(); //dernier episode pour chaque saison
-        // }
+
 
         $animes = Anime::with('saisons.episodes')->orderByDesc("created_at")->limit(24)->get();
         $last_anime = Saison::orderBy('updated_at', 'desc')->limit(12)->get();
-        // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
-        // $last_anime = Anime::with('saisons')->orderBy('updated_at','desc')->get();
-        //    foreach($last_anime as $anime){
-        //     if($anime->saisons->isNotEmpty()){
 
-        //         dump(  $anime->saisons()->orderByDesc("created_at")->first()->titre);
-        //     }
-        // }
 
-        // dd($last_anime);
+
         $resultats = [];
 
         $saisons = Saison::with("episodes")->get();
@@ -105,21 +96,42 @@ class AnimeController extends Controller
         return view("user.animes.index", ["animes" => $animes, "lastAnimes" => $last_anime, "resultats" => $resultats]);
     }
 
+    public function filtrageParCategoryAdmin(Category $category)
+    {
+
+
+        $categories = Category::all();
+        $animes = $category->animes()->paginate(10);
+        return view("admin.dashboard", ["animes" => $animes, "categories" => $categories]);
+    }
     public function filtrageParCategory(Category $category)
     {
-        if ($category) {
-            $categories = Category::all();
 
-            $animes = $category->animes()->paginate(10);
-            return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
-        }
+
+
+
+
+        $categories = Category::all();
+        $animes = $category->animes()->paginate(10);
+        return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
     }
     public function filtrageParEtat($status)
     {
+
+
         $categories = Category::all();
 
         $animes = Anime::where("status", $status)->paginate(10);
         return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
+    }
+    public function filtrageParEtatAdmin($status)
+    {
+
+
+
+        $categories = Category::all();
+        $animes = Anime::where("status", $status)->paginate(10);
+        return view("admin.dashboard", ["animes" => $animes, "categories" => $categories]);
     }
 
     public function animeFilm($anime, $type)
@@ -266,11 +278,69 @@ class AnimeController extends Controller
         return view("user.animes.index", ["resultats" => $resultats]);
     }
 
-    public function dashBoard()
+    public function dashBoard(Request $request)
     {
-        return view("admin.dashboard");
+        // $animes = Anime::with('categories')->orderBy('yearCreation', 'desc')->paginate(5);
+        // $categories = Category::all();
+        // return view("admin.dashboard", ["animes" => $animes,"categories" => $categories]);
+        if ($request->search != null) {
+            // $queryString = Input::get('search');
+
+            $search = $request->search;
+            // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
+            // dd($search);
+            // $animes=anime::search($request->search)->get();
+            $categories = Category::all();
+
+            $animes = anime::with('categories')->where('titre', 'LIKE', '%' . $search . '%')->paginate(10);
+
+            return view("admin.dashboard", ["animes" => $animes, "categories" => $categories]);
+        } else {
+            $animes = Anime::with('categories')->orderBy('yearCreation', 'desc')->paginate(5);
+
+            $categories = Category::all();
+            return view("admin.dashboard", ["animes" => $animes, "categories" => $categories]);
+        }
     }
 
+    public function statistique()
+    {
+        $totalAnimes = Anime::count();
+        $totalUsers = User::count();
+        $populaireCategorie = Category::withCount('animes') // Compter le nombre d'animes par catégorie
+            ->orderByDesc('animes_count')         // Trier par le nombre d'animes (descendant)
+            ->first();                            // Obtenir la première catégorie
+        $categories = Category::withCount('animes') // Compter le nombre d'animes par catégorie
+            ->orderByDesc('animes_count')         // Trier par le nombre d'animes (descendant)
+            ->get();
+        //         foreach ($categories as $category) {
+        //    echo $category->name;
+        //     echo $category->animes->count();
+        //     echo "<br>";
+        // }
+        // $mostPopularGenre = Anime::select('genre')
+        //     ->groupBy('genre')
+        //     ->orderByRaw('COUNT(*) DESC')
+        //     ->value('genre'); // Corrected to fetch the genre value directly
+        $mostWatchedAnime = Anime::with('saisons.episodes')->get();
+        // foreach ($mostWatchedAnime as $anime) {
+        //     foreach ($anime->saisons as $saison) {
+        //         echo $saison->episodes()->sum('counter');
+        //         echo "<br>";
+        //     }
+        // }
+
+        // $mostWatchedAnime = Anime::orderBy('views', 'DESC')->first();
+        // $totalViews = Anime::sum('views');
+
+        return view("admin.statistique", [
+            "totalAnimes" => $totalAnimes,
+            "totalUsers" => $totalUsers,
+            "populaireCategorie" => $populaireCategorie,
+            //     "mostWatchedAnime" => $mostWatchedAnime,
+            //     "totalViews" => $totalViews
+        ]);
+    }
     public function manageAnimes()
     {
         $animes = Anime::with('categories')->orderBy('created_at', 'desc')->paginate(10);
@@ -284,6 +354,7 @@ class AnimeController extends Controller
      */
     public function store(Request $request)
     {
+
         $dataValidate = $request->validate([
             "posterLink" => "required",
             "titre" => "required",
@@ -306,6 +377,7 @@ class AnimeController extends Controller
 
 
         $anime->categories()->attach($request->categories, ["created_at" => now()]);
+        return redirect()->route("dashboard");
         // $anime->categories()->sync(array_fill_keys($request->categories, ['created_at' => now()]));
     }
 
@@ -332,7 +404,7 @@ class AnimeController extends Controller
     {
         $categories = Category::all();
 
-        return view("admin.anime.edit", ["anime" => $anime, "categories" => $categories]);
+        return view("admin.animes.edit", ["anime" => $anime, "categories" => $categories]);
     }
 
     /**
@@ -340,7 +412,29 @@ class AnimeController extends Controller
      */
     public function update(Request $request, anime $anime)
     {
-        $anime->update($request->all());
+        $dataValidate = $request->validate([
+            // "posterLink" => "required",
+            "titre" => "required",
+            "description" => "required",
+            "yearCreation" => "required",
+            "yearFin" => "required",
+            "trailer" => "required",
+            "studio" => "required",
+            // "thumbnail" => "required",
+            "status" => "required",
+            "rating" => "required",
+            "rank" => "required",
+            "score" => "required",
+            // "categories" => "required|array", // On vérifie que c'est un tableau
+            // "categories.*" => "exists:categories,id"
+
+        ]);
+
+        $anime->update($dataValidate);
+        if ($request->has('categories')) {
+            $anime->categories()->attach($request->categories, ["created_at" => now()]);
+        }
+        return redirect()->route("dashboard");
     }
 
     /**
@@ -349,5 +443,6 @@ class AnimeController extends Controller
     public function destroy(anime $anime)
     {
         $anime->delete();
+        return redirect()->route("dashboard");
     }
 }

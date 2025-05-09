@@ -33,61 +33,61 @@
 
     <!-- Header Section Begin -->
     <header class="header">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-1">
-        <div class="header__logo">
-          <a href="./index.html">
-            <img loading="lazy" src="img/logo.png" alt="">
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-8">
-        <div class="header__nav">
-          <!-- Ajout de l'icône du menu mobile -->
-          <span class="mobile-menu-icon" id="mobileMenuIcon">☰</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-1">
+                    <div class="header__logo">
+                        <a href="./index.html">
+                            <img loading="lazy" src="img/logo.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="header__nav">
+                        <!-- Ajout de l'icône du menu mobile -->
+                        <span class="mobile-menu-icon" id="mobileMenuIcon">☰</span>
 
-          <nav class="header__menu mobile-menu" id="mobileMenu">
-            <ul>
-              <li><a href="{{ Route('home') }}">Homepage</a></li>
-              <li><a href="{{ Route('animes') }}">Animes</a></li>
-              <li><a href="{{ Route('films') }}">Films</a></li>
-              <li>
-                <a href="{{Route("categorie")}}">Categories<span class="arrow_carrot-down"></span></a>
-                <ul class="dropdown">
-                  <li><a href="{{Route("categorie")}}">Categories</a></li>
-                  <li><a href="./anime-details.html">Anime Details</a></li>
-                  <li><a href="./anime-watching.html">Anime Watching</a></li>
-                  <li><a href="{{ Route("registerForm") }}">Sign Up</a></li>
-                  <li><a href="{{ Route("loginForm") }}">Login</a></li>
-                </ul>
-              </li>
-              <li><a href="./blog.html">Our Blog</a></li>
-              <li><a href="#">Contacts</a></li>
-            </ul>
-          </nav>
+                        <nav class="header__menu mobile-menu" id="mobileMenu">
+                            <ul>
+                                <li><a href="{{ Route('home') }}">Homepage</a></li>
+                                <li><a href="{{ Route('animes') }}">Animes</a></li>
+                                <li><a href="{{ Route('films') }}">Films</a></li>
+                                <li>
+                                    <a href="{{Route("categorie")}}">Categories<span class="arrow_carrot-down"></span></a>
+                                    <ul class="dropdown">
+                                        <li><a href="{{Route("categorie")}}">Categories</a></li>
+                                        <li><a href="./anime-details.html">Anime Details</a></li>
+                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
+                                        <li><a href="{{ Route("registerForm") }}">Sign Up</a></li>
+                                        <li><a href="{{ Route("loginForm") }}">Login</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="./blog.html">Our Blog</a></li>
+                                <li><a href="#">Contacts</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="col-lg-12 header__right">
+
+                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
+                        <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
+                        <a href="" title="Ma watchlist">
+                            <i class="bi bi-bookmark" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="{{ route('logOut') }}" title="Se déconnecter" class="text-danger">
+                            <i class="bi bi-box-arrow-right" style="font-size: 20px;"></i>
+                        </a>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div id="mobile-menu-wrap"></div>
         </div>
-      </div>
-      <div class="col-lg-3">
-        <div class="col-lg-12 header__right">
-          
-            <a href="#" class="search-switch"><span class="icon_search"></span></a>
-          <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
-          <a href="" title="Ma watchlist">
-            <i class="bi bi-bookmark" style="font-size: 20px;"></i>
-          </a>
-          <a href="{{ route('logOut') }}" title="Se déconnecter" class="text-danger">
-            <i class="bi bi-box-arrow-right" style="font-size: 20px;"></i>
-          </a>
-          
-          
-        </div>
-        
-      </div>
-    </div>
-    <div id="mobile-menu-wrap"></div>
-  </div>
-</header>
+    </header>
     <!-- Header End -->
 
     <!-- Breadcrumb Begin -->
@@ -112,7 +112,7 @@
             <div class="anime__details__content">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" loading="lazy" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
+                        <div class="anime__details__pic set-bg" loading="lazy" data-setbg="/build/assets/img/anime/{{ $anime->posterLink }}">
                             <!-- <div class="comment"><i class="fa fa-comments"></i> 11</div> -->
                             <div class="view"><i class="fa fa-eye"></i> {{ $anime->counter }}</div>
                         </div>
@@ -140,14 +140,14 @@
                                         <ul>
                                             <li><span>Type:</span> {{ $anime->type }}</li>
                                             <li><span>Studios:</span> {{ $anime->studio }}</li>
-                                            <li><span>Date aired:</span>  {{ $anime->yearCreation }}</li>
+                                            <li><span>Date aired:</span> {{ $anime->yearCreation }}</li>
                                             <li><span>Status:</span> {{ $anime->status }}</li>
-                                            <li><span>Genre:</span> 
-                                             @foreach ($anime->categories as $categorie )
-                                           {{ $categorie->name}}
-                                            
-                                            @endforeach 
-                                        </li>
+                                            <li><span>Genre:</span>
+                                                @foreach ($anime->categories as $categorie )
+                                                {{ $categorie->name}}
+
+                                                @endforeach
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
@@ -208,8 +208,8 @@
                         <div class="row g-3">
                             @foreach ($saisons as $saison)
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
-                                <div class="product__sidebar__view__item set-bg" loading="lazy" data-setbg="https://cdn.myanimelist.net/images/anime/4/19644.jpg">
-                                    <div class="ep">18 / ?</div>
+                                <div class="product__sidebar__view__item set-bg" loading="lazy" data-setbg="/build/assets/img/anime/{{ $saison->posterLink }}">
+                                    <!-- <div class="ep">18 / ?</div> -->
                                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                     <h5><a href="{{ Route('episodes', $saison) }}">{{ $saison->titre }}</a></h5>
                                 </div>
@@ -279,13 +279,13 @@
     <script src="/build/assets/js/jquery.slicknav.js"></script>
     <script src="/build/assets/js/owl.carousel.min.js"></script>
     <script src="/build/assets/js/main.js"></script>
-<script>
-     // JavaScript pour afficher/masquer le menu mobile
-   document.getElementById("mobileMenuIcon").addEventListener("click", function () {
-    const menu = document.getElementById("mobileMenu");
-    menu.classList.toggle("active");
-  });
-</script>
+    <script>
+        // JavaScript pour afficher/masquer le menu mobile
+        document.getElementById("mobileMenuIcon").addEventListener("click", function() {
+            const menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("active");
+        });
+    </script>
 </body>
 
 </html>

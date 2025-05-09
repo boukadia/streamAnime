@@ -14,13 +14,18 @@ use Illuminate\Support\Facades\Route;
 // ->middleware("auth.api")
 Route::get('/', [AnimeController::class, "home"])->name("home");
 Route::get('/allAnimes', [AnimeController::class, "index"])->name("animes");
-Route::get('{category}/filtrage', [AnimeController::class, "filtrageParCategory"])->name("filtrageParCategory");
+Route::get('{category}/filtragee', [AnimeController::class, "filtrageParCategory"])->name("filtrageParCategory");
+Route::get('{category}/filtrage', [AnimeController::class, "filtrageParCategoryAdmin"])->name("filtrageParCategoryAdmin");
 Route::get('{category}/movieFiltrage', [FilmController::class, "filtrageParCategory"])->name("filmFiltrageParCategory");
 Route::get('{status}/filtrageParEtat', [AnimeController::class, "filtrageParEtat"])->name("filtrageParEtat");
+Route::get('{status}/filtrageParEtatSaison', [SaisonController::class, "filtrageParEtat"])->name("filtrageParEtatSaison");
+Route::get('{status}/filtrageParEtatAdmin', [AnimeController::class, "filtrageParEtatAdmin"])->name("filtrageParEtatAdmin")->middleware(AdminMiddlware::class);
 Route::get('{type}/filtrageParType', [AnimeController::class, "filtrageParType"])->name("filtrageParType");
-Route::get('/dashboard', [AnimeController::class, "dashBoard"])->middleware(AdminMiddlware::class);
+Route::get('/dashboard', [AnimeController::class, "dashBoard"])->middleware(AdminMiddlware::class)->name("dashboard");
+Route::get('/statistique', [AnimeController::class, "statistique"])->middleware(AdminMiddlware::class)->name("statistique");
 Route::get('/contentManagement', [AnimeController::class, "manageAnimes"])->name("contentManagement")->middleware(AdminMiddlware::class);
 Route::post('/addAnimes', [AnimeController::class, "store"])->name("addAnime")->middleware(AdminMiddlware::class);
+Route::post('/addSaisons', [SaisonController::class, "store"])->name("addSaison")->middleware(AdminMiddlware::class);
 
 Route::post('/categories', [CategoryController::class, "index"])->name("categorie");
 
@@ -29,6 +34,8 @@ Route::get('{lettre}/animeSearch', [AnimeController::class, "index"])->name("ani
 Route::get('{lettre}/filmSearch', [FilmController::class, "index"])->name("filmSearchByLettre");
 Route::get('{film}/filmWatching', [FilmController::class, "filmWatching"])->name("film");
 Route::get('{film:id}/filmDetails', [FilmController::class, "filmDetails"])->name("filmDetails");
+
+Route::get('/episodesManagement', [EpisodeController::class, "episodesManagement"])->name("episodesManagement")->middleware(AdminMiddlware::class);
 
 Route::get('/{anime}/{type}/anime-film', [AnimeController::class, "animeFilm"])->name("anime-film"); //Rediriger selon le type de l'anime : si c’est un film, rediriger vers la page des films, sinon rediriger vers la page des séries. "
 
@@ -41,7 +48,11 @@ Route::get('{saison}/episodes', [AnimeController::class, "episodes"])->name("epi
 
 
 Route::post('updateAnime/{anime}', [AnimeController::class, "update"])->name("updateAnime")->middleware(AdminMiddlware::class);
-Route::get('{anime}/delete', [AnimeController::class, "destroy"])->name("deleteAnime")->middleware(AdminMiddlware::class);
+Route::post('updateSaison/{saison}', [SaisonController::class, "update"])->name("updateSaison")->middleware(AdminMiddlware::class);
+Route::get('{anime}/edit', [AnimeController::class, "edit"])->name("editAnime")->middleware(AdminMiddlware::class);
+Route::get('{saison}/editt', [SaisonController::class, "edit"])->name("editSaison")->middleware(AdminMiddlware::class);
+Route::get('{anime}/delete', [SaisonController::class, "destroy"])->name("deleteAnime")->middleware(AdminMiddlware::class);
+Route::get('{saison}/deletee', [SaisonController::class, "destroy"])->name("deleteSaison")->middleware(AdminMiddlware::class);
 Route::post('/search', [AnimeController::class, "index"])->name("search");
 
 Route::post("/register", [AuthentController::class, "register"])->name("register");
