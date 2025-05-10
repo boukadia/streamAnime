@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Film;
 use App\Http\Requests\StoreFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
+use App\Models\Anime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,33 +17,31 @@ class FilmController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->lettre==null){
+        if ($request->lettre == null) {
             // $films = Film::all();
-        // $films = Film::with('categories')->orderBy('releaseDate', 'desc')->paginate(5);
+            // $films = Film::with('categories')->orderBy('releaseDate', 'desc')->paginate(5);
 
-        // return view("user.films", ["films" => $films]);
-        // $film=Film::with('categories')->get();
-        $categories = Category::all();
-
-        $films=Film::with('categories')->orderBy('releaseDate','desc')->paginate(5);
-        return view("user.films.films",["films"=>$films,"categories"=>$categories]);
-        }
-        else{
+            // return view("user.films", ["films" => $films]);
+            // $film=Film::with('categories')->get();
             $categories = Category::all();
 
-            $films=Film::with('categories')->where('titre', 'LIKE',   $request->lettre . '%')->orderBy('releaseDate','desc')->paginate(5);
-            return view("user.films.films",["films"=>$films,"categories"=>$categories]);
+            $films = Film::with('categories')->orderBy('releaseDate', 'desc')->paginate(5);
+            return view("user.films.films", ["films" => $films, "categories" => $categories]);
+        } else {
+            $categories = Category::all();
+
+            $films = Film::with('categories')->where('titre', 'LIKE',   $request->lettre . '%')->orderBy('releaseDate', 'desc')->paginate(5);
+            return view("user.films.films", ["films" => $films, "categories" => $categories]);
         }
-        
     }
 
 
     public function filmComments(Request $request, Film $film)
     {
-        $user=Auth::user();
-        $film->users()->attach($user->id, ["comment" => $request->comment,"created_at" => now()]);
-    //    $comment= $filmm->users->pivot("comment");
-    //    dd($comment);
+        $user = Auth::user();
+        $film->users()->attach($user->id, ["comment" => $request->comment, "created_at" => now()]);
+        //    $comment= $filmm->users->pivot("comment");
+        //    dd($comment);
         // $filmm=Film::where("id",1)->get();
         // echo $filmm;
         // $comments=$film->users->pivot->comment;
@@ -62,40 +61,49 @@ class FilmController extends Controller
     {
         $categories = Category::all();
 
-       $films= $category->filmes()->paginate(10);
-       return view("user.films.films",["films"=>$films,"categories"=>$categories]);
-
+        $films = $category->filmes()->paginate(10);
+        return view("user.films.films", ["films" => $films, "categories" => $categories]);
     }
 
-    public function filmDetails(Film $film){
-       
+    public function filmDetails(Film $film)
+    {
 
-        return view("user.films.filmDetails", ["film"=>$film]);
+
+        return view("user.films.filmDetails", ["film" => $film]);
     }
 
-    public function filmWatching(Film $film){
+    public function filmWatching(Film $film)
+    {
         // $saisons=$film->saisons;
 
-        return view("user.films.filmWatching", ["film"=>$film]);
+        return view("user.films.filmWatching", ["film" => $film]);
     }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $dataValidate = $request->validate([
-            "posterLink" => "required",
-            "titre" => "required",
-            "description" => "required",
-            "yearCreation" => "required",
-            "yearFin" => "required",
-            "saisonNumber" => "required",
-            "trailer" => "required",
-            "anime_id" => "required", //select njib tous les animes inkhtar lId
-            "thumbnail" => "required", //n'est pas dans database
-            "status" => "required", //n'est pas dans database
-        ]);
-        $saison = Film::create($dataValidate);
+
+        // $dataValidate = $request->validate([
+        //     "titre" => "required",
+        //     "description" => "required",
+        //     "posterLink" => "required",
+
+
+        //     "trailer" => "required",
+        //     "anime_id" => "required",
+
+        //     "releaseDate" => "required",
+        //     "duration" => "required",
+        //     "videoLink" => "required",
+        //     "thumbnail" => "required",
+           
+
+        // ]);
+    
+        $saison = Film::create($request->all());
+        $saison->categories()->attach($request->categories, ["created_at" => now()]);
+        return redirect()->route("manageFilms");
     }
 
     /**
@@ -111,26 +119,44 @@ class FilmController extends Controller
      */
     public function edit(Film $film)
     {
-        return view("admin.film.edit", ["film", $film]);
+        $categories = Category::all();
+        return view("admin.films.edit", ["film"=>$film, "categories" => $categories]);
     }
+    public function manageFilms()
+
+    {
+        $animes = Anime::all();
+        $categories = Category::all();
+        $films = Film::with('categories')->orderBy('titre', 'desc')->paginate(5);
+
+        return view("admin.films.manage", ["films" => $films, "categories" => $categories, "animes" => $animes]);
+    }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Film $film)
     {
-        $dataValidate = $request->validate([
-            "posterLink" => "required",//n'est pas dans database
-            "titre" => "required",
-            "description" => "required",
-            "yearCreation" => "required",
-            "yearFin" => "required",
-            
-            "trailer" => "required",
-            "thumbnail" => "required", //n'est pas dans database
+        // $dataValidate = $request->validate([
+        //    "titre" => "required",
+        //     "description" => "required",
+        //     "posterLink" => "required",
 
-        ]);
-        $film->update($dataValidate);
+
+        //     "trailer" => "required",
+           
+        
+
+        //     "releaseDate" => "required",
+        //     "duration" => "required",
+        //     "videoLink" => "required",
+        //     "thumbnail" => "required",
+
+        // ]);
+        $film->update($request->all());
+        $film->categories()->sync($request->categories);
+        return redirect()->route("manageFilms");
     }
 
     /**
@@ -139,6 +165,8 @@ class FilmController extends Controller
     public function destroy(Film $film)
     {
         $film->delete();
+        return redirect()->route("manageFilms");
+
     }
     public function counter(Film $film)
     {

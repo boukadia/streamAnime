@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-white" href="">
+                            <a class="nav-link active text-white" href="{{ Route('manageFilms') }}">
                                 <i class="fas fa-tv me-2"></i>
                                 Filmes
                             </a>

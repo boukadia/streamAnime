@@ -431,9 +431,11 @@ class AnimeController extends Controller
         ]);
 
         $anime->update($dataValidate);
-        if ($request->has('categories')) {
-            $anime->categories()->attach($request->categories, ["created_at" => now()]);
-        }
+        $anime->categories()->sync($request->categories);
+
+        // if ($request->has('categories')) {
+        //     $anime->categories()->attach($request->categories, ["created_at" => now()]);
+        // }
         return redirect()->route("dashboard");
     }
 

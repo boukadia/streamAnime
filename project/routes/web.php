@@ -79,3 +79,12 @@ Route::get('{episode}/editEpisode', [EpisodeController::class, "edit"])->name("e
 Route::post('{episode}/updateEpisode', [EpisodeController::class, "update"])->name("updateEpisode")->middleware(AdminMiddlware::class);
 Route::get('{episode}/deleteEpisode', [EpisodeController::class, "destroy"])->name("deleteEpisode")->middleware(AdminMiddlware::class);
 Route::post('/addEpisode', [EpisodeController::class, "store"])->name("addEpisode")->middleware(AdminMiddlware::class);
+
+
+
+
+Route::get('/manageFilms', [FilmController::class, "manageFilms"])->name("manageFilms")->middleware(AdminMiddlware::class);
+Route::get('{film}/editFilm', [FilmController::class, "edit"])->name("editFilm")->middleware(AdminMiddlware::class);
+Route::post('{film}/updateFilm', [FilmController::class, "update"])->name("updateFilm")->middleware(AdminMiddlware::class);
+Route::get('{film}/deleteFilm', [FilmController::class, "destroy"])->name("deleteFilm")->middleware(AdminMiddlware::class);
+Route::post('/addFilm', [FilmController::class, "store"])->name("addFilm")->middleware(AdminMiddlware::class);

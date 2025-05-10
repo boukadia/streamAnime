@@ -30,44 +30,102 @@
 
 <div class="row">
       <!-- Sidebar -->
-      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+           <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
+
                 <div class="position-sticky pt-3">
                     <div class="text-center mb-4">
                         <h3 class="text-white">Admin Panel</h3>
                     </div>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="index.html">
+                            <a class="nav-link text-white" href="{{ Route('dashboard') }}">
                                 <i class="fas fa-home me-2"></i>
                                 Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-white" href="{{ Route("contentManagement") }}">
+                            <a class="nav-link active text-white" href="">
                                 <i class="fas fa-tv me-2"></i>
-                                Animes
+                                Filmes
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link active text-white" href="{{ Route('episodesManagement') }}">
+                                <i class="fas fa-video me-2"></i>
+                                Épisodes
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="seasons.html">
+                            <a class="nav-link text-white" href="{{ Route('saisonsManagement') }}">
                                 <i class="fas fa-calendar-alt me-2"></i>
                                 Saisons
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="users.html">
+                            <a class="nav-link text-white" href="">
                                 <i class="fas fa-users me-2"></i>
                                 Utilisateurs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="statistics.html">
+                            <a class="nav-link text-white" href="{{ Route("statistique") }}">
                                 <i class="fas fa-chart-bar me-2"></i>
                                 Statistiques
                             </a>
                         </li>
                         <li class="nav-item mt-5">
-                            <a class="nav-link text-white" href="#">
+                            <a class="nav-link text-white" href="{{ Route('logOut') }}">
+                                <i class="fas fa-sign-out-alt me-2"></i>
+                                Déconnexion
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>     <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
+
+                <div class="position-sticky pt-3">
+                    <div class="text-center mb-4">
+                        <h3 class="text-white">Admin Panel</h3>
+                    </div>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ Route('dashboard') }}">
+                                <i class="fas fa-home me-2"></i>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" href="">
+                                <i class="fas fa-tv me-2"></i>
+                                Filmes
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link active text-white" href="{{ Route('episodesManagement') }}">
+                                <i class="fas fa-video me-2"></i>
+                                Épisodes
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ Route('saisonsManagement') }}">
+                                <i class="fas fa-calendar-alt me-2"></i>
+                                Saisons
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="">
+                                <i class="fas fa-users me-2"></i>
+                                Utilisateurs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ Route("statistique") }}">
+                                <i class="fas fa-chart-bar me-2"></i>
+                                Statistiques
+                            </a>
+                        </li>
+                        <li class="nav-item mt-5">
+                            <a class="nav-link text-white" href="{{ Route('logOut') }}">
                                 <i class="fas fa-sign-out-alt me-2"></i>
                                 Déconnexion
                             </a>

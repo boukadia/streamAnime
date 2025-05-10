@@ -17,7 +17,8 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
+                <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
+
                 <div class="position-sticky pt-3">
                     <div class="text-center mb-4">
                         <h3 class="text-white">Admin Panel</h3>
@@ -30,15 +31,33 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link active text-white" href="">
+                                <i class="fas fa-tv me-2"></i>
+                                Filmes
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link active text-white" href="{{ Route('episodesManagement') }}">
+                                <i class="fas fa-video me-2"></i>
+                                Épisodes
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-white" href="{{ Route('saisonsManagement') }}">
                                 <i class="fas fa-calendar-alt me-2"></i>
                                 Saisons
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-white" href="{{ Route('episodesManagement') }}">
-                                <i class="fas fa-video me-2"></i>
-                                Épisodes
+                            <a class="nav-link text-white" href="">
+                                <i class="fas fa-users me-2"></i>
+                                Utilisateurs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{{ Route("statistique") }}">
+                                <i class="fas fa-chart-bar me-2"></i>
+                                Statistiques
                             </a>
                         </li>
                         <li class="nav-item mt-5">
@@ -136,7 +155,7 @@
                                         <input type="time" class="form-control" id="duration" name="duration" required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="episodeNumber" class="form-label">Duration</label>
+                                        <label for="episodeNumber" class="form-label">Release Date</label>
                                         <input type="date" class="form-control" id="releaseDate" name="releaseDate" required>
                                     </div>
                                     

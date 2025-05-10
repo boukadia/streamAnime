@@ -9,6 +9,23 @@ class Film extends Model
 {
     /** @use HasFactory<\Database\Factories\FilmFactory> */
     use HasFactory;
+    protected $fillable = [
+        "titre",
+        "description",
+        "posterLink",
+        "status",
+        "yearFin",
+        "trailer",
+        "anime_id",
+        "saisonNumber",
+        "yearCreation",
+        "releaseDate",
+        "duration",
+        "videoLink",
+        "thumbnail",
+        "counter"   ,
+    ];
+    
 
     public function character(){
         return $this->belongsToMany(Character::class,"character_film");
