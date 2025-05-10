@@ -74,3 +74,8 @@ Route::get('{anime}/addFavoryAnimes', [AnimeController::class, "addFavoryAnimes"
 Route::post('{episode}/{saison}/addComment', [AnimeController::class, "Comments"])->name("addComment");
 Route::post('{film}/addCommentFilm', [FilmController::class, "filmComments"])->name("addCommentFilm");
 Route::get('/saisonsManagement',[SaisonController::class,"manageSaison"])->name("saisonsManagement")->middleware(AdminMiddlware::class);
+
+Route::get('{episode}/editEpisode', [EpisodeController::class, "edit"])->name("editEpisode")->middleware(AdminMiddlware::class);
+Route::post('{episode}/updateEpisode', [EpisodeController::class, "update"])->name("updateEpisode")->middleware(AdminMiddlware::class);
+Route::get('{episode}/deleteEpisode', [EpisodeController::class, "destroy"])->name("deleteEpisode")->middleware(AdminMiddlware::class);
+Route::post('/addEpisode', [EpisodeController::class, "store"])->name("addEpisode")->middleware(AdminMiddlware::class);

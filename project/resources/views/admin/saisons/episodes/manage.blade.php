@@ -69,17 +69,16 @@
                             <table class="table table-bordered table-striped" id="episodeTable" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>Titre</th>
-                                        <th>Numéro</th>
                                         <th>Saison</th>
+                                        <th>Numéro</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($episodes as $episode)
                                     <tr>
+                                        <td>{{ $episode->saisons->titre }}</td>
                                         <td>{{ $episode->episodeNumber}}</td>
-                                        <td>{{ $episode->saison->titre }}</td>
                                         <td>
                                             <a href="{{ Route('editEpisode', $episode) }}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></a>
                                             <a href="{{ Route('deleteEpisode', $episode) }}" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></a>
@@ -91,6 +90,21 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center mt-4">
+                        <div class="product__pagination">
+                            @for ($i = 1; $i <= $episodes->lastPage(); $i++)
+                                <a href="{{ $episodes->url($i) }}" class="{{ $episodes->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
+                                @endfor
+
+                                @if ($episodes->currentPage() < $episodes->lastPage())
+                                    <a href="{{ $episodes->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+                                    @endif
+                        </div>
+                    </ul>
+                </nav>
 
                 <!-- Add Episode Modal -->
                 <div class="modal fade" id="addEpisodeModal" tabindex="-1" aria-labelledby="addEpisodeModalLabel" aria-hidden="true">
@@ -104,13 +118,28 @@
                                 <form action="{{ route('addEpisode') }}" method="post">
                                     @csrf
                                     <div class="mb-3">
-                                        <label for="episodeTitle" class="form-label">Titre</label>
-                                        <input type="text" class="form-control" id="episodeTitle" name="titre" required>
+                                        <label for="episodeNumber" class="form-label">Numéro</label>
+                                        <input type="number" class="form-control" id="episodeNumber" name="episodeNumber" required>
+                                    </div>
+                                  
+                                    <div class="mb-3">
+                                        <label for="episodeTitle" class="form-label">thumbnail</label>
+                                        <input type="text" class="form-control" id="thumbnail" name="thumbnail"  required>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="episodeNumber" class="form-label">Numéro</label>
-                                        <input type="number" class="form-control" id="episodeNumber" name="numero" required>
+                                        <label for="episodeTitle" class="form-label">videoLink</label>
+                                        <input type="text" class="form-control" id="videoLink" name="videoLink"  required>
                                     </div>
+
+                                    <div class="mb-3">
+                                        <label for="episodeNumber" class="form-label">Duration</label>
+                                        <input type="time" class="form-control" id="duration" name="duration" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="episodeNumber" class="form-label">Duration</label>
+                                        <input type="date" class="form-control" id="releaseDate" name="releaseDate" required>
+                                    </div>
+                                    
                                     <div class="mb-3">
                                         <label for="saisonSelect" class="form-label">Saison</label>
                                         <select class="form-select" id="saisonSelect" name="saison_id" required>

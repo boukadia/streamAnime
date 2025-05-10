@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Episode;
 use App\Http\Requests\StoreEpisodeRequest;
 use App\Http\Requests\UpdateEpisodeRequest;
+use App\Models\Saison;
 use Illuminate\Http\Request;
 
 class EpisodeController extends Controller
@@ -22,8 +23,9 @@ class EpisodeController extends Controller
     }
     public function episodesManagement()
     {
+        $saisons= Saison::with("animes")->orderByDesc("created_at")->paginate(20);
         $episodes = Episode::with("saisons")->orderByDesc("created_at")->paginate(20);
-        return view("admin.saisons.episodes.manage", ["episodes" => $episodes]);
+        return view("admin.saisons.episodes.manage", ["episodes" => $episodes, "saisons" => $saisons]);
     }
 
     /**
@@ -48,6 +50,7 @@ class EpisodeController extends Controller
             "thumbnail" => "required", //n'est pas dans database
         ]);
         $episode = Episode::create($dataValidate);
+        return redirect()->route("episodesManagement");
     }
 
     /**
@@ -63,7 +66,7 @@ class EpisodeController extends Controller
      */
     public function edit(Episode $episode)
     {
-        return view("admin.episode.edit", ["episode", $episode]);
+        return view("admin.saisons.episodes.edit", ["episode"=>$episode]);
     }
 
     /**
@@ -72,12 +75,15 @@ class EpisodeController extends Controller
     public function update(Request $request, Episode $episode)
     {
         $dataValidate = $request->validate([
-            "titre" => "required",
-            "releaceDate" => "required",
-            "thumbnail" => "required", //n'est pas dans database
+            "releaseDate" => "required",
+            "episodeNumber" => "required",
+            "videoLink" => "required",
+            "thumbnail" => "required",
+            "duration" => "required",
 
         ]);
         $episode->update($dataValidate);
+        return redirect()->route("episodesManagement");
     }
 
     /**
@@ -86,6 +92,7 @@ class EpisodeController extends Controller
     public function destroy(Episode $episode)
     {
         $episode->delete();
+        return redirect()->route("episodesManagement");
     }
 
 }
