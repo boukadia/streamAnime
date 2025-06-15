@@ -38,10 +38,7 @@
                             <label for="animeEpisodes" class="form-label">Rank</label>
                             <input type="number" class="form-control" id="animeEpisodes" name="rank" value="{{ $anime->rank }}" min="1">
                         </div>
-                        <div class="col-md-4">
-                            <label for="animeEpisodes" class="form-label">score</label>
-                            <input type="number" class="form-control" id="animeEpisodes" name="score" value="{{ $anime->score }}" min="1">
-                        </div>
+                       
                         <div class="col-md-4">
                             <label for="animeEpisodes" class="form-label">rating</label>
                             <input type="text" class="form-control" id="animeEpisodes" name="rating" value="{{ $anime->rating }}" min="1">

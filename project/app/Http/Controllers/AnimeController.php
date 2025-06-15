@@ -21,28 +21,12 @@ class AnimeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    // public function index (){
-    //     $animes=Anime::all();
-    //     // dd($request->search);
-    // return view("user.index",["animes"=>$animes]);
-    // }
+
 
     public function favoryAnimes()
     {
         $user = Auth::user();
-        // $user = Auth::user();
-        // $animes = Anime::with('saisons.episodes')->orderByDesc("created_at")->limit(24)->get();
-        // $last_anime = Saison::orderBy('updated_at', 'desc')->limit(12)->get();
-        // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
-        // $last_anime = Anime::with('saisons')->orderBy('updated_at','desc')->get();
-        //    foreach($last_anime as $anime){
-        //     if($anime->saisons->isNotEmpty()){
 
-        //         dump(  $anime->saisons()->orderByDesc("created_at")->first()->titre);
-        //     }
-        // }
-
-        // dd($last_anime);
         $animes = $user->animes()->with("saisons.episodes")->orderByDesc("created_at")->get();
         return view("user.animes.favoryAnimes", ["animes" => $animes]);
     }
@@ -62,10 +46,6 @@ class AnimeController extends Controller
         } else {
             return redirect()->route("loginForm");
         }
-
-
-
-        // return redirect()->route("animes");
     }
     public function home()
     {
@@ -157,12 +137,10 @@ class AnimeController extends Controller
     {
 
         if ($request->search != null) {
-            // $queryString = Input::get('search');
+
 
             $search = $request->search;
-            // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
-            // dd($search);
-            // $animes=anime::search($request->search)->get();
+
             $categories = Category::all();
 
             $animes = anime::with('categories')->where('titre', 'LIKE', '%' . $search . '%')->paginate(10);
@@ -175,13 +153,10 @@ class AnimeController extends Controller
 
             return view("user.animes.animes", ["animes" => $animes, "categories" => $categories]);
         } else {
-            // $animes = Anime::all();
-            // $animes = Anime::with('categories')->get();
-            // $animes = Anime::with('categories')->paginate(5);
-            $animes = Anime::with('categories')->orderBy('yearCreation', 'desc')->paginate(5);
 
-            // "categories" => $categories]
-            // $categories=$animes->categories();
+            $animes = Anime::with('categories')->orderBy('yearCreation', 'desc')->paginate(12);
+
+
             $categories = Category::all();
 
 
@@ -199,17 +174,7 @@ class AnimeController extends Controller
     }
     public function animeWatching(Saison $saison)
     {
-        // $anime->saisons()->get();
-        // $saison= Saison::where("anime_id",$anime->id)->get();
-        // $saisons=$anime->saisons;
 
-        // {
-        //     foreach ($saison->episodes as $episode) {
-
-        //     echo "($episode->episodeNumber)";}
-        // };
-        // $epsiodes=$saison::with('episodes');
-        // $saison=$saison::with("episodes");
 
 
         return view("user.animes.animeWatching", ["saison" => $saison]);
@@ -222,15 +187,7 @@ class AnimeController extends Controller
     }
     public function episodeWatching(Episode $episode, Saison $saison)
     {
-        // $anime->saisons()->get();
-        // $saison= Saison::where("anime_id",$anime->id)->get();
-        // $saisons=$anime->saisons;
 
-        // {
-        //     foreach ($saison->episodes as $episode) {
-
-        //     echo "($episode->episodeNumber)";}
-        // };
 
 
         $episodes = $saison->episodes()->orderByDesc('episodeNumber')->get();
@@ -280,16 +237,11 @@ class AnimeController extends Controller
 
     public function dashBoard(Request $request)
     {
-        // $animes = Anime::with('categories')->orderBy('yearCreation', 'desc')->paginate(5);
-        // $categories = Category::all();
-        // return view("admin.dashboard", ["animes" => $animes,"categories" => $categories]);
+
         if ($request->search != null) {
-            // $queryString = Input::get('search');
 
             $search = $request->search;
-            // $last_anime = Anime::orderBy('updated_at','desc')->limit(6)->get();
-            // dd($search);
-            // $animes=anime::search($request->search)->get();
+
             $categories = Category::all();
 
             $animes = anime::with('categories')->where('titre', 'LIKE', '%' . $search . '%')->paginate(10);
@@ -305,40 +257,31 @@ class AnimeController extends Controller
 
     public function statistique()
     {
+        // $totalVues=;
+
+        $saisons = Saison::all();
+        $counter = 0;
+        foreach ($saisons as $saison) {
+            $counter += $saison->episodes()->sum('counter');
+        }
         $totalAnimes = Anime::count();
         $totalUsers = User::count();
-        $populaireCategorie = Category::withCount('animes') // Compter le nombre d'animes par catégorie
-            ->orderByDesc('animes_count')         // Trier par le nombre d'animes (descendant)
-            ->first();                            // Obtenir la première catégorie
-        $categories = Category::withCount('animes') // Compter le nombre d'animes par catégorie
-            ->orderByDesc('animes_count')         // Trier par le nombre d'animes (descendant)
+        $populaireCategorie = Category::withCount('animes')
+            ->orderByDesc('animes_count')
+            ->first();
+        $categories = Category::withCount('animes')
+            ->orderByDesc('animes_count')
             ->get();
-        //         foreach ($categories as $category) {
-        //    echo $category->name;
-        //     echo $category->animes->count();
-        //     echo "<br>";
-        // }
-        // $mostPopularGenre = Anime::select('genre')
-        //     ->groupBy('genre')
-        //     ->orderByRaw('COUNT(*) DESC')
-        //     ->value('genre'); // Corrected to fetch the genre value directly
-        $mostWatchedAnime = Anime::with('saisons.episodes')->get();
-        // foreach ($mostWatchedAnime as $anime) {
-        //     foreach ($anime->saisons as $saison) {
-        //         echo $saison->episodes()->sum('counter');
-        //         echo "<br>";
-        //     }
-        // }
 
-        // $mostWatchedAnime = Anime::orderBy('views', 'DESC')->first();
-        // $totalViews = Anime::sum('views');
+
+
+
 
         return view("admin.statistique", [
             "totalAnimes" => $totalAnimes,
             "totalUsers" => $totalUsers,
             "populaireCategorie" => $populaireCategorie,
-            //     "mostWatchedAnime" => $mostWatchedAnime,
-            //     "totalViews" => $totalViews
+            "counter" => $counter
         ]);
     }
     public function manageAnimes()
@@ -367,7 +310,8 @@ class AnimeController extends Controller
             "status" => "required",
             "rating" => "required",
             "rank" => "required",
-            "score" => "required",
+            "type" => "required",
+
             "categories" => "required|array", // On vérifie que c'est un tableau
             "categories.*" => "exists:categories,id"
 
@@ -392,10 +336,7 @@ class AnimeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(anime $anime)
-    {
-        //
-    }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -424,7 +365,7 @@ class AnimeController extends Controller
             "status" => "required",
             "rating" => "required",
             "rank" => "required",
-            "score" => "required",
+
             // "categories" => "required|array", // On vérifie que c'est un tableau
             // "categories.*" => "exists:categories,id"
 
@@ -433,9 +374,7 @@ class AnimeController extends Controller
         $anime->update($dataValidate);
         $anime->categories()->sync($request->categories);
 
-        // if ($request->has('categories')) {
-        //     $anime->categories()->attach($request->categories, ["created_at" => now()]);
-        // }
+
         return redirect()->route("dashboard");
     }
 

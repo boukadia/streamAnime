@@ -69,7 +69,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="animeTrailer" class="form-label">Video Link</label>
-                        <input type="url" class="form-control" id="videoLink" value="{{ $film->videoLink }}" name="videoLink" >
+                        <input type="text" class="form-control" id="videoLink" value="{{ $film->videoLink }}" name="videoLink" >
                     </div>
                     
                      <div class="modal-footer">

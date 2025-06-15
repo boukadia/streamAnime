@@ -53,8 +53,6 @@
                                 <li><a href="{{ Route('animes') }}">Animes</a></li>
                                 <li><a href="{{ Route('films') }}">Films</a></li>
                                 
-                                <li><a href="./blog.html">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -132,7 +130,7 @@
 
                             <div class="col-lg-2 col-md-4 col-sm-12">
                                 <div class='product__item'>
-                                    <div class='product__item__pic set-bg' data-setbg='/build/assets/img/anime/{{ $anime->posterLink }}'>
+                                    <div class='product__item__pic set-bg' data-setbg='/build/assets/img/anime/{{ $saison->posterLink }}'>
                                         <div class='view'><i class='fa fa-eye'></i> {{ $episode->counter }}</div>
                                         <!-- <div class='comment'><i class='fa fa-comments'></i> 11</div> -->
                                         <div class='ep'> episode {{ $episode->episodeNumber }}</div>

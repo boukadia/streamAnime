@@ -21,7 +21,6 @@ class Anime extends Model
             "status" ,
             "rating",
             "rank" ,
-            "score"
          ];
     
     public function characters(){

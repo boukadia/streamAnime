@@ -32,10 +32,10 @@
     </div> -->
 
     <!-- Header Section Begin -->
-    <header class="header">
+ <header class="header">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2">
+                <div class="col-lg-1">
                     <div class="header__logo">
                         <a href="./index.html">
                             <img loading="lazy" src="img/logo.png" alt="">
@@ -44,32 +44,34 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="header__nav">
-                        <nav class="header__menu mobile-menu">
+                        <!-- Ajout de l'icône du menu mobile -->
+                        <span class="mobile-menu-icon" id="mobileMenuIcon">☰</span>
+
+                        <nav class="header__menu mobile-menu" id="mobileMenu">
                             <ul>
-                                <li class=""><a href="{{ Route('home') }}">Homepage</a></li>
-                                <li class=""><a href="{{ Route('animes') }}">Animes</a></li>
-                                <li class=""><a href="{{ Route('films') }}">Films</a></li>
-                                <li><a href="{{Route("categorie")}}">Categories <span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="{{Route("categorie")}}">Categories</a></li>
-                                        <li><a href="./anime-details.html">Anime Details</a></li>
-                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="{{ Route("registerForm") }}">Sig Up</a></li>
-                                        <li><a href="{{ Route("loginForm") }}">Login</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./blog.html">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
+                                <li><a href="{{ Route('home') }}">Homepage</a></li>
+                                <li><a href="{{ Route('animes') }}">Animes</a></li>
+                                <li><a href="{{ Route('films') }}">Films</a></li>
+                                
                             </ul>
                         </nav>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <div class="header__right">
+                <div class="col-lg-3">
+                    <div class="col-lg-12 header__right">
+
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
                         <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
+                        <a href="{{ Route("favoryAnimes") }}" title="Ma watchlist">
+                            <i class="bi bi-bookmark" style="font-size: 20px;"></i>
+                        </a>
+                        <a href="{{ route('logOut') }}" title="Se déconnecter" class="text-danger">
+                            <i class="bi bi-box-arrow-right" style="font-size: 20px;"></i>
+                        </a>
+
+
                     </div>
+
                 </div>
             </div>
             <div id="mobile-menu-wrap"></div>
@@ -100,8 +102,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="anime__video__player">
-                        <video id="player" playsinline controls data-poster="https://img.youtube.com/vi/gY5nDXOtv_o/default.jpg">
-                            <source src="{{ $film->videoLink }}" type="video/mp4" />
+                        <video style="min-width: 698px; max-width: 698px; min-height: 418px; max-height: 418px; filter: saturate(1) contrast(1) brightness(1); background-size: cover;" id="player" playsinline controls data-poster="">
+                            <source src="/build/assets/video/{{ $film->videoLink }}" type="video/mp4" />
 
                             <!-- Captions are optional -->
                             <track kind="captions" label="English captions" src="#" srclang="en" default />

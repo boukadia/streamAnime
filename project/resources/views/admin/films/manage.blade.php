@@ -17,7 +17,8 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
+             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
+
                 <div class="position-sticky pt-3">
                     <div class="text-center mb-4">
                         <h3 class="text-white">Admin Panel</h3>
@@ -30,9 +31,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-white" href="">
-                                <i class="fas fa-film me-2"></i>
-                                Films
+                            <a class="nav-link active text-white" href="{{ Route('manageFilms') }}">
+                                <i class="fas fa-tv me-2"></i>
+                                Filmes
+                            </a>
+                        </li>
+                         <li class="nav-item">
+                            <a class="nav-link active text-white" href="{{ Route('episodesManagement') }}">
+                                <i class="fas fa-video me-2"></i>
+                                Épisodes
                             </a>
                         </li>
                         <li class="nav-item">
@@ -42,19 +49,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ Route('episodesManagement') }}">
-                                <i class="fas fa-video me-2"></i>
-                                Épisodes
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-white" href="">
                                 <i class="fas fa-users me-2"></i>
                                 Utilisateurs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{{ Route('statistique') }}">
+                            <a class="nav-link text-white" href="{{ Route("statistique") }}">
                                 <i class="fas fa-chart-bar me-2"></i>
                                 Statistiques
                             </a>
@@ -74,7 +75,7 @@
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1 class="h2">Gestion des Films</h1>
                     <div class="btn-toolbar mb-2 mb-md-0">
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAnimeModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAnimeModal">
                             <i class="fas fa-plus me-1"></i> Ajouter un Film
                         </button>
                     </div>
@@ -110,6 +111,20 @@
                                 </tbody>
                             </table>
                         </div>
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center mt-4">
+                                <div class="product__pagination">
+                                    @for ($i = 1; $i <= $films->lastPage(); $i++)
+                                        <a href="{{ $films->url($i) }}" class="{{ $films->currentPage() == $i ? 'current-page' : '' }}">{{ $i }}</a>
+                                        @endfor
+
+                                        @if ($films->currentPage() < $films->lastPage())
+                                            <a href="{{ $films->nextPageUrl() }}"><i class="fa fa-angle-double-right"></i></a>
+                                            @endif
+                                </div>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
 
@@ -117,64 +132,64 @@
         </div>
     </div>
 
-     <!-- Add Anime Modal -->
+    <!-- Add Anime Modal -->
     <div class="modal fade" id="addAnimeModal" tabindex="-1" aria-labelledby="addAnimeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="updateAnimeModalLabel">ajouter un Anime</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route('addFilm') }}" method="post" >
-                    @csrf
-                    <div class="row mb-3">
-                        <div class="col-md-6">
-                            <label for="animeTitle" class="form-label">Titre</label>
-                            <input type="text" class="form-control" id="filmTitle" name="titre"  required>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateAnimeModalLabel">ajouter un Anime</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('addFilm') }}" method="post">
+                        @csrf
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="animeTitle" class="form-label">Titre</label>
+                                <input type="text" class="form-control" id="filmTitle" name="titre" required>
+                            </div>
+
                         </div>
-                       
-                    </div>
 
-                    <div class="row mb-3">
-                        
-                        <div class="col-md-4">
-                        <label for="yearCreation">Release Date</label>
-                                                <input type="date" class="form-control custom-input" id="yearCreation" name="releaseDate" >
-                                           </div>
-                                            <div class="col-md-4">
-                                        <label for="episodeNumber" class="form-label">Duration</label>
-                                        <input type="number" class="form-control" id="duration" name="duration" required>
-                                    </div>
-                       
-                    </div>
+                        <div class="row mb-3">
 
-                    <div class="mb-3">
-                      <label for="animeStatus" class="form-label">Animes</label>
-                                <select class="form-select" id="animeId" name="anime_id" required>
-                                 @foreach ($animes as $anime )
-                                 
-                                 <option value="{{ $anime->id }}">{{ $anime->titre }}</option>
-                                 @endforeach
-                                 
-                                </select>
-                    </div>
-                    <div class="mb-3">
-                    <label for="genre">Genre</label>
-                                            @foreach ($categories as $categorie)
-                                            <input type="checkbox" id="categorie" name="categories[]" value="{{ $categorie->id }}">{{ $categorie->name }}
-                                            @endforeach
-                                            <small class="form-text helper-text">Maintenez la touche Ctrl (ou Cmd) pour sélectionner plusieurs genres</small>
-                                       
-                        
-                    </div>
+                            <div class="col-md-4">
+                                <label for="yearCreation">Release Date</label>
+                                <input type="date" class="form-control custom-input" id="yearCreation" name="releaseDate">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="episodeNumber" class="form-label">Duration</label>
+                                <input type="number" class="form-control" id="duration" name="duration" required>
+                            </div>
 
-                    <div class="mb-3">
-                        <label for="animeDescription" class="form-label">Description</label>
-                        <textarea class="form-control" id="animeDescription" name="description" rows="4"></textarea>
-                    </div>
+                        </div>
 
-                    <div class="row mb-3">
+                        <div class="mb-3">
+                            <label for="animeStatus" class="form-label">Animes</label>
+                            <select class="form-select" id="animeId" name="anime_id" required>
+                                @foreach ($animes as $anime )
+
+                                <option value="{{ $anime->id }}">{{ $anime->titre }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="genre">Genre</label>
+                            @foreach ($categories as $categorie)
+                            <input type="checkbox" id="categorie" name="categories[]" value="{{ $categorie->id }}">{{ $categorie->name }}
+                            @endforeach
+                            <small class="form-text helper-text">Maintenez la touche Ctrl (ou Cmd) pour sélectionner plusieurs genres</small>
+
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="animeDescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="animeDescription" name="description" rows="4"></textarea>
+                        </div>
+
+                        <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="animeCover" class="form-label">Image de couverture</label>
                                 <input class="form-control" type="file" id="animeCover" name="thumbnail" style="width: 100px;">
@@ -185,24 +200,24 @@
                             </div>
                         </div>
 
-                    <div class="mb-3">
-                        <label for="animeTrailer" class="form-label">Lien du trailer (YouTube)</label>
-                        <input type="url" class="form-control" id="animeTrailer" name="trailer" >
-                    </div>
-                    <div class="mb-3">
-                        <label for="animeTrailer" class="form-label">Video Link</label>
-                        <input type="url" class="form-control" id="videoLink" name="videoLink" >
-                    </div>
-                    
-                     <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="submit" class="btn btn-primary">Ajouter une anime</button>
+                        <div class="mb-3">
+                            <label for="animeTrailer" class="form-label">Lien du trailer (YouTube)</label>
+                            <input type="url" class="form-control" id="animeTrailer" name="trailer">
+                        </div>
+                        <div class="mb-3">
+                            <label for="animeTrailer" class="form-label">Video Link</label>
+                            <input type="text" class="form-control" id="videoLink" name="videoLink">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                            <button type="submit" class="btn btn-primary">Ajouter une anime</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
-                </form>
-            </div>
-           
         </div>
-    </div>
     </div>
 
     <!-- Bootstrap core JavaScript -->

@@ -32,7 +32,7 @@
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header">
+     <header class="header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-1">
@@ -52,18 +52,7 @@
                                 <li><a href="{{ Route('home') }}">Homepage</a></li>
                                 <li><a href="{{ Route('animes') }}">Animes</a></li>
                                 <li><a href="{{ Route('films') }}">Films</a></li>
-                                <li>
-                                    <a href="{{Route("categorie")}}">Categories<span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="{{Route("categorie")}}">Categories</a></li>
-                                        <li><a href="./anime-details.html">Anime Details</a></li>
-                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                        <li><a href="{{ Route("registerForm") }}">Sign Up</a></li>
-                                        <li><a href="{{ Route("loginForm") }}">Login</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./blog.html">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
+                                
                             </ul>
                         </nav>
                     </div>
@@ -73,7 +62,7 @@
 
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
                         <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
-                        <a href="" title="Ma watchlist">
+                        <a href="{{ Route("favoryAnimes") }}" title="Ma watchlist">
                             <i class="bi bi-bookmark" style="font-size: 20px;"></i>
                         </a>
                         <a href="{{ route('logOut') }}" title="Se déconnecter" class="text-danger">
@@ -90,21 +79,7 @@
     </header>
     <!-- Header End -->
 
-    <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
-                        <span>Romance</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
+   
 
     <!-- Anime Section Begin -->
     <section class="anime-details spad">
@@ -152,11 +127,7 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Scores:</span> 7.31 / 1,515</li>
-                                            <li><span>Rating:</span> 8.5 / 161 times</li>
-                                            <li><span>Duration:</span> 24 min/ep</li>
-                                            <li><span>Quality:</span> HD</li>
-                                            <li><span>Views:</span> 131,541</li>
+                                            <li><span>Rating:</span> {{ $anime->rating }}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -173,36 +144,16 @@
             <div class="col">
                 <div class="col-lg-8 col-md-8">
                     <div class="anime__details__review">
-                        <div class="section-title">
-                            <h5>Reviews</h5>
-                        </div>
-                        <div class="anime__review__item">
-                            <div class="anime__review__item__pic">
-                                <img loading="lazy" src="https://cdn.myanimelist.net/images/anime/4/19644.jpg" alt="">
-                            </div>
-                            <div class="anime__review__item__text">
-                                <h6>Chris Curry - <span>1 Hour ago</span></h6>
-                                <p>whachikan Just noticed that someone categorized this as belonging to the genre
-                                    "demons" LOL</p>
-                            </div>
-                        </div>
+                        
 
 
                     </div>
-                    <div class="anime__details__form">
-                        <div class="section-title">
-                            <h5>Your Comment</h5>
-                        </div>
-                        <form action="#">
-                            <textarea placeholder="Your Comment"></textarea>
-                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
-                        </form>
-                    </div>
+                   
                 </div>
                 <div>
                     <div class="anime__details__sidebar">
                         <div class="section-title">
-                            <h5>you might like...</h5>
+                            <h5>Saisons</h5>
                         </div>
 
                         <div class="row g-3">
@@ -210,7 +161,7 @@
                             <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                                 <div class="product__sidebar__view__item set-bg" loading="lazy" data-setbg="/build/assets/img/anime/{{ $saison->posterLink }}">
                                     <!-- <div class="ep">18 / ?</div> -->
-                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                    <!-- <div class="view"><i class="fa fa-eye"></i> 9141</div> -->
                                     <h5><a href="{{ Route('episodes', $saison) }}">{{ $saison->titre }}</a></h5>
                                 </div>
                             </div>

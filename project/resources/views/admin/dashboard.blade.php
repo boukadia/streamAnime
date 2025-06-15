@@ -137,7 +137,10 @@
 
                 <!-- Anime List -->
                 <div class="card shadow mb-4">
-
+<div class="card-header py-3 d-flex justify-content-between align-items-center">
+                        <h6 class="m-0 font-weight-bold text-primary">Liste des Animes</h6>
+                       
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped" id="animeTable" width="100%" cellspacing="0">
@@ -225,10 +228,7 @@
                             <label for="animeEpisodes" class="form-label">Rank</label>
                             <input type="number" class="form-control" id="animeEpisodes" name="rank"  min="1">
                         </div>
-                        <div class="col-md-4">
-                            <label for="animeEpisodes" class="form-label">score</label>
-                            <input type="number" class="form-control" id="animeEpisodes" name="score"  min="1">
-                        </div>
+                        
                         <div class="col-md-4">
                             <label for="animeEpisodes" class="form-label">rating</label>
                             <input type="text" class="form-control" id="animeEpisodes" name="rating"   min="1">
@@ -239,6 +239,16 @@
                                 <option value="En cours" >En cours</option>
                                 <option value="Complet" >Terminé</option>
                                 <option value="Pas encore" >À venir</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="animeStatus" class="form-label">Statut</label>
+                            <select class="form-select" id="animeStatus" name="type" required>
+                                <option value="TV" >TV</option>
+                                <option value="MOVIE" >MOVIE</option>
+                                <option value="OVA" >OVA</option>
+                                <option value="ONA" >ONA</option>
+                                <option value="SPECIAL" >SPECIAL</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -272,7 +282,7 @@
                                 <input class="form-control" type="file" id="animeCover" name="thumbnail" style="width: 100px;">
                             </div>
                             <div class="col-md-6">
-                                <label for="animeBanner" class="form-label">Bannière</label>
+                                <label for="animeBanner" class="form-label">Thumbnail</label>
                                 <input class="form-control" type="file" id="animeBanner" name="posterLink" style="width: 100px;">
                             </div>
                         </div>

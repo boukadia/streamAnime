@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-                <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
+               <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
 
                 <div class="position-sticky pt-3">
                     <div class="text-center mb-4">
@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-white" href="">
+                            <a class="nav-link active text-white" href="{{ Route('manageFilms') }}">
                                 <i class="fas fa-tv me-2"></i>
                                 Filmes
                             </a>
@@ -120,17 +120,8 @@
                 <!-- Anime List -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3 d-flex justify-content-between align-items-center">
-                        <h6 class="m-0 font-weight-bold text-primary">Liste des Animes</h6>
-                        <div class="dropdown">
-                            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="exportDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                Exporter
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="exportDropdown">
-                                <li><a class="dropdown-item" href="#">CSV</a></li>
-                                <li><a class="dropdown-item" href="#">Excel</a></li>
-                                <li><a class="dropdown-item" href="#">PDF</a></li>
-                            </ul>
-                        </div>
+                        <h6 class="m-0 font-weight-bold text-primary">Liste des saisons</h6>
+                       
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

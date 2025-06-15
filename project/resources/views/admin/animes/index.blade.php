@@ -283,10 +283,7 @@
                                                 <label for="rating">Rating</label>
                                                 <input type="text" class="form-control custom-input" id="rating" name="rating">
                                             </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="score">Score</label>
-                                                <input type="text" class="form-control custom-input" id="score" name="score">
-                                            </div>
+                                            
                                             <div class="form-group col-md-6">
                                                 <label for="rank">Note <small>(sur 10)</small></label>
                                                 <input type="number" class="form-control custom-input" id="rank" name="rank" min="0" max="10" step="0.1">

@@ -127,7 +127,7 @@ class FilmController extends Controller
     {
         $animes = Anime::all();
         $categories = Category::all();
-        $films = Film::with('categories')->orderBy('titre', 'desc')->paginate(5);
+        $films = Film::with('categories')->orderBy('titre', 'desc')->paginate(10);
 
         return view("admin.films.manage", ["films" => $films, "categories" => $categories, "animes" => $animes]);
     }

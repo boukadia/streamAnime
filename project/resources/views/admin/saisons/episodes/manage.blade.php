@@ -17,7 +17,7 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-                <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse position-fixed h-100">
 
                 <div class="position-sticky pt-3">
                     <div class="text-center mb-4">
@@ -31,7 +31,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active text-white" href="">
+                            <a class="nav-link active text-white" href="{{ Route('manageFilms') }}">
                                 <i class="fas fa-tv me-2"></i>
                                 Filmes
                             </a>
@@ -140,11 +140,11 @@
                                         <label for="episodeNumber" class="form-label">Numéro</label>
                                         <input type="number" class="form-control" id="episodeNumber" name="episodeNumber" required>
                                     </div>
-                                  
-                                    <div class="mb-3">
-                                        <label for="episodeTitle" class="form-label">thumbnail</label>
-                                        <input type="text" class="form-control" id="thumbnail" name="thumbnail"  required>
-                                    </div>
+                                  <div class="col-md-6">
+                                <label for="animeBanner" class="form-label">Thumbnail</label>
+                                <input class="form-control" type="file" id="animeBanner" name="thumbnail" style="width: 100px;">
+                            </div>
+                                    
                                     <div class="mb-3">
                                         <label for="episodeTitle" class="form-label">videoLink</label>
                                         <input type="text" class="form-control" id="videoLink" name="videoLink"  required>

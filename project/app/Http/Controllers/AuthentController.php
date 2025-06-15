@@ -14,14 +14,14 @@ class AuthentController extends Controller
 {
     public function login(Request $request)
     {
-        // Validation des données
+       
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
         
         
-        // Tentative d'authentification
+       
         if (Auth::attempt($request->only('email', 'password')) ) {
             return redirect("/home"); 
         }
@@ -33,7 +33,7 @@ class AuthentController extends Controller
         }
     
 
-        // Retourner une erreur si la connexion échoue
+        
     }
 public function loginForm(){
     return view("connexion.login");

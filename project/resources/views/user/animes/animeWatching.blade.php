@@ -52,18 +52,7 @@
                                 <li><a href="{{ Route('home') }}">Homepage</a></li>
                                 <li><a href="{{ Route('animes') }}">Animes</a></li>
                                 <li><a href="{{ Route('films') }}">Films</a></li>
-                                <li>
-                                    <a href="{{Route("categorie")}}">Categories<span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="{{Route("categorie")}}">Categories</a></li>
-                                        <li><a href="./anime-details.html">Anime Details</a></li>
-                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
-                                        <li><a href="{{ Route("registerForm") }}">Sign Up</a></li>
-                                        <li><a href="{{ Route("loginForm") }}">Login</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="./blog.html">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
+                                
                             </ul>
                         </nav>
                     </div>
@@ -73,7 +62,7 @@
 
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
                         <a href="{{ Route('loginForm') }}"><span class="icon_profile"></span></a>
-                        <a href="" title="Ma watchlist">
+                        <a href="{{ Route("favoryAnimes") }}" title="Ma watchlist">
                             <i class="bi bi-bookmark" style="font-size: 20px;"></i>
                         </a>
                         <a href="{{ route('logOut') }}" title="Se déconnecter" class="text-danger">
@@ -90,22 +79,7 @@
     </header>
     <!-- Header End -->
 
-    <!-- Breadcrumb Begin -->
-    <div class="breadcrumb-option">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
-                        <a href="#">Romance</a>
-                        <span>Fate Stay Night: Unlimited Blade</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Breadcrumb End -->
+   
 
     <!-- Anime Section Begin -->
     <section class="anime-details spad">
@@ -117,8 +91,8 @@
                             Captions are optional
                             <track kind="captions" label="English captions" src="" srclang="en" default />
                         </video> -->
-                        <video id="player" playsinline controls poster="{{ $episode->videoLink }}">
-                            <source src="https://dc687.4shared.com/img/YxGve_Qqjq/5b1c42af/dlink__2Fdownload_2FYxGve_5FQqjq_3Fsbsr_3D24750589b669064fca1cdd983a5c1eefb46_26bip_3DMTk3LjE0NS4yNDIuMzQ_26lgfp_3D66_26bip_3DMTk3LjE0NS4yNDIuMzQ_26bip_3DMTk3LjE0NS4yNDIuMzQ/preview.mp4" type="video/mp4">
+                        <video  style="min-width: 698px; max-width: 698px; min-height: 418px; max-height: 418px; filter: saturate(1) contrast(1) brightness(1); background-size: cover;" id="player" playsinline controls poster="{{ $episode->videoLink }}">
+                            <source src="/build/assets/video/{{ $episode->videoLink }}" type="video/mp4">
                             Votre navigateur ne prend pas en charge la lecture de vidéos.
                         </video>
                     </div>
